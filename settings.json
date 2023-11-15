@@ -3,7 +3,17 @@
     {
       "format": "expanded",
       "extensionName": ".css",
-      "savePath": "/hackerescaperoom/main.css" // Change this path to your desired output directory
+      "savePath": "/hackerescaperoom/main.css"
+    },
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/hackerescaperoom/challenges.css"
     }
+  ]
+
+  "liveSassCompile.settings.includeItems": [
+    "main.scss",
+    "challenges.scss"
   ]
 }

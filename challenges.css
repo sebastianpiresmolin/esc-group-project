@@ -1,0 +1,31 @@
+.filterContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.filterContainer h1 {
+  font-size: 48px;
+  color: #011827;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 100px;
+}
+.filterContainer button {
+  display: none;
+  border-color: #e3170a;
+  border-style: solid;
+  border-radius: 4px;
+  width: 180px;
+  height: 50px;
+  background-color: #ffffff;
+  font-size: 20px;
+  color: #e3170a;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  text-align: center;
+  margin-top: px;
+}/*# sourceMappingURL=challenges.css.map */
