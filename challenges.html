@@ -47,6 +47,8 @@
   </header>
   <main class="container">
     <section class="sectionOne">
+      
+      <!-- Mobile menu -->
       <div class="container__menuOverlay" id="menuOverlay"></div>
       <div class="container__popinMenu" id="popinMenu">
         <div class="popinMenu__closebtn" id="closebtn"><img src="media/close.png" alt="Close window button">
@@ -58,6 +60,8 @@
           <li><a class="navbar__link" href="index.html">Contact us</a></li>
         </ul>
       </div>
+      <!----------------------------------------------------->
+
       <div class="filterContainer">
         <h1>Our challenges</h1>
         <button class="filterButton">Filter challenges</button>
@@ -71,15 +75,17 @@
                 <li><input type="checkbox">Include online challenges</li>
                 <li><input type="checkbox">Include on-site challenges</li>
             </ul>
+
+            <!-- add class 'checked' to show checked css -->
             <div class="starBox">
-              <span class="fromStarOne"><i class="fa fa-star checked"></i></span>
+              <span class="fromStarOne"><i class="fa fa-star"></i></span>
                 <span class="FromStarTwo"><i class="fa fa-star"></i></span>
                   <span class="FromStarThree"><i class="fa fa-star"></i></span>
                     <span class="FromStarFour"><i class="fa fa-star"></i></span>
                       <span class="FromStarFive"><i class="fa fa-star"></i></span>
               <p class="starP">to</p>
-              <span class="ToStarOne"><i class="fa fa-star checked"></i></span>
-                <span class="ToStarTwo"><i class="fa fa-star checked"></i></span>
+              <span class="ToStarOne"><i class="fa fa-star"></i></span>
+                <span class="ToStarTwo"><i class="fa fa-star"></i></span>
                   <span class="ToStarThree"><i class="fa fa-star"></i></span>
                     <span class="ToStarFour"><i class="fa fa-star"></i></span>
                       <span class="ToStarFive"><i class="fa fa-star"></i></span>
@@ -92,8 +98,9 @@
                 <label>Some other tag</label>
                 <label>A final tag</label>
               </div>
-              <div class="flterInputBox">
+              <div class="filterInputBox">
                 <h2>Or type to search for keyword</h2>
+                <input type="text" placeholder="Start typing to filter">
               </div>
             </div>
               

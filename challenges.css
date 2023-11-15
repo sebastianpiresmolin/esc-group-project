@@ -119,4 +119,8 @@
 .filterButtonBox label:active {
   background-color: #e3170a;
   color: #ffffff;
+}
+
+.filterInputBox {
+  margin: auto;
 }/*# sourceMappingURL=challenges.css.map */
