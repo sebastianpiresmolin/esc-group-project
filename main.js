@@ -1,3 +1,5 @@
+/* ------------------------MOBILE MENU------------------------ */
+
 document.getElementById("headerButton").addEventListener('click', function() {
     let menuOverlay = document.getElementById("menuOverlay");
     let popinMenu = document.getElementById("popinMenu");
@@ -35,3 +37,61 @@ document.getElementById("closebtn").addEventListener('click', function() {
     
     document.documentElement.style.overflowY = 'auto'; // This enables the ability to scroll again
 });
+
+/*------------------------MOBILE MENU------------------------*/
+
+/*------------------------STAR RATING------------------------*/
+
+// Get all the stars
+const fromStars = [
+    document.querySelector('#fromOne'),
+    document.querySelector('#fromTwo'),
+    document.querySelector('#fromThree'),
+    document.querySelector('#fromFour'),
+    document.querySelector('#fromFive')
+];
+
+const toStars = [
+    document.querySelector('#toOne'),
+    document.querySelector('#toTwo'),
+    document.querySelector('#toThree'),
+    document.querySelector('#toFour'),
+    document.querySelector('#toFive')
+];
+
+// Function to handle star click
+let fromRating = 1;
+let toRating = 5;
+
+function handleStarClick(stars, index, isFromStars) {
+    // Remove 'checked' class from all stars
+    stars.forEach(star => star.classList.remove('checked'));
+
+    // Add 'checked' class to clicked star and all previous stars
+    for (let i = 0; i <= index; i++) {
+        stars[i].classList.add('checked');
+    }
+
+    // Update the rating
+    const rating = index + 1;
+    if (isFromStars) {
+        fromRating = rating;
+    } else {
+        toRating = rating;
+    }
+}
+
+// Add event listeners to all stars
+fromStars.forEach((star, index) => {
+    star.addEventListener('click', () => handleStarClick(fromStars, index, true));
+});
+
+toStars.forEach((star, index) => {
+    star.addEventListener('click', () => handleStarClick(toStars, index, false));
+});
+
+/*------------------------STAR RATING------------------------*/
+
+/*------------------------TAGS------------------------*/
+
+// Get all the tags

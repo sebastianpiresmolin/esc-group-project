@@ -99,39 +99,19 @@
   margin: 2px;
 }
 
-.checked {
-  color: #e3170a;
-}
-
-.starBox__toStar i, .starBox__toStar i:hover ~ i,
-.starBox__fromStar i, .starBox__fromStar i:hover ~ i {
+.starBox__Star i, .starBox__Star i:hover ~ i,
+.starBox__Star i, .starBox__Star i:hover ~ i {
   color: #ffffff;
   text-shadow: none;
-  transition: color 200ms, text-shadow 200ms;
+  transition: color 200ms;
 }
 
-.starBox__fromStar:hover i, .starBox__toStar:hover i {
+.starBox__Star:hover i, .starBox__Star:hover i {
   color: #e3170a;
 }
 
-.starBox__toStar:hover i:nth-child(2),
-.starBox__fromStar:hover i:nth-child(2) {
-  transition-delay: 30ms;
-}
-
-.starBox__toStar:hover i:nth-child(3),
-.starBox__fromStar:hover i:nth-child(3) {
-  transition-delay: 60ms;
-}
-
-.starBox__toStar:hover i:nth-child(4),
-.starBox__fromStar:hover i:nth-child(4) {
-  transition-delay: 90ms;
-}
-
-.starBox__toStar:hover i:nth-child(5),
-.starBox__fromStar:hover i:nth-child(5) {
-  transition-delay: 120ms;
+.starBox__Star i.checked {
+  color: #e3170a;
 }
 
 .filterButtonBox {
@@ -166,7 +146,8 @@
   background-color: #e3170a;
   color: #ffffff;
 }
-.filterButtonBox label:active {
+
+label.active {
   background-color: #e3170a;
   color: #ffffff;
 }
