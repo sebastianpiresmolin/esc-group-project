@@ -95,3 +95,43 @@ toStars.forEach((star, index) => {
 /*------------------------TAGS------------------------*/
 
 // Get all the tags
+
+const tags = [
+    document.querySelector('#web'),
+    document.querySelector('#linux'),
+    document.querySelector('#cryptography'),
+    document.querySelector('#coding'),
+    document.querySelector('#ssh'),
+    document.querySelector('#ctf'),
+    document.querySelector('#hacking'),
+    document.querySelector('#bash'),
+    document.querySelector('#javascript'),
+    document.querySelector('#electronics'),
+    document.querySelector('#phreaking')
+];
+
+let activeTags = [];
+
+// Function to handle tag click
+function handleTagClick(tag) {
+    const tagId = tag.id; // Get the id of the tag
+
+    // Check if the tag is already active
+    if (tag.classList.contains('active')) {
+        // If it's active, remove the 'active' class and remove it from the activeTags array
+        tag.classList.remove('active');
+        activeTags = activeTags.filter(activeTag => activeTag !== tagId);
+    } else {
+        // If it's not active, add the 'active' class and add it to the activeTags array
+        tag.classList.add('active');
+        activeTags.push(tagId);
+    }
+    console.log(activeTags);
+}
+
+// Add event listeners to all tags
+tags.forEach(tag => {
+    tag.addEventListener('click', () => handleTagClick(tag));
+});
+
+/*------------------------TAGS------------------------*/
