@@ -75,10 +75,20 @@ function handleStarClick(stars, index, isFromStars) {
     // Update the rating
     const rating = index + 1;
     if (isFromStars) {
-        fromRating = rating;
+        // Only update fromRating if it's less than or equal to toRating
+        if (rating <= toRating) {
+            fromRating = rating;
+        } else {
+            // If fromRating would be greater than toRating, remove 'checked' class from the stars that should not be selected
+            for (let i = toRating; i <= index; i++) {
+                stars[i].classList.remove('checked');
+            }
+        }
     } else {
         toRating = rating;
     }
+
+    console.log(`From: ${fromRating}, To: ${toRating}`);
 }
 
 // Add event listeners to all stars
