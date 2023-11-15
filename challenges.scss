@@ -144,7 +144,25 @@ $width-1920: 1920px;
 
 .filterInputBox {
     margin: auto;
+        input {
+            width: 320px;
+            height: 45px;
+            border-radius: 5px;
+            border-style: solid;
+            border-color: $shadow;
+            font-size: 22px;
+            padding-left: 10px;
+            }
+        h3 {
+            margin-bottom: 15px;
+        }
+      
 }
+
+.filterInputBox input::placeholder{
+    color: $shadow;
+}
+
 
 
 

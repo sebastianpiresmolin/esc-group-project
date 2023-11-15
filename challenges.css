@@ -123,4 +123,24 @@
 
 .filterInputBox {
   margin: auto;
+}
+.filterInputBox input {
+  width: 320px;
+  height: 45px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #b6bdb5;
+  font-size: 22px;
+  padding-left: 10px;
+}
+.filterInputBox h3 {
+  margin-bottom: 15px;
+}
+
+.filterInputBox input::-moz-placeholder {
+  color: #b6bdb5;
+}
+
+.filterInputBox input::placeholder {
+  color: #b6bdb5;
 }/*# sourceMappingURL=challenges.css.map */
