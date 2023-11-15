@@ -1,0 +1,943 @@
+$red: #e3170a;
+$lightblue: #8acfe5;
+$blue: #36769d;
+$darkblue: #011827;
+$shadow: #b6bdb5;
+$white: #ffffff;
+
+$width-340: 340px;
+$width-341: 341px;
+$width-390: 390px;
+$width-575: 575px;
+$width-745: 745px;
+$width-900: 900px;
+$width-1180: 1180px;
+$width-1280: 1280px;
+$width-1500: 1500px;
+$width-1920: 1920px;
+
+@mixin breakpoint($point) {
+    @if $point ==width-575 {
+        @media (min-width: $width-575) {
+            @content;
+        }
+    }
+    @if $point ==width-390 {
+        @media (max-width: $width-390) {
+            @content;
+        }
+    }
+
+    @if $point ==width-340 {
+        @media (max-width: $width-340) {
+            @content;
+        }
+    }
+
+    @if $point ==width-341 {
+        @media (min-width: $width-341) {
+            @content;
+        }
+    }
+
+    @if $point ==width-745 {
+        @media (min-width: $width-745) {
+            @content;
+        }
+    }
+
+    @if $point ==width-900 {
+        @media (min-width: $width-900) {
+            @content;
+        }
+    }
+
+    @if $point ==width-1180 {
+        @media (min-width: $width-1180) {
+            @content;
+        }
+    }
+
+    @if $point ==width-1280 {
+        @media (min-width: $width-1280) {
+            @content;
+        }
+    }
+
+    @if $point ==width-1500 {
+        @media (min-width: $width-1500) {
+            @content;
+        }
+    }
+
+    @if $point ==width-1920 {
+        @media (min-width: $width-1920) {
+            @content;
+        }
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(80%);
+    }
+
+    100% {
+        transform: scale(100%);
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+    
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+* {
+    font-family: Roboto, sans-serif;
+}
+/* This is just to simulate functional buttons */
+button {
+    cursor: pointer;
+}
+
+
+.header {
+    width: 100%;
+    height: fit-content;
+    background-color: $darkblue;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0em;
+        text-align: center;
+        color: $white;
+        height: 84px;
+        width: 78px;
+        margin-left: 14px;
+        margin-top: 25px;
+        margin-bottom: 0;
+
+        @include breakpoint(width-900) {
+            font-size: 40px;
+            font-weight: 700;
+            width: auto;
+            margin-top: 60px;
+            height: fit-content;
+        }
+    }
+}
+
+.header__container {
+    width: 100%;
+    height: 144px;
+    display: flex;
+    flex-direction: row;
+
+    img {
+        height: 82px;
+        width: 128px;
+        margin-left: 27px;
+        margin-top: 26px;
+    }
+
+    button {
+        background: none;
+        border: unset;
+        color: $white;
+        padding: 0;
+        margin-left: auto;
+        margin-bottom: 84px;
+        margin-right: 27px;
+        margin-top: 20px;
+        font-size: 50px;
+
+        @include breakpoint(width-900) {
+            display: none;
+        
+        }
+    }
+}
+
+.navbar {
+    width: 80vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    margin-top: 22px;
+    margin-bottom: 22px;
+    justify-content: space-evenly;
+      ul {
+      width: 80vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0px;
+      list-style-type: none;
+      }
+
+    @include breakpoint(width-900) {
+        display: flex;
+    }
+
+    a {
+        font-size: 24px;
+        font-weight: 700;
+        color: $white;
+        text-decoration: none;
+
+        &:hover {
+            color: $lightblue;
+        }
+    }
+}
+
+.container__menuOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff83;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container__popinMenu {
+    display: none;
+    position: fixed;
+    top: 2.5%;
+    left: 5%;
+    width: 90%;
+    height: 95%;
+    background-color: $darkblue;
+    z-index: 2;
+    overflow-y: auto;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        a {
+            text-decoration: none;
+            color: $white;
+        }
+}
+
+
+.popinMenu__closebtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+        img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+}
+
+.containerOne {
+    position: relative;
+    width: 100%;
+    height: 284px;
+    background-image: url(media/hackerimg.png);
+    background-size: cover;
+    background-position: center;
+
+    @include breakpoint(width-745) {
+        height: 350px;
+    }
+
+    @include breakpoint(width-900) {
+        height: 400px;
+    }
+
+    @include breakpoint(width-1280) {
+        height: 468px;
+    }
+
+    @include breakpoint(width-1920) {
+        height: 600px;
+    }
+}
+
+.containerTwo {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerTwo__linkBox {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include breakpoint(width-900) {
+        flex-direction: row;
+        gap: 17px;
+        transform: translateY(-50%);
+    }
+
+    a {
+        width: 129px;
+        height: 19.97px;
+        font-size: 16px;
+        font-weight: 700;
+        color: $blue;
+        margin-top: 30px;
+
+        @include breakpoint(width-900) {
+            display: none;
+        }
+    }
+}
+
+.containerTwo__challengesBtn {
+    width: 308px;
+    height: 66px;
+    border: none;
+    color: $darkblue;
+    background-color: $lightblue;
+    margin-top: 35px;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: 700;
+
+    @include breakpoint(width-900) {
+        margin-top: 0px;
+    }
+}
+
+.containerTwo__onlineChallengesBtn {
+    display: none;
+
+    @include breakpoint(width-900) {
+        width: 308px;
+        height: 66px;
+        border: none;
+        color: $darkblue;
+        background-color: #e3170a;
+        border-radius: 5px;
+        font-size: 24px;
+        font-weight: 700;
+        color: #ffffff;
+        display: unset;
+    }
+}
+
+.containerTwo__quoteContainer {
+    @include breakpoint(width-1180) {
+        display: flex;
+        width: 100vw;
+        justify-content: space-evenly;
+    }
+
+    img {
+        width: 72px;
+        height: 72px;
+        margin-right: 22px;
+        margin-top: 3px;
+
+        @include breakpoint (width-1180) {
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+
+.containerTwo__quoteBox {
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 60px;
+    height: 139px;
+    max-width: 455px;
+
+    @include breakpoint(width-340) {
+        display: none;
+    }
+
+    @include breakpoint(width-341) {
+        display: flex;
+    }
+
+    @include breakpoint (width-1180) {
+        max-width: 520px;
+        margin-top: 80px;
+        margin-left: 0px;
+    }
+}
+
+.containerTwo__quotebox {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 400;
+        margin: 0;
+
+        @include breakpoint(width-1180) {
+            width: 410px;
+        }
+    }
+
+    p {
+        font-size: 18px;
+        margin-top: 12px;
+        margin-bottom: 0;
+    }
+}
+
+.secondQuote {
+    display: none;
+
+    @include breakpoint (width-1180) {
+        display: flex;
+    }
+}
+
+.carousel__title {
+    font-weight: 400;
+    font-size: 32px;
+    margin-top: 105px;
+    margin-bottom: 44px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 100vw;
+    text-align: center;
+
+    @include breakpoint(width-1280) {
+        font-size: 36px;
+        margin-bottom: 87px;
+        margin-top: 108px
+    }
+}
+
+.containerTwo__carousel {
+    display: flex;
+    width: 100vw;
+    height: 480px;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    gap: 30px;
+    
+    /* This time -webkit- is justified since only 80% of browsers support it */
+    &::-webkit-scrollbar {
+        width: 0.1em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+
+    @include breakpoint(width-1180) {
+        overflow-x: unset;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
+
+.carousel__card {
+    width: 363px;
+    height: 446px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px 3px rgba(182, 189, 181, 0.4);
+}
+
+.carousel__firstCard {
+    margin-left: 50px;
+
+    @include breakpoint(width-1180) {
+        margin-left: 20px;
+    }
+}
+
+.carousel__lastCard {
+    margin-right: 50px;
+
+    @include breakpoint(width-1180) {
+        margin-right: 0px;
+    }
+}
+
+.carousel__img {
+    object-fit: cover;
+    height: 219px;
+    border-radius: 8px 8px 0 0;
+}
+
+.carousel__textBox {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 8px 8px;
+}
+
+.carousel__cardTitle {
+    width: 308px;
+    height: 33px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 33px;
+    font-weight: 400;
+    margin-left: 17px;
+    margin-top: 12px;
+    margin-right: 38px;
+}
+
+.carousel__scoreBox {
+    display: flex;
+    margin-top: 4px;
+    margin-left: 20px;
+}
+
+.carousel__star {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.carousel__p {
+    width: 159px;
+    height: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+.carousel__subTitle {
+    height: 80px;
+    width: 328px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 18px;
+    margin-right: 18px;
+    margin-top: 25px;
+}
+
+.carousel__buttonBox {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.buttonBox__button {
+    border: none;
+    background-color: $red;
+    height: 44px;
+    width: 180px;
+    border-radius: 5px;
+    color: $white;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 12px;
+    margin-right: 18px;
+}
+
+.containerTwo__linkBox.buttonsUnderCards {
+    @include breakpoint(width-900) {
+        margin-top: 67px;
+        margin-bottom: 87px;
+        transform: translateY(0);
+        height: fit-content;
+    }
+
+    @include breakpoint(width-1280) {
+        margin-bottom: 87px;
+        transform: translateY(0);
+    }
+
+    button {
+        @include breakpoint(width-900) {
+            margin-top: 0;
+        }
+    }
+}
+
+.underCarouselBtn {
+    margin-top: 15px;
+}
+
+.underCarouselLink {
+    margin-bottom: 60px;
+}
+
+.containerThree {
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: $darkblue;
+    justify-content: flex-end;
+    align-items: center;
+
+    @include breakpoint(width-1280) {
+        height: fit-content;
+    }
+
+    button {
+        border-color: $lightblue;
+        border-style: solid;
+        border-radius: 4px;
+        width: 308px;
+        height: 66px;
+        background-color: $darkblue;
+        font-size: 24px;
+        color: #8acfe5;
+        font-family: Roboto, sans-serif;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 14px;
+        margin-bottom: 91px;
+
+        @include breakpoint(width-1280) {
+            margin-bottom: 142px;
+            margin-top: 0;
+        }
+    }
+
+    h1 {
+        font-size: 28px;
+        text-align: center;
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 234px;
+        color: $white;
+        font-weight: 400;
+        margin-top: 95px;
+        max-width: 632px;
+        @include breakpoint(width-390) {
+            font-size: 24px;
+        }
+
+        @include breakpoint(width-1280) {
+            margin-top: 123px;
+            height: fit-content;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 35px;
+        }
+    }
+}
+
+.containerFour {
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+
+    @include breakpoint(width-900) {
+        flex-direction: row;
+        height: 460px;
+    }
+
+    @include breakpoint(width-1920) {
+        width: 100vw;
+        height: 600px;
+    }
+}
+
+.containerFour__textBox,
+.containerFive__textBox {
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+
+    @include breakpoint(width-900) {
+        width: 50vw;
+        height: 460px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @include breakpoint(width-1920) {
+        width: 50vw;
+        height: 600px;
+    }
+}
+
+.containerFour__img,
+.containerFive__img {
+    width: 100vw;
+    object-fit: cover;
+
+    @include breakpoint(width-900) {
+        width: 50vw;
+        height: 460px;
+    }
+
+    @include breakpoint(width-1920) {
+        width: 50vw;
+        height: 600px;
+    }
+}
+
+.containerFour__title,
+.containerFive__title {
+    height: fit-content;
+    max-width: 655px;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: left;
+
+    @include breakpoint(width-575) {
+        max-width: 420px;
+    }
+
+    @include breakpoint(width-900) {
+        margin-top: 60px;
+    }
+
+    @include breakpoint(width-1920) {
+        max-width: 700px;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+}
+
+.containerFour__subTitle,
+.containerFive__subTitle {
+    text-align: left;
+    height: 112px;
+    max-width: 655px;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 25px;
+    margin-left: 21px;
+    margin-right: 24px;
+    @include breakpoint(width-390) {
+        font-size: 20px;
+    }
+
+    @include breakpoint(width-575) {
+        max-width: 420px;
+    }
+
+    @include breakpoint(width-1920) {
+        font-size: 28px;
+        max-width: 700px;
+    }
+}
+
+.containerFour__buttonBox,
+.containerFive__buttonBox {
+    width: 100vw;
+    max-width: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    @include breakpoint(width-575) {
+        max-width: 420px;
+    }
+
+    @include breakpoint(width-1920) {
+        max-width: 700px;
+    }
+}
+
+.containerFour__button,
+.containerFive__button {
+    border: none;
+    background-color: $red;
+    height: 66px;
+    width: 308px;
+    border-radius: 5px;
+    color: $white;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 64px;
+    margin-right: 151px;
+    margin-left: 21px;
+    font-weight: 700;
+    position: relative;
+
+    @include breakpoint(width-575) {
+        margin-left: 0;
+        margin-bottom: 66px;
+        margin-right: 0;
+    }
+
+    @include breakpoint(width-1920) {
+        margin-bottom: 46px;
+        margin-top: 20px;
+    }
+}
+
+.containerFive {
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+
+    @include breakpoint(width-900) {
+        flex-direction: row-reverse;
+        height: 460px;
+        margin-bottom: 183px;
+    }
+
+    @include breakpoint(width-1920) {
+        width: 100vw;
+        height: 600px;
+    }
+}
+
+.footer {
+    background-color: $darkblue;
+    width: 100vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__container {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(width-900) {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    @include breakpoint(width-1280) {
+        height: 470px;
+    }
+}
+
+.footer__boxOne {
+    height: fit-content;
+    max-width: 480px;
+}
+
+.footer__boxTwo {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+
+    @include breakpoint(width-900) {
+        margin-bottom: 100px;
+    }
+}
+
+.footer__boxThree {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.footer__title {
+    font-weight: 700;
+    color: $white;
+    font-size: 18px;
+    margin-left: 22px;
+    margin-bottom: 7px;
+    margin-top: 35px;
+
+    @include breakpoint(width-900) {
+        margin-top: 125px;
+    }
+}
+
+.footer__sub {
+    font-weight: 400;
+    font-size: 18px;
+    color: $white;
+    margin-left: 21px;
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    @include breakpoint(width-900) {
+        margin-bottom: 125px;
+    }
+}
+
+.footer__link {
+    font-weight: 400;
+    font-size: 16px;
+    color: $white;
+    margin-left: 22px;
+    margin-right: 22px;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+
+.footerLinebreak {
+    margin-top: 18px;
+}
+
+.footerLinkLast {
+    margin-bottom: 60px;
+
+    @include breakpoint(width-900) {
+        margin-bottom: 153px;
+    }
+}

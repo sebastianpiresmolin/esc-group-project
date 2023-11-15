@@ -1,0 +1,9 @@
+
+"liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/hackerescaperoom/main.css" // Change this path to your desired output directory
+    }
+  ]
+}

@@ -1,2 +1,2 @@
-# esc-group-project
-Continuation of HackerEscapeRoom but as a group project.
+# hackerEscapeRoom
+hacker escape room school assignment
