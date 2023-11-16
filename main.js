@@ -196,7 +196,7 @@ inputBox.addEventListener('keyup', function(event) {
     // Check if the key pressed was 'Enter'
     if (event.key === 'Enter') {
         // Get the value of the input box
-        const text = inputBox.valuetoLowerCase();
+        const text = inputBox.value.toLowerCase();
 
         // Clear the input box
         inputBox.value = '';
