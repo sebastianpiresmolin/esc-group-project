@@ -30,10 +30,19 @@
 .stepOne__content h1 {
   font-size: 24px;
   font-weight: 100;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
+}
+.stepOne__content h2 {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: 500;
 }
 .stepOne__content p {
-  margin: 0;
+  margin-top: 25px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 600;
 }
 .stepOne__content input {
   width: 150px;
@@ -46,13 +55,15 @@
   width: -moz-fit-content;
   width: fit-content;
   height: 36px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: none;
   background-color: rgb(129, 71, 216);
   font-family: Roboto, sans-serif;
   font-size: 14px;
   color: white;
   margin-top: 200px;
+  margin: 0 10px 10px 0;
+  padding: 0px 15px 0px 15px;
 }
 
 .modal__stepTwo {
@@ -82,10 +93,13 @@
 .stepTwo__content h1 {
   font-size: 24px;
   font-weight: 100;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 .stepTwo__content p {
   margin: 0;
+  font-size: 14px;
+  margin-top: 25px;
+  font-weight: 600;
 }
 .stepTwo__content input {
   width: 270px;
@@ -98,14 +112,15 @@
   width: -moz-fit-content;
   width: fit-content;
   height: 36px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: none;
   background-color: rgb(129, 71, 216);
   font-family: Roboto, sans-serif;
   font-size: 14px;
   color: white;
   margin-top: 200px;
-  padding: 0 10px 10px 0;
+  margin: 0 10px 10px 0;
+  padding: 0px 15px 0px 15px;
 }
 
 .modal__stepThree {
@@ -147,35 +162,36 @@
 .modal__select div {
   display: flex;
   height: 25px;
-  padding: 5px;
+  padding: 10px;
   font-size: 18px;
   font-weight: 400;
   border-radius: 3px;
   align-items: center;
   cursor: pointer;
   justify-content: space-between;
-  border: 1px black solid;
+  border: 1px lightgrey solid;
 }
 .modal__select div i {
-  font-size: 15px;
+  font-size: 10px;
 }
 .modal__select ul {
   display: none;
-  margin-top: 10px;
+  margin-top: 5px;
   border-radius: 3px;
-  border: 1px solid black;
+  border: 1px solid lightgrey;
   background: white;
-  justify-content: left;
+  position: relative;
+  padding-left: 0px;
 }
 .modal__select li {
   display: flex;
-  height: 20px;
-  padding: 5px;
-  border-radius: 3px 0px 3px 0px;
+  height: 25px;
+  padding: 10px;
   cursor: pointer;
-  align-items: center;
-  border: 1px #e3170a solid;
+  border: 1px;
   font-size: 18px;
+  align-items: center;
+  border: 0.5px lightgrey solid;
 }
 .modal__select li:hover {
   background: #f2f2f2;

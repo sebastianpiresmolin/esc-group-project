@@ -48,11 +48,21 @@ $width-1920: 1920px;
   h1 {
     font-size: 24px;
     font-weight: 100;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
+  }
+
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 500;
   }
 
   p {
-    margin: 0;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 600;
   }
 
   input {
@@ -66,13 +76,16 @@ $width-1920: 1920px;
     right: 0;
     width: fit-content;
     height: 36px;
-    border-radius: 2px;
+    border-radius: 5px;
     border: none;
     background-color: rgb(129, 71, 216);
     font-family: Roboto, sans-serif;
     font-size: 14px;
     color: white;
     margin-top: 200px;
+    margin: 0 10px 10px 0;
+    padding: 0px 15px 0px 15px;
+
   }
 }
 
@@ -104,11 +117,14 @@ $width-1920: 1920px;
   h1 {
     font-size: 24px;
     font-weight: 100;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
   }
 
   p {
     margin: 0;
+    font-size: 14px;
+    margin-top: 25px;
+    font-weight: 600;
   }
 
   input {
@@ -122,14 +138,15 @@ $width-1920: 1920px;
     right: 0;
     width: fit-content;
     height: 36px;
-    border-radius: 2px;
+    border-radius: 5px;
     border: none;
     background-color: rgb(129, 71, 216);
     font-family: Roboto, sans-serif;
     font-size: 14px;
     color: white;
     margin-top: 200px;
-    padding: 0 10px 10px 0;
+    margin: 0 10px 10px 0;
+    padding: 0px 15px 0px 15px;
   }
 }
 
@@ -175,38 +192,39 @@ $width-1920: 1920px;
   div {
     display: flex;
     height: 25px;
-    padding: 5px;
+    padding: 10px;
     font-size: 18px;
     font-weight: 400;
     border-radius: 3px;
     align-items: center;
     cursor: pointer;
     justify-content: space-between;
-    border: 1px black solid;
+    border: 1px lightgrey solid;
 
     i {
-      font-size: 15px;
+      font-size: 10px;
     }
   }
 
   ul {
     display: none;
-    margin-top: 10px;
+    margin-top: 5px;
     border-radius: 3px;
-    border: 1px solid black;
+    border: 1px solid lightgrey;
     background: white;
-    justify-content: left;
+    position: relative;
+    padding-left: 0px;
   }
 
   li {
     display: flex;
-    height: 20px;
-    padding: 5px;
-    border-radius: 3px 0px 3px 0px;
+    height: 25px;
+    padding: 10px;
     cursor: pointer;
-    align-items: center;
-    border: 1px $red solid;
+    border: 1px;
     font-size: 18px;
+    align-items: center;
+    border: 0.5px lightgrey solid;
   }
 
   li:hover {

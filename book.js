@@ -45,3 +45,18 @@ options.forEach(option => {
     sBtnText.innerText = selectedOption;
   });
 });
+
+const challengesArray = []
+async function getChallengesData() {
+    
+    const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges'
+    const res = await fetch(url);
+    const data = await res.json();
+    
+    for (let i = 0; i < data.challenges.length; i++) {
+        challengesArray.push(data.challenges[i])
+    }
+}
+
+getChallengesData();
+console.log('Challenges', challengesArray)
