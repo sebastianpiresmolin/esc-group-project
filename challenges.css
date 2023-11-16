@@ -71,6 +71,14 @@
   font-size: 18px;
 }
 
+#online, #onsite {
+  color: #011827;
+}
+
+#online, #onsite:checked {
+  color: #e3170a;
+}
+
 .fa-x {
   font-size: 30px;
   margin-bottom: 75px;
@@ -79,7 +87,7 @@
 .starBox {
   display: flex;
   flex-direction: row;
-  height: 10px;
+  height: 1px;
   flex-basis: 33%;
 }
 .starBox p {
@@ -98,16 +106,21 @@
   font-size: 18px;
   margin: 2px;
 }
+.fa-star:hover {
+  cursor: pointer;
+}
 
 .starBox__Star i, .starBox__Star i:hover ~ i,
 .starBox__Star i, .starBox__Star i:hover ~ i {
   color: #ffffff;
   text-shadow: none;
   transition: color 200ms;
+  cursor: pointer;
 }
 
 .starBox__Star:hover i, .starBox__Star:hover i {
   color: #e3170a;
+  cursor: pointer;
 }
 
 .starBox__Star i.checked {

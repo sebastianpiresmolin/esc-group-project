@@ -40,6 +40,41 @@ document.getElementById("closebtn").addEventListener('click', function() {
 
 /*------------------------MOBILE MENU------------------------*/
 
+/*------------------------FILTER VALUES------------------------*/
+
+let onlineChallenges = true;//online challenges checkbox
+let onsiteChallenges = true;//onsite challenges checkbox
+let fromRating = 1;//lowest rating
+let toRating = 5;//highest rating
+let activeTags = [];//active tags in lowercase without #
+
+/*------------------------FILTER VALUES------------------------*/
+
+/*------------------------BY TYPE------------------------*/
+
+// Get all the types
+const online = document.querySelector('#online')
+const onsite = document.querySelector('#onsite')
+
+// Functions to handle type click
+online.addEventListener('click', function() {
+    if (onlineChallenges == true) {
+        onlineChallenges = false;
+    } else {
+        onlineChallenges = true;
+    }
+});
+
+onsite.addEventListener('click', function() {
+    if (onsiteChallenges == true) {
+        onsiteChallenges = false;
+    } else {
+        onsiteChallenges = true;
+    }
+});
+
+/*------------------------BY TYPE------------------------*/
+
 /*------------------------STAR RATING------------------------*/
 
 // Get all the stars
@@ -60,9 +95,6 @@ const toStars = [
 ];
 
 // Function to handle star click
-let fromRating = 1;
-let toRating = 5;
-
 function handleStarClick(stars, index, isFromStars) {
     // Remove 'checked' class from all stars
     stars.forEach(star => star.classList.remove('checked'));
@@ -87,8 +119,6 @@ function handleStarClick(stars, index, isFromStars) {
     } else {
         toRating = rating;
     }
-
-    console.log(`From: ${fromRating}, To: ${toRating}`);
 }
 
 // Add event listeners to all stars
@@ -119,8 +149,6 @@ const tags = [
     document.querySelector('#electronics'),
     document.querySelector('#phreaking')
 ];
-
-let activeTags = [];
 
 // Function to handle tag click
 function handleTagClick(tag) {
