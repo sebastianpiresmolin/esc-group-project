@@ -205,7 +205,7 @@ inputBox.addEventListener('keyup', function(event) {
         words = text.split(' ');
 
         // Log the words array
-        console.log(words);
+        //console.log(words);
     }
 });
 
