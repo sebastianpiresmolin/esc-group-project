@@ -177,7 +177,9 @@ function handleTagClick(tag) {
         tag.classList.add('active');
         activeTags.push(tagId);
     }
-    console.log(activeTags);
+
+    // Log the activeTags array
+    //console.log(activeTags);
 }
 
 // Add event listeners to all tags
