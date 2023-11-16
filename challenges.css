@@ -206,6 +206,10 @@ label.active {
   margin-top: 40px;
 }
 
+input:focus {
+  outline: none;
+}
+
 .filterInputBox input::-moz-placeholder {
   color: #e3170a;
 }
