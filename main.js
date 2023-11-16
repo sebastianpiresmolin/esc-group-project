@@ -59,6 +59,7 @@ let onsiteChallenges = true;//onsite challenges checkbox
 let fromRating = 1;//lowest rating
 let toRating = 5;//highest rating
 let activeTags = [];//active tags in lowercase without #
+let words = [];//inputfield words split into strings in lowercase
 
 /*------------------------FILTER VALUES------------------------*/
 
@@ -185,3 +186,27 @@ tags.forEach(tag => {
 });
 
 /*------------------------TAGS------------------------*/
+
+/*------------------------INPUT FIELD------------------------*/
+
+const inputBox = document.querySelector('.filterInputBox input');
+
+// Add the event listener
+inputBox.addEventListener('keyup', function(event) {
+    // Check if the key pressed was 'Enter'
+    if (event.key === 'Enter') {
+        // Get the value of the input box
+        const text = inputBox.valuetoLowerCase();
+
+        // Clear the input box
+        inputBox.value = '';
+
+        // Split the text into words and save it in the array
+        words = text.split(' ');
+
+        // Log the words array
+        console.log(words);
+    }
+});
+
+/*------------------------INPUT FIELD------------------------*/
