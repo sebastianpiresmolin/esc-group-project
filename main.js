@@ -38,6 +38,18 @@ document.getElementById("closebtn").addEventListener('click', function() {
     document.documentElement.style.overflowY = 'auto'; // This enables the ability to scroll again
 });
 
+let filterButton = document.getElementById("filterButton");
+let filterWindow = document.getElementById("filterWindow");
+document.getElementById('closeFilter').addEventListener('click', function() {
+    filterWindow.style.display = 'none';
+    filterButton.style.display = 'block';
+});
+
+document.getElementById('filterButton').addEventListener('click', function() {
+    filterWindow.style.display = 'flex';
+    filterButton.style.display = 'none';
+});
+
 /*------------------------MOBILE MENU------------------------*/
 
 /*------------------------FILTER VALUES------------------------*/
