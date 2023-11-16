@@ -25,7 +25,7 @@
   margin-top: 100px;
 }
 .filterContainer button {
-  display: none;
+  display: block;
   border-color: #e3170a;
   border-style: solid;
   border-radius: 4px;
@@ -47,7 +47,7 @@
 }
 
 .filterWindow {
-  display: flex;
+  display: none;
   width: 85vw;
   flex-direction: row;
   flex-wrap: wrap;

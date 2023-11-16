@@ -43,7 +43,7 @@ $width-1920: 1920px;
     margin-top: 100px;
   }
   button {
-    display: none;
+    display: block;
     border-color: $red;
     border-style: solid;
     border-radius: 4px;
@@ -66,7 +66,7 @@ $width-1920: 1920px;
 }
 
 .filterWindow {
-  display: flex;
+  display: none;
   width: 85vw;
   flex-direction: row;
   flex-wrap: wrap;
