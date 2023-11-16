@@ -28,6 +28,7 @@
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="main.js" defer></script>
+  <script src="filter.js" defer></script>
 </head>
 
 <body>
@@ -67,40 +68,47 @@
 
       <div class="filterContainer">
         <h1>Our challenges</h1>
-        <button class="filterButton">Filter challenges</button>
-        <div class="filterWindow">
+        <button class="filterButton" id="filterButton">Filter challenges</button>
+        <div class="filterWindow" id="filterWindow">
           <h2>Filter challenges</h2>
-          <span class="closeFilter"><i class="fa-solid fa-x"></i></span>
+          <span class="closeFilter"><i class="fa-solid fa-x" id="closeFilter"></i></span>
           <h3>By type</h3>
           <h3>By rating</h3>
           <h3>By tags</h3>
           <ul class="filterBytype">
-            <li><input type="checkbox">Include online challenges</li>
-            <li><input type="checkbox">Include on-site challenges</li>
+            <li><input type="checkbox" checked id="online">Include online challenges</li>
+            <li><input type="checkbox" checked id="onsite">Include on-site challenges</li>
           </ul>
 
-          <!-- add class 'checked' to show checked css -->
           <div class="starBox">
-            <span class="starBox__fromStarOne"><i class="fa fa-star"></i></span>
-              <span class="starBox__fromStarTwo"><i class="fa fa-star"></i></span>
-                <span class="starBox__fromStarThree"><i class="fa fa-star"></i></span>
-                  <span class="starBox__fromStarFour"><i class="fa fa-star"></i></span>
-                    <span class="starBox__fromStarFive"><i class="fa
-                      fa-star"></i></span>
+            <span class="starBox__Star">
+            <i class="fa fa-star" id="fromOne"></i>
+            <i class="fa fa-star" id="fromTwo"></i>
+            <i class="fa fa-star" id="fromThree"></i>
+            <i class="fa fa-star" id="fromFour"></i>
+            <i class="fa fa-star" id="fromFive"></i>
+            </span>
             <p class="starP">to</p>
-            <span class="starBox__toStarOne"><i class="fa fa-star"></i></span>
-              <span class="starBox__toStarTwo"><i class="fa fa-star"></i></span>
-                <span class="starBox__toStarThree"><i class="fa fa-star"></i></span>
-                  <span class="starBox__toStarFour"><i class="fa fa-star"></i></span>
-                    <span class="starBox__toStarFive"><i class="fa fa-star"></i></span>
+            <span class="starBox__Star">
+            <i class="fa fa-star" id="toOne"></i>
+            <i class="fa fa-star" id="toTwo"></i>
+            <i class="fa fa-star" id="toThree"></i>
+            <i class="fa fa-star" id="toFour"></i>
+            <i class="fa fa-star" id="toFive"></i>
+            </span>
           </div>
           <div class="filterButtonBox">
-            <label>Web</label>
-            <label>Linux</label>
-            <label>Cryptography</label>
-            <label>Coding</label>
-            <label>Some other tag</label>
-            <label>A final tag</label>
+            <label id="web">Web</label>
+            <label id="linux">Linux</label>
+            <label id="cryptography">Cryptography</label>
+            <label id="coding">Coding</label>
+            <label id="ssh">SSH</label>
+            <label id="ctf">CTF</label>
+            <label id="hacking">Hacking</label>
+            <label id="bash">Bash</label>
+            <label id="javascript">Javascript</label>
+            <label id="electronics">Electronics</label>
+            <label id="phreaking">Phreaking</label>
           </div>
           <div class="filterInputBox">
             <h3>Or type to search for keyword</h3>
