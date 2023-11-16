@@ -5,6 +5,7 @@
 .modal__stepOne {
   display: none;
   position: fixed;
+  flex-direction: column;
   z-index: 10;
   left: 0;
   top: 0;
@@ -17,10 +18,13 @@
 
 .stepOne__content {
   display: flex;
+  position: relative;
   flex-direction: column;
   background-color: white;
   padding: 10px 10px 10px 30px;
   width: 60%;
+  max-width: 600px;
+  height: 500px;
   margin: 15% auto;
 }
 .stepOne__content h1 {
@@ -35,12 +39,10 @@
   width: 150px;
   height: 30px;
 }
-
-.modal__bottom {
-  display: flex;
-  justify-content: right;
-}
-.modal__bottom button {
+.stepOne__content button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   width: -moz-fit-content;
   width: fit-content;
   height: 36px;
@@ -50,6 +52,7 @@
   font-family: Roboto, sans-serif;
   font-size: 14px;
   color: white;
+  margin-top: 200px;
 }
 
 .modal__stepTwo {
@@ -67,10 +70,13 @@
 
 .stepTwo__content {
   display: flex;
+  position: relative;
   flex-direction: column;
   background-color: white;
   padding: 10px 10px 10px 30px;
   width: 60%;
+  max-width: 600px;
+  height: 500px;
   margin: 15% auto;
 }
 .stepTwo__content h1 {
@@ -86,7 +92,53 @@
   height: 30px;
 }
 .stepTwo__content button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 36px;
+  border-radius: 2px;
+  border: none;
+  background-color: rgb(129, 71, 216);
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  color: white;
   margin-top: 200px;
+  padding: 0 10px 10px 0;
+}
+
+.modal__stepThree {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.stepThree__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 10px 10px 10px 30px;
+  width: 60%;
+  max-width: 600px;
+  height: 500px;
+  margin: 15% auto;
+}
+.stepThree__content h1 {
+  font-size: 40px;
+  font-weight: 100;
+}
+.stepThree__content a {
+  color: rgb(129, 71, 216);
 }
 
 .modal__select {
@@ -126,7 +178,7 @@
   font-size: 18px;
 }
 .modal__select li:hover {
-  background: #F2F2F2;
+  background: #f2f2f2;
 }
 
 .modal__select.active ul {
