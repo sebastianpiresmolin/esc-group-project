@@ -54,6 +54,7 @@ document.getElementById('filterButton').addEventListener('click', function() {
 
 /*------------------------FILTER VALUES------------------------*/
 
+// THE DEFAULT VALUES ARE IMPORTANT SO THAT THE FILTERS WORK PROPERLY
 let onlineChallenges = true;//online challenges checkbox
 let onsiteChallenges = true;//onsite challenges checkbox
 let fromRating = 1;//lowest rating
