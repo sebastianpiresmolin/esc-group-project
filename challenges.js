@@ -216,40 +216,5 @@ inputBox.addEventListener('keyup', function(event) {
 
 /*------------------------FETCH DATA FROM API----------------*/
 
-class Challenge {
-  constructor(id, type, title, description, minParticipants, maxParticipants, rating, image, labels) {
-      this.id = id;
-      this.type = type;
-      this.title = title;
-      this.description = description;
-      this.minParticipants = minParticipants;
-      this.maxParticipants = maxParticipants;
-      this.rating = rating;
-      this.image = image;
-      this.labels = labels;
-  }
-}
-
-let challenges = [];
-
-async function fetchChallengeData() {
-  const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
-  const data = await res.json();
-  const challengesData = data.challenges;
-  challenges = challengesData.map(challengeData => {
-      return new Challenge(
-          challengeData.id,
-          challengeData.type,
-          challengeData.title,
-          challengeData.description,
-          challengeData.minParticipants,
-          challengeData.maxParticipants,
-          challengeData.rating,
-          challengeData.image,
-          challengeData.labels
-      )
-  });
-  return challenges;
-}
 
 /*------------------------FETCH DATA FROM API----------------*/
