@@ -257,7 +257,7 @@ async function fetchChallengeData() {
 /*------------------------FILTER FUNCTIONALITY---------------*/
 
 // Endast de rum med aktiverade ettiketter ska visas när en användare har tryckt på en tag tex linux activeTags
-/*activeTags array jämför med keywords*/
+/*activeTags array få ut rum och visa*/
 function filterActiveTags(activeTags){
 if( )
 }
@@ -269,7 +269,11 @@ if( )
 // om description stämmer med keyword eller Title så ska rummet visas
 function filterKeywords() {
   if(inputBox.value == challengeData.description || inputBox.value == challengeData.title){
-    
+    //Börja visa rum när input stämmer övereens med första bokstäverna
+    // Visa rum under filterbox
+  }
+  else{
+    // Visa meddelande under "No matching rooms"
   }
 
 }
