@@ -16,17 +16,6 @@ $width-1280: 1280px;
 $width-1500: 1500px;
 $width-1920: 1920px;
 
-@keyframes scale-down-ver-bottom {
-  0% {
-    transform: scaleY(1);
-    transform-origin: 0% 100%;
-  }
-  100% {
-    transform: scaleY(0.3);
-    transform-origin: 0% 100%;
-  }
-}
-
 .filterContainer {
   width: 100vw;
   display: flex;
@@ -121,6 +110,7 @@ $width-1920: 1920px;
   margin-bottom: 75px;
   &:hover {
     cursor: pointer;
+    transform: scale(0.8);
   }
 }
 

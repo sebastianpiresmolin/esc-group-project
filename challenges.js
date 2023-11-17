@@ -46,8 +46,13 @@ document.getElementById("closeFilter").addEventListener("click", function () {
 });
 
 document.getElementById("filterButton").addEventListener("click", function () {
-  filterWindow.style.display = "flex";
-  filterButton.style.display = "none";
+  
+  setTimeout(function () {
+    filterWindow.style.animation = "grow 0.1s ease";
+    filterWindow.style.opacity = 1;
+    filterWindow.style.display = "flex";
+    filterButton.style.display = "none";
+  }, 10);
 });
 
 /*------------------------MOBILE MENU------------------------*/
