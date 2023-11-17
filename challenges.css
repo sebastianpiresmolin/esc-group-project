@@ -1,13 +1,3 @@
-@keyframes scale-down-ver-bottom {
-  0% {
-    transform: scaleY(1);
-    transform-origin: 0% 100%;
-  }
-  100% {
-    transform: scaleY(0.3);
-    transform-origin: 0% 100%;
-  }
-}
 .filterContainer {
   width: 100vw;
   display: flex;
@@ -103,6 +93,7 @@
 }
 .fa-x:hover {
   cursor: pointer;
+  transform: scale(0.8);
 }
 
 .starBox {

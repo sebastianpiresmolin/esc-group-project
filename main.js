@@ -38,5 +38,3 @@ document.getElementById("closebtn").addEventListener("click", function () {
 
   document.documentElement.style.overflowY = "auto"; // This enables the ability to scroll again
 });
-
-

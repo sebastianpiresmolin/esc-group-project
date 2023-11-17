@@ -1,3 +1,53 @@
+// Test to fetch data from api //
+
+
+class Challenge {
+    constructor(id, type, title, description, minParticipants, maxParticipants, rating, image, labels) {
+        this.id = id;
+        this.type = type;
+        this.title = title;
+        this.description = description;
+        this.minParticipants = minParticipants;
+        this.maxParticipants = maxParticipants;
+        this.rating = rating;
+        this.image = image;
+        this.labels = labels;
+    }
+}
+
+let challenges = [];
+
+async function fetchChallengeData() {
+    const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
+    const data = await res.json();
+    const challengesData = data.challenges;
+    challenges = challengesData.map(challengeData => {
+        return new Challenge(
+            challengeData.id,
+            challengeData.type,
+            challengeData.title,
+            challengeData.description,
+            challengeData.minParticipants,
+            challengeData.maxParticipants,
+            challengeData.rating,
+            challengeData.image,
+            challengeData.labels
+        )
+    });
+    return challenges;
+}
+/*
+const button = document.querySelector(".fetch_api");
+
+button.addEventListener("click", async function () {
+    await fetchChallengeData();
+    const filterData = challenges.find(challenge => challenge.id === 4);
+    console.log(filterData);
+});
+*/
+
+/*   -----------------------------   */
+
 async function displayChallenges() {
     const challenges = await fetchChallengeData();
     const challengesContainer = document.getElementById("challenges__container");
