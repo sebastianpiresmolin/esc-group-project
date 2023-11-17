@@ -1,4 +1,3 @@
-
 .filterContainer {
   width: 100vw;
   display: flex;
@@ -6,7 +5,6 @@
   align-items: center;
   flex-direction: column;
 }
-
 .filterContainer h1 {
   font-size: 48px;
   color: #011827;
@@ -16,7 +14,6 @@
   margin-bottom: 40px;
   margin-top: 100px;
 }
-
 .filterContainer button {
   display: block;
   border-color: #e3170a;
@@ -49,21 +46,18 @@
   border-style: solid;
   border-color: #b6bdb5;
 }
-
 .filterWindow h2 {
   flex-basis: 50%;
   padding: 0;
   margin: 0;
   color: #011827;
 }
-
 .filterWindow .closeFilter {
   display: flex;
   flex-basis: 50%;
   flex-direction: row-reverse;
   color: #011827;
 }
-
 .filterWindow h3 {
   flex-basis: 33%;
   padding: 0;
@@ -71,14 +65,12 @@
   margin-bottom: 20px;
   color: #011827;
 }
-
 .filterWindow ul {
   list-style-type: none;
   padding: 0px;
   flex-basis: 33%;
   margin: 0;
 }
-
 .filterWindow li {
   color: #011827;
   font-weight: 500;
@@ -99,7 +91,6 @@
   font-size: 30px;
   margin-bottom: 75px;
 }
-
 .fa-x:hover {
   cursor: pointer;
   transform: scale(0.8);
@@ -111,7 +102,6 @@
   height: 1px;
   flex-basis: 33%;
 }
-
 .starBox p {
   font-size: 20px;
   font-weight: 500;
@@ -128,15 +118,14 @@
   font-size: 18px;
   margin: 2px;
 }
-
 .fa-star:hover {
   cursor: pointer;
 }
 
 .starBox__Star i,
-.starBox__Star i:hover~i,
+.starBox__Star i:hover ~ i,
 .starBox__Star i,
-.starBox__Star i:hover~i {
+.starBox__Star i:hover ~ i {
   color: #ffffff;
   text-shadow: none;
   transition: color 200ms;
@@ -164,7 +153,6 @@
   justify-content: center;
   position: relative;
 }
-
 .filterButtonBox label {
   height: 30px;
   margin: 0;
@@ -182,7 +170,6 @@
   border-radius: 30px;
   cursor: pointer;
 }
-
 .filterButtonBox label:hover {
   background-color: #e3170a;
   color: #ffffff;
@@ -196,7 +183,6 @@ label.active {
 .filterInputBox {
   margin: auto;
 }
-
 .filterInputBox input {
   width: 320px;
   height: 45px;
@@ -206,7 +192,6 @@ label.active {
   font-size: 22px;
   padding-left: 10px;
 }
-
 .filterInputBox h3 {
   margin-bottom: 15px;
   margin-top: 40px;
@@ -222,20 +207,4 @@ input:focus {
 
 .filterInputBox input::placeholder {
   color: #e3170a;
-}
-
-/*# sourceMappingURL=challenges.css.map */
-
-#challenges__container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto;
-
-}
-
-.challenge {
-  margin: 30px;
-  max-width: 300px;
-}
+}/*# sourceMappingURL=challenges.css.map */
