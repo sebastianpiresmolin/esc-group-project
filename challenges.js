@@ -225,59 +225,21 @@ inputBox.addEventListener("keyup", function (event) {
 
 /*------------------------INPUT FIELD------------------------*/
 
-/*------------------------FETCH DATA FROM API----------------*/
-
-class Challenge {
-  constructor(id, type, title, description, minParticipants, maxParticipants, rating, image, labels) {
-      this.id = id;
-      this.type = type;
-      this.title = title;
-      this.description = description;
-      this.minParticipants = minParticipants;
-      this.maxParticipants = maxParticipants;
-      this.rating = rating;
-      this.image = image;
-      this.labels = labels;
-  }
-}
-
-let challenges = [];
-
-async function fetchChallengeData() {
-  const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
-  const data = await res.json();
-  const challengesData = data.challenges;
-  challenges = challengesData.map(challengeData => {
-      return new Challenge(
-          challengeData.id,
-          challengeData.type,
-          challengeData.title,
-          challengeData.description,
-          challengeData.minParticipants,
-          challengeData.maxParticipants,
-          challengeData.rating,
-          challengeData.image,
-          challengeData.labels
-      )
-  });
-  return challenges;
-}
-
-/*------------------------FETCH DATA FROM API----------------*/
-
 /*------------------------FILTER FUNCTIONALITY---------------*/
 
 // Endast de rum med aktiverade ettiketter ska visas när en användare har tryckt på en tag tex linux activeTags
 /*activeTags array få ut rum och visa*/
+/*
 function filterActiveTags(activeTags){
 if( )
-}
+}*/
 
 
 
 // Användare kan skriva in keywords i input  och sidan ska uppdateras medan man skriver så att den bara visar rum med titel eller besrkivning som innehåller sökorden som användare skrivit i
 
 // om description stämmer med keyword eller Title så ska rummet visas
+/*
 function filterKeywords() {
   if(inputBox.value == challengeData.description || inputBox.value == challengeData.title){
     //Börja visa rum när input stämmer övereens med första bokstäverna
