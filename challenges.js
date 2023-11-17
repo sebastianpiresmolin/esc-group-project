@@ -273,7 +273,7 @@ function filterKeywords() {
     // Visa rum under filterbox
   }
   else{
-    // Visa meddelande under "No matching rooms"
+    // Visa meddelande under "No matching challenges"
   }
 
 }
