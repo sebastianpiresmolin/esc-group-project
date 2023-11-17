@@ -1,6 +1,4 @@
 // Test to fetch data from api //
-
-
 class Challenge {
     constructor(id, type, title, description, minParticipants, maxParticipants, rating, image, labels) {
         this.id = id;
