@@ -164,6 +164,11 @@ const tags = [
     document.querySelector('#phreaking')
 ];
 
+// Add event listeners to all tags
+tags.forEach(tag => {
+  tag.addEventListener('click', () => handleTagClick(tag));
+});
+
 // Function to handle tag click
 function handleTagClick(tag) {
     const tagId = tag.id; // Get the id of the tag
@@ -182,11 +187,6 @@ function handleTagClick(tag) {
     // Log the activeTags array
     //console.log(activeTags);
 }
-
-// Add event listeners to all tags
-tags.forEach(tag => {
-    tag.addEventListener('click', () => handleTagClick(tag));
-});
 
 /*------------------------TAGS------------------------*/
 
