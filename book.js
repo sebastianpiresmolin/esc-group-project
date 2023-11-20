@@ -22,7 +22,7 @@ btnSearch.addEventListener("click", () => {
   stepOneWindow.style.display = "";
   stepTwoWindow.style.display = "block";
   bookDate = document.querySelector(".input__date").value;
-  console.log(bookDate)
+  console.log(bookDate);
 });
 
 btnSubmit.addEventListener("click", () => {
@@ -31,7 +31,8 @@ btnSubmit.addEventListener("click", () => {
   bookName = document.getElementById("name").value;
   bookEmail = document.getElementById("e-mail").value;
   bookTime = document.getElementById("time").value;
-  console.log(bookName, bookEmail, bookTime)
+  bookParticipants = document.querySelector(".sBtn__text").innerText;
+  console.log(bookName, bookEmail, bookTime, bookParticipants);
 });
 
 linkBackToChallenges.addEventListener("click", () => {
@@ -55,30 +56,7 @@ options.forEach((option) => {
   });
 });
 
-class Challenge {
-  constructor(
-    id,
-    type,
-    title,
-    description,
-    minParticipants,
-    maxParticipants,
-    rating,
-    image,
-    labels
-  ) {
-    this.id = id;
-    this.type = type;
-    this.title = title;
-    this.description = description;
-    this.minParticipants = minParticipants;
-    this.maxParticipants = maxParticipants;
-    this.rating = rating;
-    this.image = image;
-    this.labels = labels;
-  }
-}
-
+//fetch challenge data
 const challengesArray = [];
 async function getChallengesData() {
   const url = "https://lernia-sjj-assignments.vercel.app/api/challenges";
@@ -95,4 +73,35 @@ console.log("Challenges", challengesArray);
 
 //DATE
 const date = new Date("YYYY-MM-DD");
-async function displayAvailableTimes() {}
+
+async function displayAvailableTimes() {
+  const res = await fetch(
+    "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=2023-12-12&challenge=4"
+  );
+  const data = await res.json();
+  data.slots.forEach((slot) => {
+    console.log(slot);
+  });
+}
+
+displayAvailableTimes();
+
+//create booking
+async function createBooking() {
+  const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        challenge: 4,
+        name: bookName,
+        email: bookEmail,
+        date: bookDate,
+        time: bookTime,
+        participants: bookParticipants,
+    }),
+});
+const data = await res.json();
+console.log(data);
+}
