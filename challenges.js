@@ -46,7 +46,6 @@ document.getElementById("closeFilter").addEventListener("click", function () {
 });
 
 document.getElementById("filterButton").addEventListener("click", function () {
-  
   setTimeout(function () {
     filterWindow.style.animation = "grow 0.1s ease";
     filterWindow.style.opacity = 1;
@@ -114,6 +113,15 @@ const toStars = [
   document.querySelector("#toFive"),
 ];
 
+// Add event listeners to all stars
+fromStars.forEach((star, index) => {
+  star.addEventListener("click", () => handleStarClick(fromStars, index, true));
+});
+
+toStars.forEach((star, index) => {
+  star.addEventListener("click", () => handleStarClick(toStars, index, false));
+});
+
 // Function to handle star click
 function handleStarClick(stars, index, isFromStars) {
   // Remove 'checked' class from all stars
@@ -141,15 +149,6 @@ function handleStarClick(stars, index, isFromStars) {
   }
 }
 
-// Add event listeners to all stars
-fromStars.forEach((star, index) => {
-  star.addEventListener("click", () => handleStarClick(fromStars, index, true));
-});
-
-toStars.forEach((star, index) => {
-  star.addEventListener("click", () => handleStarClick(toStars, index, false));
-});
-
 /*------------------------STAR RATING------------------------*/
 
 /*------------------------TAGS------------------------*/
@@ -171,8 +170,8 @@ const tags = [
 ];
 
 // Add event listeners to all tags
-tags.forEach(tag => {
-  tag.addEventListener('click', () => handleTagClick(tag));
+tags.forEach((tag) => {
+  tag.addEventListener("click", () => handleTagClick(tag));
 });
 
 function handleTagClick(tag) {
@@ -186,14 +185,14 @@ function handleTagClick(tag) {
     // And remove the tag's id from the filter.labels array
     filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
     // Log a message indicating that the tag was removed
-    console.log('Removed tag:', tagId);
+    console.log("Removed tag:", tagId);
   } else {
     // If the clicked tag does not have the 'active' class, add it
     tag.classList.add("active");
     // And add the tag's id to the filter.labels array
     filter.labels.push(tagId);
     // Log a message indicating that the tag was added
-    console.log('Added tag:', tagId);
+    console.log("Added tag:", tagId);
   }
 
   // Log the current state of the filter.labels array
@@ -235,8 +234,6 @@ function filterActiveTags(activeTags){
 if( )
 }*/
 
-
-
 // Användare kan skriva in keywords i input  och sidan ska uppdateras medan man skriver så att den bara visar rum med titel eller besrkivning som innehåller sökorden som användare skrivit i
 
 // om description stämmer med keyword eller Title så ska rummet visas
@@ -254,4 +251,3 @@ function filterKeywords() {
 
 
 /*------------------------FILTER FUNCTIONALITY---------------*/
-
