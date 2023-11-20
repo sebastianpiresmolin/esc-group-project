@@ -8,6 +8,8 @@ let filter = {
     labels: [], //active tags in lowercase
     words: [], //inputfield words split into strings in lowercase
   };
+
+  export default filter;
   
   /*------------------------FILTER VALUES------------------------*/
   
