@@ -65,16 +65,65 @@
   margin-bottom: 20px;
   color: #011827;
 }
+@media (max-width: 1070px) {
+  .filterWindow h3 {
+    text-align: center;
+  }
+}
+@media (max-width: 745px) {
+  .filterWindow h3 {
+    flex-basis: 50%;
+  }
+}
 .filterWindow ul {
   list-style-type: none;
   padding: 0px;
   flex-basis: 33%;
   margin: 0;
 }
+@media (max-width: 745px) {
+  .filterWindow ul {
+    flex-basis: 50%;
+  }
+}
 .filterWindow li {
   color: #011827;
   font-weight: 500;
   font-size: 18px;
+}
+@media (max-width: 900px) {
+  .filterWindow li {
+    font-size: 16px;
+  }
+}
+@media (max-width: 745px) {
+  .filterWindow li {
+    font-size: 14px;
+  }
+}
+@media (max-width: 650px) {
+  .filterWindow li {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 745px) {
+  .byTags {
+    display: none;
+  }
+}
+
+@media (max-width: 1070px) {
+  .filterBytype {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+@media (max-width: 745px) {
+  .filterBytype {
+    flex-basis: 50%;
+  }
 }
 
 #online,
@@ -102,6 +151,19 @@
   height: 1px;
   flex-basis: 33%;
 }
+@media (max-width: 1070px) {
+  .starBox {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+  }
+}
+@media (max-width: 745px) {
+  .starBox {
+    flex-basis: 50%;
+  }
+}
 .starBox p {
   font-size: 20px;
   font-weight: 500;
@@ -110,6 +172,16 @@
   margin-right: 15px;
   line-height: 20px;
 }
+@media (max-width: 1180px) {
+  .starBox p {
+    font-size: 18px;
+  }
+}
+@media (max-width: 650px) {
+  .starBox p {
+    font-size: 16px;
+  }
+}
 
 .fa-star {
   color: #ffffff;
@@ -117,6 +189,21 @@
   -webkit-text-stroke-color: #e3170a;
   font-size: 18px;
   margin: 2px;
+}
+@media (max-width: 1180px) {
+  .fa-star {
+    font-size: 16px;
+  }
+}
+@media (max-width: 650px) {
+  .fa-star {
+    font-size: 14px;
+  }
+}
+@media (max-width: 575px) {
+  .fa-star {
+    font-size: 12px;
+  }
 }
 .fa-star:hover {
   cursor: pointer;
@@ -148,10 +235,32 @@
   flex-wrap: wrap;
   flex-basis: 34%;
   flex-direction: row;
-  height: 100px;
+  height: -moz-fit-content;
+  height: fit-content;
   gap: 10px;
   justify-content: center;
   position: relative;
+}
+@media (max-width: 1180px) {
+  .filterButtonBox {
+    max-width: 300px;
+  }
+}
+@media (max-width: 745px) {
+  .filterButtonBox {
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: auto;
+    margin-top: 40px;
+  }
+}
+.filterButtonBox h3 {
+  margin-bottom: 15px;
+}
+@media (min-width: 746px) {
+  .filterButtonBox h3 {
+    display: none;
+  }
 }
 .filterButtonBox label {
   height: 30px;
@@ -170,7 +279,74 @@
   border-radius: 30px;
   cursor: pointer;
 }
+@media (max-width: 1180px) {
+  .filterButtonBox label {
+    font-size: 16px;
+    height: 25px;
+    line-height: 25px;
+  }
+}
+@media (max-width: 900px) {
+  .filterButtonBox label {
+    font-size: 14px;
+  }
+}
 .filterButtonBox label:hover {
+  background-color: #e3170a;
+  color: #ffffff;
+}
+
+.filterTags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100px;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+@media (max-width: 1180px) {
+  .filterTags {
+    max-width: 300px;
+  }
+}
+@media (max-width: 745px) {
+  .filterTags {
+    flex-basis: 100%;
+    height: 130px;
+    width: 400px;
+  }
+}
+.filterTags label {
+  height: 30px;
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-style: solid;
+  border-color: #e3170a;
+  background-color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e3170a;
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+@media (max-width: 1180px) {
+  .filterTags label {
+    font-size: 16px;
+    height: 25px;
+    line-height: 25px;
+  }
+}
+@media (max-width: 900px) {
+  .filterTags label {
+    font-size: 14px;
+  }
+}
+.filterTags label:hover {
   background-color: #e3170a;
   color: #ffffff;
 }
@@ -181,7 +357,22 @@ label.active {
 }
 
 .filterInputBox {
-  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 75px;
+  flex-basis: 100%;
+}
+@media (max-width: 1180px) {
+  .filterInputBox {
+    margin-top: 50px;
+  }
+}
+@media (max-width: 650px) {
+  .filterInputBox {
+    margin-top: 20px;
+  }
 }
 .filterInputBox input {
   width: 320px;
@@ -192,9 +383,29 @@ label.active {
   font-size: 22px;
   padding-left: 10px;
 }
-.filterInputBox h3 {
+@media (max-width: 900px) {
+  .filterInputBox input {
+    width: 280px;
+    height: 40px;
+  }
+}
+@media (max-width: 575px) {
+  .filterInputBox input {
+    width: 240px;
+    height: 35px;
+  }
+}
+
+#filterInputBox__title {
+  text-align: left;
   margin-bottom: 15px;
   margin-top: 40px;
+}
+@media (max-width: 900px) {
+  #filterInputBox__title {
+    text-align: left;
+    font-size: 16px;
+  }
 }
 
 input:focus {
