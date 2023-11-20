@@ -135,11 +135,11 @@ function handleStarClick(stars, index, isFromStars) {
   // Update the rating
   const rating = index + 1;
   if (isFromStars) {
-    // Only update fromRating if it's less than or equal to toRating
+    // Only update minRating if it's less than or equal to maxRating
     if (rating <= filter.maxRating) {
       filter.minRating = rating;
     } else {
-      // If fromRating would be greater than toRating, remove 'checked' class from the stars that should not be selected
+      // If minRating would be greater than maxRating, remove 'checked' class from the stars that should not be selected
       for (let i = filter.maxRating; i <= index; i++) {
         stars[i].classList.remove("checked");
       }
