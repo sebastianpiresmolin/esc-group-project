@@ -59,13 +59,14 @@ document.getElementById("filterButton").addEventListener("click", function () {
 
 /*------------------------FILTER VALUES------------------------*/
 
-// THE DEFAULT VALUES ARE IMPORTANT SO THAT THE FILTERS WORK PROPERLY
-let onlineChallenges = true; //online challenges checkbox
-let onsiteChallenges = true; //onsite challenges checkbox
-let fromRating = 1; //lowest rating
-let toRating = 5; //highest rating
-let activeTags = []; //active tags in lowercase without #
-let words = []; //inputfield words split into strings in lowercase
+let filter = {
+  online: true, //online challenges checkbox
+  onsite: true, //onsite challenges checkbox
+  minRating: 1, //lowest rating
+  maxRating: 5, //highest rating
+  labels: [], //active tags in lowercase
+  words: [], //inputfield words split into strings in lowercase
+};
 
 /*------------------------FILTER VALUES------------------------*/
 
@@ -77,18 +78,18 @@ const onsite = document.querySelector("#onsite");
 
 // Functions to handle type click
 online.addEventListener("click", function () {
-  if (onlineChallenges == true) {
-    onlineChallenges = false;
+  if (filter.online == true) {
+    filter.online = false;
   } else {
-    onlineChallenges = true;
+    filter.online = true;
   }
 });
 
 onsite.addEventListener("click", function () {
-  if (onsiteChallenges == true) {
-    onsiteChallenges = false;
+  if (filter.onsite == true) {
+    filter.onsite = false;
   } else {
-    onsiteChallenges = true;
+    filter.onsite = true;
   }
 });
 
@@ -127,16 +128,16 @@ function handleStarClick(stars, index, isFromStars) {
   const rating = index + 1;
   if (isFromStars) {
     // Only update fromRating if it's less than or equal to toRating
-    if (rating <= toRating) {
-      fromRating = rating;
+    if (rating <= filter.maxRating) {
+      filter.minRating = rating;
     } else {
       // If fromRating would be greater than toRating, remove 'checked' class from the stars that should not be selected
-      for (let i = toRating; i <= index; i++) {
+      for (let i = filter.maxRating; i <= index; i++) {
         stars[i].classList.remove("checked");
       }
     }
   } else {
-    toRating = rating;
+    filter.maxRating = rating;
   }
 }
 
@@ -174,30 +175,30 @@ tags.forEach(tag => {
   tag.addEventListener('click', () => handleTagClick(tag));
 });
 
-// Function to handle tag click
 function handleTagClick(tag) {
-  const tagId = tag.id; // Get the id of the tag
+  // Get the id of the clicked tag
+  const tagId = tag.id;
 
-  // Check if the tag is already active
+  // Check if the clicked tag has the 'active' class
   if (tag.classList.contains("active")) {
-    // If it's active, remove the 'active' class and remove it from the activeTags array
+    // If it does, remove the 'active' class
     tag.classList.remove("active");
-    activeTags = activeTags.filter((activeTag) => activeTag !== tagId);
+    // And remove the tag's id from the filter.labels array
+    filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
+    // Log a message indicating that the tag was removed
+    console.log('Removed tag:', tagId);
   } else {
-    // If it's not active, add the 'active' class and add it to the activeTags array
+    // If the clicked tag does not have the 'active' class, add it
     tag.classList.add("active");
-    activeTags.push(tagId);
+    // And add the tag's id to the filter.labels array
+    filter.labels.push(tagId);
+    // Log a message indicating that the tag was added
+    console.log('Added tag:', tagId);
   }
 
-  // Log the activeTags array
-  //console.log(activeTags);
+  // Log the current state of the filter.labels array
+  //console.log('Current labels:', filter.labels);
 }
-
-
-// Add event listeners to all tags
-tags.forEach((tag) => {
-  tag.addEventListener("click", () => handleTagClick(tag));
-});
 
 /*------------------------TAGS------------------------*/
 
@@ -216,10 +217,10 @@ inputBox.addEventListener("keyup", function (event) {
     inputBox.value = "";
 
     // Split the text into words and save it in the array
-    words = text.split(" ");
+    filter.words = text.split(" ");
 
     // Log the words array
-    //console.log(words);
+    //console.log(filter.words);
   }
 });
 
