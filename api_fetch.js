@@ -1,15 +1,4 @@
-/*
-const button = document.querySelector(".fetch_api");
-
-button.addEventListener("click", async function () {
-    await fetchChallengeData();
-    const filterData = challenges.find(challenge => challenge.id === 4);
-    console.log(filterData);
-});
-*/
-
-
-// Template for Challenge objects
+// Create Challenges as objects
 class Challenge {
     constructor(data) {
         this.data = data;
@@ -19,18 +8,27 @@ class Challenge {
         const container = document.createElement("div");
         container.classList.add("challenge");
 
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("img__container");
+        container.appendChild(imgContainer);
+
+        /* Warning! Crazy cat image! 
+        const image = document.createElement('img');
+        image.src = this.data.image;
+        container.append(image);
+        */
+
         const titleElement = document.createElement("h2");
         titleElement.textContent = this.data.title;
-
-        const id = document.createElement('p');
-        id.textContent = "Id: " + this.data.id;
-
+        container.appendChild(titleElement);
 
         const typeElement = document.createElement("p");
         typeElement.textContent = "Type: " + this.data.type;
+        container.appendChild(typeElement);
 
         const ratingElement = document.createElement("p");
         ratingElement.textContent = "Rating: " + this.data.rating;
+        container.appendChild(ratingElement);
 
         const participantsElement = document.createElement("p");
         participantsElement.textContent = "Participants: " + this.data.minParticipants + " - " + this.data.maxParticipants;
@@ -38,10 +36,10 @@ class Challenge {
         const descriptionElement = document.createElement("p");
         descriptionElement.textContent = "Description: " + this.data.description;
 
-        container.appendChild(titleElement);
-        container.appendChild(id);
-        container.appendChild(typeElement);
-        container.appendChild(ratingElement);
+
+
+
+
         container.appendChild(participantsElement);
         container.appendChild(descriptionElement);
 
