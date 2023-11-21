@@ -13,9 +13,11 @@ class Challenge {
         container.append(imgContainer);
 
         /* Correct image from api, warning! Crazy cat image! 
+        /*
         const image = document.createElement('img');
         image.src = this.data.image;
-        container.append(image);
+        image.classList.add("img__container");
+        imgContainer.append(image);
         */
 
         const titleElement = document.createElement("h2");
@@ -34,10 +36,14 @@ class Challenge {
         descriptionElement.textContent = "Description: " + this.data.description;
         container.append(descriptionElement);
 
-        const bookButton = document.createElement("button");
-        bookButton.textContent = "Book this room";
-        container.append(bookButton);
+        const button = document.createElement("button");
+        button.textContent = "Book this room";
+        button.id = 'buttonId_' + this.data.id;
+        container.append(button);
 
+        button.addEventListener("click", function () {
+
+        });
         return container;
     }
 }
@@ -54,7 +60,7 @@ class APIadapter {
 }
 
 
-// To show/create all Challenges
+// Loop through array to create all Challenges
 class ChallengeListView {
     async render(container) {
         const api = new APIadapter();
@@ -71,7 +77,7 @@ class ChallengeListView {
 const challengesDiv = document.querySelector('#challenges__container');
 
 const view = new ChallengeListView();
-view.render(challengesDiv);
+view.render(challengesDiv,);
 
 
 
@@ -91,8 +97,5 @@ view.render(challengesDiv);
 
 
 // Filter Challenges by Free text search
-
-
-
 
 
