@@ -135,7 +135,7 @@ async function displayModalStepOne() {
   modalBackground.appendChild(modalContainer);
 }
 
-displayModalStepOne();
+//displayModalStepOne();
 
 //Creating step two modal
 function displayStepTwoModal() {

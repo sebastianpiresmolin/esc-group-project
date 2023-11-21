@@ -3,7 +3,7 @@
 }
 
 #modal__background {
-  display: flex;
+  display: none;
   position: fixed;
   flex-direction: column;
   z-index: 10;
