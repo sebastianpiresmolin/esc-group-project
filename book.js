@@ -110,9 +110,9 @@ async function createBooking() {
 }
 
 //Creating step one modal
-async function displayModalStepOne() {
-  const modalBackground = document.getElementById("modal__background");
-  modalBackground.classList.add("modal__background2");
+ function displayModalStepOne() {
+  const modalBackground = document.getElementById("modal__bg");
+  modalBackground.classList.add("modal__background");
 
   const modalContainer = document.createElement("div");
   modalContainer.classList.add("modal__container");
@@ -124,44 +124,61 @@ async function displayModalStepOne() {
   const modalSubTitle = document.createElement("p");
   modalSubTitle.classList.add("modal__subtitle");
 
-  const modalDate = document.createElement("input");
+  const modalDate = document.createElement("INPUT");
   modalDate.setAttribute("type", "date");
   modalDate.classList.add("modal__date");
 
-  const modalButton = document.createElement("button");
-  modalButton.classList.add("modal__button");
+  const modalButtonSearch = document.createElement("button");
+  modalButtonSearch.classList.add("modal__button");
+  modalButtonSearch.value = "Search available times";
 
-  modalContainer.appendChild(modalTitle, modalSubTitle, modalDate, modalButton);
+  modalContainer.appendChild(modalTitle, modalSubTitle, modalDate, modalButtonSearch);
   modalBackground.appendChild(modalContainer);
 }
 
-//displayModalStepOne();
+displayModalStepOne();
 
 //Creating step two modal
-function displayStepTwoModal() {
-  const modalBackground = document.createElement("div");
-  modalBackground.classList.add("modal__background");
+/*function displayStepTwoModal() {
+  const modalBackground2 = document.createElement("div");
+  modalBackground2.classList.add("modal__background2");
 
   const modalContainer = document.createElement("div");
   modalContainer.classList.add("modal__container");
 
-  const modalTitle = document.createElement("h1");
-  modalTitle.classList.add("modal__title");
-  modalTitle.textContent = "Book room " + '"Title of room"' + "(step 2)";
+  const modalTitle2 = document.createElement("h1");
+  modalTitle2.classList.add("modal__title");
+  modalTitle2.textContent = "Book room " + '"Title of room"' + " (step 2)";
 
-  const modalSubTitle = document.createElement("p");
-  modalSubTitle.classList.add("modal__subtitle");
+  //Name
+  const modalName = document.createElement("p");
+  modalName.classList.add("modal__subtitle__name");
 
-  const modalDate = document.createElement("input");
-  modalDate.setAttribute("type", "date");
-  modalDate.classList.add("modal__date");
+  const inputName = document.createElement("input");
+  inputName.setAttribute("type", "text");
+  inputName.classList.add("modal__name");
+
+  //E-mail
+  const modalMail = document.createElement("p");
+  modalMail.classList.add("modal__subtitle__name");
+
+  const inputMail = document.createElement("input");
+  inputMail.setAttribute("type", "text");
+  inputMail.classList.add("modal__mail");
+
+  //What time?
+  const modalTime = document.createElement("p");
+  modalTime.classList.add("modal__subtitle__name");
+
+  const inputTime = document.createElement("input");
+  inputTime.setAttribute("type", "text");
+  inputTime.classList.add("modal__time");
 
   const modalButton = document.createElement("button");
   modalButton.classList.add("modal__button");
+  modalButton.textContent("Submit booking")
 }
+
 //Creating step three modal
 function displayStepThreeModal() {}
-
-class Reservation {}
-
-class AvailableTimes {}
+*/
