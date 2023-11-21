@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="https://sebastianpiresmolin.github.io/hackerEscapeRoom/media/hackerimg.png">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="challenges.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="book.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="book2.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
@@ -130,49 +130,9 @@
         </div>
       </section>
 
-      <script src="api_fetch.js"></script>
-  </main>
+      <div id="modal__background"></div>
 
-      <section class="bookRoom">
-        <div class="modal__stepOne">
-          <div class="stepOne__content">
-            <h1>Book Room "Title of room" (step 1)</h1>
-            <p>Date</p>
-            <input type="date" name="Date" id="input_date">
-            <div class="modal__bottom">
-              <button class="button button__search">Search available times</button>
-            </div>
-          </div>
-        </div>
-        <div class="modal__stepTwo">
-          <div class="stepTwo__content">
-            <h1>Book Room "Title of room" (step 2)</h1>
-            <p>Name</p>
-            <input type="text" name="" id="">
-            <p>E-mail</p>
-            <input type="text" name="" id="">
-            <p>What time?</p>
-            <input type="time" name="" id="">
-            <p>How many participants?</p>
-            <div class="modal__select">
-              <div class="select__button">
-                <span class="sBtn__text">Select your options</span>
-                <i class="fa-solid fa-sort"></i>
-              </div>
-              <ul class="select__options">
-                <li class="options"><span class="option__text">1 participant</span></li>
-              </ul>
-            </div>
-            <div class="modal__bottom">
-              <button class="button button__submit">Submit booking</button>
-            </div>
-          </div>
-        </div>
-        <div class="modal__stepThree">
-          <div class="stepThree__content">
-            <h1>Thank you!</h1>
-            <a class="link__back" href="#">Back to challenges</a>
-          </div>
-        </div>
-      </section>
+      <script src="api_fetch.js"></script>
+      <script src="book.js"></script>
+  </main>
 </body>
