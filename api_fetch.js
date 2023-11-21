@@ -12,7 +12,7 @@ class Challenge {
         imgContainer.classList.add("img__container");
         container.append(imgContainer);
 
-        /* Warning! Crazy cat image! 
+        /* Correct image from api, warning! Crazy cat image! 
         const image = document.createElement('img');
         image.src = this.data.image;
         container.append(image);
@@ -33,6 +33,10 @@ class Challenge {
         const descriptionElement = document.createElement("p");
         descriptionElement.textContent = "Description: " + this.data.description;
         container.append(descriptionElement);
+
+        const bookButton = document.createElement("button");
+        bookButton.textContent = "Book this room";
+        container.append(bookButton);
 
         return container;
     }
@@ -63,28 +67,16 @@ class ChallengeListView {
     }
 }
 
-// Show Challenges
+// Show All Challenge cards on Challenges page
 const challengesDiv = document.querySelector('#challenges__container');
 
 const view = new ChallengeListView();
 view.render(challengesDiv);
 
+
+
+
 // Filter Challenges by Type, onsite or online
-class ChallengeFilterType {
-    async render(container) {
-        const api = new APIadapter();
-        const challenges = await api.getAllChallenges();
-        for (let i = 0; i < challenges.length; i++) {
-            const challenge = challenges[i];
-            if ((challenge.type === 'online' && filter.online) || (challenge.type === 'onsite' && filter.onsite)) {
-                const element = challenge.render();
-                container.append(element);
-            }
-        }
-    }
-}
-
-
 
 
 
