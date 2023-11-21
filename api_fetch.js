@@ -69,12 +69,17 @@ async function displayChallenges() {
         const descriptionElement = document.createElement("p");
         descriptionElement.textContent = "Description: " + challenge.description;
 
+        const button = document.createElement("button");
+        button.textContent = "book this room";
+
         challengeElement.appendChild(titleElement);
         challengeElement.appendChild(typeElement);
         challengeElement.appendChild(ratingElement);
         challengeElement.appendChild(participantsElement);
         challengeElement.appendChild(descriptionElement);
+        challengeElement.appendChild(button);
         challengesContainer.appendChild(challengeElement);
+
     });
 }
 

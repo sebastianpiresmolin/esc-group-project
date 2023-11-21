@@ -40,7 +40,7 @@ linkBackToChallenges.addEventListener("click", () => {
 });
 
 //Select options
-const optionMenu = document.querySelector(".modal__select");
+const optionMenu = document.querySelector(".modal__select__participants");
 const selectBtn = document.querySelector(".select__button");
 const options = document.querySelectorAll(".options");
 const sBtnText = document.querySelector(".sBtn__text");
