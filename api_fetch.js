@@ -1,83 +1,106 @@
-// Test to fetch data from api //
+// Create Challenges as objects
 class Challenge {
-    constructor(id, type, title, description, minParticipants, maxParticipants, rating, image, labels) {
-        this.id = id;
-        this.type = type;
-        this.title = title;
-        this.description = description;
-        this.minParticipants = minParticipants;
-        this.maxParticipants = maxParticipants;
-        this.rating = rating;
-        this.image = image;
-        this.labels = labels;
+    constructor(data) {
+        this.data = data;
+
+    }
+    render() {
+        const container = document.createElement("div");
+        container.classList.add("challenge");
+
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("img__container");
+        container.append(imgContainer);
+
+        /* Warning! Crazy cat image! 
+        const image = document.createElement('img');
+        image.src = this.data.image;
+        container.append(image);
+        */
+
+        const titleElement = document.createElement("h2");
+        titleElement.textContent = this.data.title + " (" + this.data.type + ")";
+        container.append(titleElement);
+
+        const ratingElement = document.createElement("p");
+        ratingElement.textContent = "Rating: " + this.data.rating;
+        container.append(ratingElement);
+
+        const participantsElement = document.createElement("p");
+        participantsElement.textContent = this.data.minParticipants + " - " + this.data.maxParticipants + " participants";
+        container.append(participantsElement);
+
+        const descriptionElement = document.createElement("p");
+        descriptionElement.textContent = "Description: " + this.data.description;
+        container.append(descriptionElement);
+
+        return container;
     }
 }
 
-let challenges = [];
+// Fetching Challenge data from API
+class APIadapter {
+    async getAllChallenges() {
+        const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
+        const response = await fetch(url);
+        const payload = await response.json();
 
-async function fetchChallengeData() {
-    const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
-    const data = await res.json();
-    const challengesData = data.challenges;
-    challenges = challengesData.map(challengeData => {
-        return new Challenge(
-            challengeData.id,
-            challengeData.type,
-            challengeData.title,
-            challengeData.description,
-            challengeData.minParticipants,
-            challengeData.maxParticipants,
-            challengeData.rating,
-            challengeData.image,
-            challengeData.labels
-        )
-    });
-    return challenges;
-}
-/*
-const button = document.querySelector(".fetch_api");
-
-button.addEventListener("click", async function () {
-    await fetchChallengeData();
-    const filterData = challenges.find(challenge => challenge.id === 4);
-    console.log(filterData);
-});
-*/
-
-/*   -----------------------------   */
-
-async function displayChallenges() {
-    const challenges = await fetchChallengeData();
-    const challengesContainer = document.getElementById("challenges__container");
-
-    challenges.forEach(challenge => {
-        const challengeElement = document.createElement("div");
-        challengeElement.classList.add("challenge");
-
-        const titleElement = document.createElement("h2");
-        titleElement.textContent = challenge.title;
-
-        const typeElement = document.createElement("p");
-        typeElement.textContent = "Type: " + challenge.type;
-
-        const ratingElement = document.createElement("p");
-        ratingElement.textContent = "Rating: " + challenge.rating;
-
-        const participantsElement = document.createElement("p");
-        participantsElement.textContent = "Participants: " + challenge.minParticipants + " - " + challenge.maxParticipants;
-
-        const descriptionElement = document.createElement("p");
-        descriptionElement.textContent = "Description: " + challenge.description;
-
-        challengeElement.appendChild(titleElement);
-        challengeElement.appendChild(typeElement);
-        challengeElement.appendChild(ratingElement);
-        challengeElement.appendChild(participantsElement);
-        challengeElement.appendChild(descriptionElement);
-        challengeElement.appendChild(button);
-        challengesContainer.appendChild(challengeElement);
-
-    });
+        return payload.challenges.map((challengeData) => new Challenge(challengeData));
+    }
 }
 
-displayChallenges();
+
+// To show/create all Challenges
+class ChallengeListView {
+    async render(container) {
+        const api = new APIadapter();
+        const challenges = await api.getAllChallenges();
+        for (let i = 0; i < challenges.length; i++) {
+            const challenge = challenges[i];
+            const element = challenge.render();
+            container.append(element);
+        }
+    }
+}
+
+// Show Challenges
+const challengesDiv = document.querySelector('#challenges__container');
+
+const view = new ChallengeListView();
+view.render(challengesDiv);
+
+// Filter Challenges by Type, onsite or online
+class ChallengeFilterType {
+    async render(container) {
+        const api = new APIadapter();
+        const challenges = await api.getAllChallenges();
+        for (let i = 0; i < challenges.length; i++) {
+            const challenge = challenges[i];
+            if ((challenge.type === 'online' && filter.online) || (challenge.type === 'onsite' && filter.onsite)) {
+                const element = challenge.render();
+                container.append(element);
+            }
+        }
+    }
+}
+
+
+
+
+
+// Filter Challenges by Rating
+
+
+
+
+// Filter Challenges by Tags
+
+
+
+
+// Filter Challenges by Free text search
+
+
+
+
+
