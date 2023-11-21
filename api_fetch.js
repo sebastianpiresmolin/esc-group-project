@@ -10,7 +10,7 @@ class Challenge {
 
         const imgContainer = document.createElement("div");
         imgContainer.classList.add("img__container");
-        container.appendChild(imgContainer);
+        container.append(imgContainer);
 
         /* Warning! Crazy cat image! 
         const image = document.createElement('img');
@@ -19,32 +19,20 @@ class Challenge {
         */
 
         const titleElement = document.createElement("h2");
-        titleElement.textContent = this.data.title;
-        container.appendChild(titleElement);
-
-        const typeElement = document.createElement("p");
-        typeElement.textContent = "Type: " + this.data.type;
-        container.appendChild(typeElement);
+        titleElement.textContent = this.data.title + " (" + this.data.type + ")";
+        container.append(titleElement);
 
         const ratingElement = document.createElement("p");
         ratingElement.textContent = "Rating: " + this.data.rating;
-        container.appendChild(ratingElement);
+        container.append(ratingElement);
 
         const participantsElement = document.createElement("p");
-        participantsElement.textContent = "Participants: " + this.data.minParticipants + " - " + this.data.maxParticipants;
+        participantsElement.textContent = this.data.minParticipants + " - " + this.data.maxParticipants + " participants";
+        container.append(participantsElement);
 
         const descriptionElement = document.createElement("p");
         descriptionElement.textContent = "Description: " + this.data.description;
-
-
-
-
-
-        container.appendChild(participantsElement);
-        container.appendChild(descriptionElement);
-
-
-
+        container.append(descriptionElement);
 
         return container;
     }
@@ -62,7 +50,7 @@ class APIadapter {
 }
 
 
-// To show/create Challenges in DOM
+// To show/create all Challenges
 class ChallengeListView {
     async render(container) {
         const api = new APIadapter();
@@ -75,7 +63,44 @@ class ChallengeListView {
     }
 }
 
+// Show Challenges
 const challengesDiv = document.querySelector('#challenges__container');
 
 const view = new ChallengeListView();
 view.render(challengesDiv);
+
+// Filter Challenges by Type, onsite or online
+class ChallengeFilterType {
+    async render(container) {
+        const api = new APIadapter();
+        const challenges = await api.getAllChallenges();
+        for (let i = 0; i < challenges.length; i++) {
+            const challenge = challenges[i];
+            if ((challenge.type === 'online' && filter.online) || (challenge.type === 'onsite' && filter.onsite)) {
+                const element = challenge.render();
+                container.append(element);
+            }
+        }
+    }
+}
+
+
+
+
+
+// Filter Challenges by Rating
+
+
+
+
+// Filter Challenges by Tags
+
+
+
+
+// Filter Challenges by Free text search
+
+
+
+
+
