@@ -1,0 +1,51 @@
+/*       Temporary css for challenges.html      */
+
+h2,
+p {
+    margin: 0 0 0 10px;
+}
+
+#challenges__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1400px;
+    margin: 0 auto;
+
+
+}
+
+.img__container {
+    display: block;
+    background-image: url("media/hackerimg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px 8px 0 0;
+    width: 363px;
+    min-height: 219px;
+
+}
+
+.challenge {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 363px;
+    height: 446px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.322);
+    margin: 20px;
+
+}
+
+.challenge button {
+    background-color: #E3170A;
+    color: white;
+    margin: 20px;
+    width: 160px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+    align-self: flex-end;
+}
