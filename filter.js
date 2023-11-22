@@ -166,7 +166,8 @@ let filter = {
   });
 
   function searchRoom() {
-    const input = document.getElementById('f')
+    const input = document.querySelector('.filterInputBox input').value;
+    console.log(input);
   }
   
   /*------------------------INPUT FIELD------------------------*/
