@@ -162,7 +162,34 @@ let filter = {
   
       // Log the words array
       //console.log(filter.words);
+      searchRoom();
     }
+
   });
+
+  function searchRoom(inputBox) {
+    const input = document.querySelector(".filterInputBox input");
+   console.log( filter.words);
+
+   const cardContainer = document.getElementById('challenges__container');
+   console.log(cardContainer);
+
+   const cards = cardContainer.getElementsByClassName('challenge');
+   console.log(cards);
+
+
+   for(let i = 0; i < cards.length; i++){
+    let title = cards[i].querySelector(".challenge h2"); 
+    console.log(title);
+
+    if(title.innerText.toLowerCase().indexOf(inputBox) > -1){
+        cards[i].style.display = "";
+    } else {
+        cards[i].style.display = "none";
+    }
+   }
+  }
+
+
   
   /*------------------------INPUT FIELD------------------------*/
