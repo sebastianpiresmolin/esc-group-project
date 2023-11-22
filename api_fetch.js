@@ -1,9 +1,11 @@
-// Create Challenges as objects
+// Define Challenge class, used in APIadapter 
 class Challenge {
     constructor(data) {
         this.data = data;
 
     }
+
+    // Create Challenge cards in html from Challenge objects
     render() {
         const container = document.createElement("div");
         container.classList.add("challenge");
@@ -12,10 +14,12 @@ class Challenge {
         imgContainer.classList.add("img__container");
         container.append(imgContainer);
 
-        /* Warning! Crazy cat image! 
+        /* Correct image from api, warning! Crazy cat image! :) Used hero image for each card for now
+        /*
         const image = document.createElement('img');
         image.src = this.data.image;
-        container.append(image);
+        image.classList.add("img__container");
+        imgContainer.append(image);
         */
 
         const titleElement = document.createElement("h2");
@@ -34,23 +38,52 @@ class Challenge {
         descriptionElement.textContent = "Description: " + this.data.description;
         container.append(descriptionElement);
 
+        // Create Book room button for each Challenge card
+        const button = document.createElement("button");
+        button.textContent = "Book this room";
+        button.dataset.challengeId = this.data.id;
+        container.append(button);
+
+        // Listen to button and forward challenge id to show title in booking modal
+        button.addEventListener("click", function (event) {
+            const challengeId = event.currentTarget.dataset.challengeId;
+            console.log("Challenge id:", challengeId);
+            document.getElementsByClassName("modal__stepOne")[0].style.display = "block";
+
+            const selectedChallenge = allChallenges.find(challenge => challenge.data.id === parseInt(challengeId));
+
+            const bookRoomTitle = document.createElement("h1");
+            bookRoomTitle.textContent = "Book Room: \"" + selectedChallenge.data.title + "\" (Step 1)";
+
+            const modalStepOne = document.querySelector("#challenge__title");
+            modalStepOne.append(bookRoomTitle);
+
+
+        });
+
+
         return container;
     }
 }
 
-// Fetching Challenge data from API
+
+// Request Challenge data from API and Create Challenge objects and put them in allChallenges array
 class APIadapter {
     async getAllChallenges() {
         const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
         const response = await fetch(url);
         const payload = await response.json();
 
-        return payload.challenges.map((challengeData) => new Challenge(challengeData));
+        allChallenges = payload.challenges.map((challengeData) => new Challenge(challengeData));
+
+        return allChallenges;
     }
 }
 
+//Global array to hold Challenge objects
+let allChallenges = [];
 
-// To show/create all Challenges
+// Loop through array to create all Challenge cards
 class ChallengeListView {
     async render(container) {
         const api = new APIadapter();
@@ -63,26 +96,16 @@ class ChallengeListView {
     }
 }
 
-// Show Challenges
+// Show All Challenge cards on Challenges page
 const challengesDiv = document.querySelector('#challenges__container');
 
 const view = new ChallengeListView();
 view.render(challengesDiv);
 
+
+
+
 // Filter Challenges by Type, onsite or online
-class ChallengeFilterType {
-    async render(container) {
-        const api = new APIadapter();
-        const challenges = await api.getAllChallenges();
-        for (let i = 0; i < challenges.length; i++) {
-            const challenge = challenges[i];
-            if ((challenge.type === 'online' && filter.online) || (challenge.type === 'onsite' && filter.onsite)) {
-                const element = challenge.render();
-                container.append(element);
-            }
-        }
-    }
-}
 
 
 
@@ -93,7 +116,9 @@ class ChallengeFilterType {
 
 
 
+
 // Filter Challenges by Tags
+
 
 
 
