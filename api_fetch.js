@@ -1,9 +1,11 @@
-// Create Challenges as objects
+// Define Challenge class, used in APIadapter 
 class Challenge {
     constructor(data) {
         this.data = data;
 
     }
+
+    // Create Challenge cards in html from Challenge objects
     render() {
         const container = document.createElement("div");
         container.classList.add("challenge");
@@ -12,7 +14,7 @@ class Challenge {
         imgContainer.classList.add("img__container");
         container.append(imgContainer);
 
-        /* Correct image from api, warning! Crazy cat image! 
+        /* Correct image from api, warning! Crazy cat image! :) Used hero image for each card for now
         /*
         const image = document.createElement('img');
         image.src = this.data.image;
@@ -36,7 +38,7 @@ class Challenge {
         descriptionElement.textContent = "Description: " + this.data.description;
         container.append(descriptionElement);
 
-        // Create Book room button
+        // Create Book room button for each Challenge card
         const button = document.createElement("button");
         button.textContent = "Book this room";
         button.dataset.challengeId = this.data.id;
@@ -65,7 +67,7 @@ class Challenge {
 }
 
 
-// Fetching Challenge data from API
+// Request Challenge data from API and Create Challenge objects and put them in allChallenges array
 class APIadapter {
     async getAllChallenges() {
         const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
@@ -81,7 +83,7 @@ class APIadapter {
 //Global array to hold Challenge objects
 let allChallenges = [];
 
-// Loop through array to create all Challenges
+// Loop through array to create all Challenge cards
 class ChallengeListView {
     async render(container) {
         const api = new APIadapter();
@@ -98,7 +100,7 @@ class ChallengeListView {
 const challengesDiv = document.querySelector('#challenges__container');
 
 const view = new ChallengeListView();
-view.render(challengesDiv,);
+view.render(challengesDiv);
 
 
 
@@ -107,7 +109,10 @@ view.render(challengesDiv,);
 
 
 
+
+
 // Filter Challenges by Rating
+
 
 
 
@@ -117,6 +122,10 @@ view.render(challengesDiv,);
 
 
 
+
 // Filter Challenges by Free text search
+
+
+
 
 
