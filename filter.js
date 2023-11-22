@@ -90,7 +90,13 @@ let filter = {
       }
     } else {
       filter.maxRating = rating;
-    }
+      // If maxRating is decreased, adjust minRating to be equal to maxRating
+      if (filter.maxRating < filter.minRating) {
+        filter.minRating = filter.maxRating;
+        // Trigger click event on corresponding minRating star
+        fromStars[filter.minRating - 1].click();
+      }
+}
   }
   
   /*------------------------STAR RATING------------------------*/
