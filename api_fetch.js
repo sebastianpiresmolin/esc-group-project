@@ -36,17 +36,34 @@ class Challenge {
         descriptionElement.textContent = "Description: " + this.data.description;
         container.append(descriptionElement);
 
+        // Create Book room button
         const button = document.createElement("button");
         button.textContent = "Book this room";
-        button.id = 'buttonId_' + this.data.id;
+        button.dataset.challengeId = this.data.id;
         container.append(button);
 
-        button.addEventListener("click", function () {
+        // Listen to button and forward challenge id to show title in booking modal
+        button.addEventListener("click", function (event) {
+            const challengeId = event.currentTarget.dataset.challengeId;
+            console.log("Challenge id:", challengeId);
+            document.getElementsByClassName("modal__stepOne")[0].style.display = "block";
+
+            const selectedChallenge = allChallenges.find(challenge => challenge.data.id === parseInt(challengeId));
+
+            const bookRoomTitle = document.createElement("h1");
+            bookRoomTitle.textContent = "Book Room: \"" + selectedChallenge.data.title + "\" (Step 1)";
+
+            const modalStepOne = document.querySelector("#challenge__title");
+            modalStepOne.append(bookRoomTitle);
+
 
         });
+
+
         return container;
     }
 }
+
 
 // Fetching Challenge data from API
 class APIadapter {
@@ -55,10 +72,14 @@ class APIadapter {
         const response = await fetch(url);
         const payload = await response.json();
 
-        return payload.challenges.map((challengeData) => new Challenge(challengeData));
+        allChallenges = payload.challenges.map((challengeData) => new Challenge(challengeData));
+
+        return allChallenges;
     }
 }
 
+//Global array to hold Challenge objects
+let allChallenges = [];
 
 // Loop through array to create all Challenges
 class ChallengeListView {
