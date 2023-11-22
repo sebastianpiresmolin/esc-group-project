@@ -40,6 +40,9 @@
   font-weight: 500;
   margin-left: 0px;
 }
+.modal__background .title__thankyou {
+  font-size: 40px;
+}
 .modal__background p {
   margin-top: 25px;
   margin-bottom: 0px;
@@ -59,6 +62,9 @@
 }
 .modal__background li {
   list-style-type: none;
+}
+.modal__background a {
+  font-size: 14px;
 }
 .modal__background button {
   position: absolute;

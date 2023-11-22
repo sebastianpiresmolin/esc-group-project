@@ -61,6 +61,10 @@ $width-1920: 1920px;
     margin-left: 0px;
   }
 
+  .title__thankyou {
+    font-size: 40px;
+  }
+
   p {
     margin-top: 25px;
     margin-bottom: 0px;
@@ -83,6 +87,10 @@ $width-1920: 1920px;
 
   li {
     list-style-type: none;
+  }
+
+  a {
+    font-size: 14px;
   }
 
   button {

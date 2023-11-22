@@ -115,9 +115,15 @@ const modalButtonSubmit = document.createElement("button");
 modalButtonSubmit.classList.add("button__submit");
 modalButtonSubmit.textContent = "Submit booking";
 
+//Modal Step Three
+const modalTitleThankYou = document.createElement("h1");
+modalTitleThankYou.classList.add("title__thankyou");
+
+const modalLinkBack = document.createElement("a");
+modalLinkBack.classList.add("modal__linkback");
+
 //Append to main divs
 modalBackground.appendChild(modalContainer);
-modalContainer.appendChild(modalTitle);
 
 const date = new Date();
 const currentDate = date.toISOString().substring(0, 10);
@@ -128,14 +134,21 @@ async function displayModalStepOne() {
   modalDate.textContent = "Date";
   inputDate.value = currentDate;
 
-  modalContainer.append(modalSubTitle, modalDate, inputDate, modalButtonSearch);
+  modalContainer.append(
+    modalTitle,
+    modalSubTitle,
+    modalDate,
+    inputDate,
+    modalButtonSearch
+  );
 }
 
 //displayModalStepOne();
-displayStepTwoModal();
+//displayModalStepTwo();
+displayModalStepThree();
 
 //Creating step two modal
-async function displayStepTwoModal() {
+async function displayModalStepTwo(container) {
   modalTitle.textContent = "Book room " + '"Title of room"' + " (step 2)";
   modalName.textContent = "Name";
   modalMail.textContent = "E-mail";
@@ -143,6 +156,7 @@ async function displayStepTwoModal() {
   modalParticipants.textContent = "How many participants?";
 
   modalContainer.append(
+    modalTitle,
     modalName,
     inputName,
     modalMail,
@@ -159,4 +173,10 @@ async function displayStepTwoModal() {
 }
 
 //Creating step three modal
-function displayStepThreeModal() {}
+async function displayModalStepThree() {
+  modalTitleThankYou.textContent = "Thank you!";
+  modalLinkBack.text = "Back to challenges";
+  modalLinkBack.setAttribute("href", "challenges.html");
+
+  modalContainer.append(modalTitleThankYou, modalLinkBack);
+}
