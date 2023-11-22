@@ -1,61 +1,3 @@
-//Book Room
-let stepOneWindow = document.querySelector(".modal__stepOne");
-let stepTwoWindow = document.querySelector(".modal__stepTwo");
-let stepThreeWindow = document.querySelector(".modal__stepThree");
-
-let btnBookRoom = document.querySelector(".buttonBox__button");
-let btnSearch = document.querySelector(".button__search");
-let btnSubmit = document.querySelector(".button__submit");
-let linkBackToChallenges = document.querySelector(".link__back");
-
-let bookDate;
-let bookName;
-let bookEmail;
-let bookTime;
-let bookParticipants;
-/*
-btnBookRoom.addEventListener("click", () => {
-  stepOneWindow.style.display = "block";
-});
-
-btnSearch.addEventListener("click", () => {
-  stepOneWindow.style.display = "";
-  stepTwoWindow.style.display = "block";
-  bookDate = document.querySelector(".input__date").value;
-  console.log(bookDate);
-});
-
-btnSubmit.addEventListener("click", () => {
-  stepTwoWindow.style.display = "";
-  stepThreeWindow.style.display = "block";
-  bookName = document.getElementById("name").value;
-  bookEmail = document.getElementById("e-mail").value;
-  bookTime = document.getElementById("time").value;
-  bookParticipants = document.querySelector(".sBtn__text").innerText;
-  console.log(bookName, bookEmail, bookTime, bookParticipants);
-});
-
-linkBackToChallenges.addEventListener("click", () => {
-  stepThreeWindow.style.display = "";
-});
-*/
-//Select options
-const optionMenu = document.querySelector(".modal__select__participants");
-const selectBtn = document.querySelector(".select__button");
-const options = document.querySelectorAll(".options");
-const sBtnText = document.querySelector(".sBtn__text");
-/*
-selectBtn.addEventListener("click", () =>
-  optionMenu.classList.toggle("active")
-);
-
-options.forEach((option) => {
-  option.addEventListener("click", () => {
-    let selectedOption = option.querySelector(".option__text").innerText;
-    sBtnText.innerText = selectedOption;
-  });
-});
-*/
 //fetch challenge data
 const challengesArray = [];
 async function getChallengesData() {
@@ -70,9 +12,6 @@ async function getChallengesData() {
 
 getChallengesData();
 console.log("Challenges", challengesArray);
-
-//DATE
-const date = new Date("YYYY-MM-DD");
 
 async function displayAvailableTimes() {
   const res = await fetch(
@@ -108,81 +47,116 @@ async function createBooking() {
   const data = await res.json();
   console.log(data);
 }
+
+//Creating elements for modals in index.html and challenges.html
+//Global modal elements
 const modalBackground = document.getElementById("modal__bg");
+modalBackground.classList.add("modal__background");
+
 const modalContainer = document.createElement("div");
+modalContainer.classList.add("modal__container");
+
 const modalTitle = document.createElement("h1");
-const modalSubTitle = document.createElement("p");
+modalTitle.classList.add("modal__title");
+
+const modalSubTitle = document.createElement("h2");
+modalSubTitle.classList.add("modal__subtitle");
+
+//Step One Elements
+const modalDate = document.createElement("p");
+modalDate.classList.add("modal__date");
+
+const inputDate = document.createElement("input");
+inputDate.setAttribute("type", "date");
+inputDate.classList.add("input__date");
+
+const modalButtonSearch = document.createElement("button");
+modalButtonSearch.classList.add("button__search");
+modalButtonSearch.textContent = "Search available times";
+
+//Step Two Elements
+
+//Name
+const modalName = document.createElement("p");
+modalName.classList.add("modal__name");
+
+const inputName = document.createElement("input");
+inputName.setAttribute("type", "text");
+inputName.classList.add("input__name");
+
+//E-mail
+const modalMail = document.createElement("p");
+modalMail.classList.add("modal__name");
+
+const inputMail = document.createElement("input");
+inputMail.setAttribute("type", "text");
+inputMail.classList.add("input__mail");
+
+//What time?
+const modalTime = document.createElement("p");
+modalTime.classList.add("modal__time");
+
+const timeList = document.createElement("ul");
+timeList.classList.add("time__list");
+
+const timeItems = document.createElement("li");
+timeItems.classList.add("time__list__items");
+
+const modalParticipants = document.createElement("p");
+modalParticipants.classList.add("modal__participants");
+
+const participantsList = document.createElement("ul");
+participantsList.classList.add("participants__list");
+
+const participantsItems = document.createElement("li");
+participantsItems.classList.add("participants__list__items");
+
+const modalButtonSubmit = document.createElement("button");
+modalButtonSubmit.classList.add("button__submit");
+modalButtonSubmit.textContent = "Submit booking";
+
+//Append to main divs
+modalBackground.appendChild(modalContainer);
+modalContainer.appendChild(modalTitle);
+
+const date = new Date();
+const currentDate = date.toISOString().substring(0, 10);
 //Creating step one modal
- async function displayModalStepOne() {
-  
-  modalBackground.classList.add("modal__background");
-
-  modalContainer.classList.add("modal__container");
-
-  modalTitle.classList.add("modal__title");
+async function displayModalStepOne() {
   modalTitle.textContent = "Book room " + '"Title of room"' + "(step 1)";
+  modalSubTitle.textContent = "What date would you like to come?";
+  modalDate.textContent = "Date";
+  inputDate.value = currentDate;
 
-  modalSubTitle.classList.add("modal__subtitle");
-  modalSubTitle.textContent = "Date"
-
-  const modalDate = document.createElement("input");
-  modalDate.setAttribute("type", "date");
-  modalDate.classList.add("modal__date");
-
-  const modalButtonSearch = document.createElement("button");
-  modalButtonSearch.classList.add("modal__button");
-  modalButtonSearch.textContent = "Search available times";
-
-  modalContainer.appendChild(modalTitle);
-  modalContainer.appendChild(modalSubTitle);
-  modalContainer.appendChild(modalDate);
-  modalContainer.appendChild(modalButtonSearch);
-  modalBackground.appendChild(modalContainer);
+  modalContainer.append(modalSubTitle, modalDate, inputDate, modalButtonSearch);
 }
 
-displayModalStepOne();
+//displayModalStepOne();
+displayStepTwoModal();
 
 //Creating step two modal
-/*asyncfunction displayStepTwoModal() {
-  const modalBackground2 = document.createElement("div");
-  modalBackground2.classList.add("modal__background2");
+async function displayStepTwoModal() {
+  modalTitle.textContent = "Book room " + '"Title of room"' + " (step 2)";
+  modalName.textContent = "Name";
+  modalMail.textContent = "E-mail";
+  modalTime.textContent = "What time?";
+  modalParticipants.textContent = "How many participants?";
 
-  const modalContainer = document.createElement("div");
-  modalContainer.classList.add("modal__container");
+  modalContainer.append(
+    modalName,
+    inputName,
+    modalMail,
+    inputMail,
+    modalTime,
+    timeList,
+    modalParticipants,
+    participantsList,
+    modalButtonSubmit
+  );
 
-  const modalTitle2 = document.createElement("h1");
-  modalTitle2.classList.add("modal__title");
-  modalTitle2.textContent = "Book room " + '"Title of room"' + " (step 2)";
-
-  //Name
-  const modalName = document.createElement("p");
-  modalName.classList.add("modal__subtitle__name");
-
-  const inputName = document.createElement("input");
-  inputName.setAttribute("type", "text");
-  inputName.classList.add("modal__name");
-
-  //E-mail
-  const modalMail = document.createElement("p");
-  modalMail.classList.add("modal__subtitle__name");
-
-  const inputMail = document.createElement("input");
-  inputMail.setAttribute("type", "text");
-  inputMail.classList.add("modal__mail");
-
-  //What time?
-  const modalTime = document.createElement("p");
-  modalTime.classList.add("modal__subtitle__name");
-
-  const inputTime = document.createElement("input");
-  inputTime.setAttribute("type", "text");
-  inputTime.classList.add("modal__time");
-
-  const modalButton = document.createElement("button");
-  modalButton.classList.add("modal__button");
-  modalButton.textContent("Submit booking")
+  timeList.append(timeItems);
+  participantsList.append(participantsItems);
 }
 
 //Creating step three modal
 function displayStepThreeModal() {}
-*/

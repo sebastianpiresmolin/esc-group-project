@@ -41,21 +41,64 @@ $width-1920: 1920px;
     padding: 10px 10px 10px 30px;
     width: 60%;
     max-width: 600px;
-    height: 500px;
+    min-height: 500px;
     margin: 15% auto;
     z-index: 11;
   }
 
   h1 {
-    font-size: 50px;
+    font-size: 24px;
+    font-weight: 100;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 0px;
   }
 
   p {
+    margin-top: 25px;
+    margin-bottom: 0px;
     font-size: 14px;
+    font-weight: 600;
+    margin-left: 0px;
   }
 
   input {
-    border: 1px solid black
+    width: 250px;
+    height: 30px;
+  }
+
+  ul {
+    margin-top: 0px;
+    border: 1px $red solid;
+    width: 150px;
+    height: 40px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: fit-content;
+    height: 36px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(129, 71, 216);
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    color: white;
+    margin: 0 10px 10px 0;
+    padding: 0px 15px 0px 15px;
   }
   
 }
