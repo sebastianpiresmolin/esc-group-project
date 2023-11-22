@@ -1,81 +1,131 @@
-// Test to fetch data from api //
+// Define Challenge class, used in APIadapter 
 class Challenge {
-    constructor(id, type, title, description, minParticipants, maxParticipants, rating, image, labels) {
-        this.id = id;
-        this.type = type;
-        this.title = title;
-        this.description = description;
-        this.minParticipants = minParticipants;
-        this.maxParticipants = maxParticipants;
-        this.rating = rating;
-        this.image = image;
-        this.labels = labels;
+    constructor(data) {
+        this.data = data;
+
+    }
+
+    // Create Challenge cards in html from Challenge objects
+    render() {
+        const container = document.createElement("div");
+        container.classList.add("challenge");
+
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("img__container");
+        container.append(imgContainer);
+
+        /* Correct image from api, warning! Crazy cat image! :) Used hero image for each card for now
+        /*
+        const image = document.createElement('img');
+        image.src = this.data.image;
+        image.classList.add("img__container");
+        imgContainer.append(image);
+        */
+
+        const titleElement = document.createElement("h2");
+        titleElement.textContent = this.data.title + " (" + this.data.type + ")";
+        container.append(titleElement);
+
+        const ratingElement = document.createElement("p");
+        ratingElement.textContent = "Rating: " + this.data.rating;
+        container.append(ratingElement);
+
+        const participantsElement = document.createElement("p");
+        participantsElement.textContent = this.data.minParticipants + " - " + this.data.maxParticipants + " participants";
+        container.append(participantsElement);
+
+        const descriptionElement = document.createElement("p");
+        descriptionElement.textContent = "Description: " + this.data.description;
+        container.append(descriptionElement);
+
+        // Create Book room button for each Challenge card
+        const button = document.createElement("button");
+        button.textContent = "Book this room";
+        button.dataset.challengeId = this.data.id;
+        container.append(button);
+
+        // Listen to button and forward challenge id to show title in booking modal
+        button.addEventListener("click", function (event) {
+            const challengeId = event.currentTarget.dataset.challengeId;
+            console.log("Challenge id:", challengeId);
+            document.getElementsByClassName("modal__stepOne")[0].style.display = "block";
+
+            const selectedChallenge = allChallenges.find(challenge => challenge.data.id === parseInt(challengeId));
+
+            const bookRoomTitle = document.createElement("h1");
+            bookRoomTitle.textContent = "Book Room: \"" + selectedChallenge.data.title + "\" (Step 1)";
+
+            const modalStepOne = document.querySelector("#challenge__title");
+            modalStepOne.append(bookRoomTitle);
+
+
+        });
+
+
+        return container;
     }
 }
 
-let challenges = [];
 
-async function fetchChallengeData() {
-    const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
-    const data = await res.json();
-    const challengesData = data.challenges;
-    challenges = challengesData.map(challengeData => {
-        return new Challenge(
-            challengeData.id,
-            challengeData.type,
-            challengeData.title,
-            challengeData.description,
-            challengeData.minParticipants,
-            challengeData.maxParticipants,
-            challengeData.rating,
-            challengeData.image,
-            challengeData.labels
-        )
-    });
-    return challenges;
-}
-/*
-const button = document.querySelector(".fetch_api");
+// Request Challenge data from API and Create Challenge objects and put them in allChallenges array
+class APIadapter {
+    async getAllChallenges() {
+        const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
+        const response = await fetch(url);
+        const payload = await response.json();
 
-button.addEventListener("click", async function () {
-    await fetchChallengeData();
-    const filterData = challenges.find(challenge => challenge.id === 4);
-    console.log(filterData);
-});
-*/
+        allChallenges = payload.challenges.map((challengeData) => new Challenge(challengeData));
 
-/*   -----------------------------   */
-
-async function displayChallenges() {
-    const challenges = await fetchChallengeData();
-    const challengesContainer = document.getElementById("challenges__container");
-
-    challenges.forEach(challenge => {
-        const challengeElement = document.createElement("div");
-        challengeElement.classList.add("challenge");
-
-        const titleElement = document.createElement("h2");
-        titleElement.textContent = challenge.title;
-
-        const typeElement = document.createElement("p");
-        typeElement.textContent = "Type: " + challenge.type;
-
-        const ratingElement = document.createElement("p");
-        ratingElement.textContent = "Rating: " + challenge.rating;
-
-        const participantsElement = document.createElement("p");
-        participantsElement.textContent = "Participants: " + challenge.minParticipants + " - " + challenge.maxParticipants;
-
-        const descriptionElement = document.createElement("p");
-        descriptionElement.textContent = "Description: " + challenge.description;
-
-        challengeElement.appendChild(titleElement);
-        challengeElement.appendChild(typeElement);
-        challengeElement.appendChild(ratingElement);
-        challengeElement.appendChild(participantsElement);
-        challengeElement.appendChild(descriptionElement);
-        challengesContainer.appendChild(challengeElement);
-    });
+        return allChallenges;
+    }
 }
 
-displayChallenges();
+//Global array to hold Challenge objects
+let allChallenges = [];
+
+// Loop through array to create all Challenge cards
+class ChallengeListView {
+    async render(container) {
+        const api = new APIadapter();
+        const challenges = await api.getAllChallenges();
+        for (let i = 0; i < challenges.length; i++) {
+            const challenge = challenges[i];
+            const element = challenge.render();
+            container.append(element);
+        }
+    }
+}
+
+// Show All Challenge cards on Challenges page
+const challengesDiv = document.querySelector('#challenges__container');
+
+const view = new ChallengeListView();
+view.render(challengesDiv);
+
+
+
+
+// Filter Challenges by Type, onsite or online
+
+
+
+
+
+// Filter Challenges by Rating
+
+
+
+
+
+// Filter Challenges by Tags
+
+
+
+
+
+// Filter Challenges by Free text search
+
+
+
+
+

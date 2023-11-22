@@ -31,7 +31,11 @@
 
   <script src="challenges.js" defer></script>
   <script type="module" src="filter.js" defer></script>
-  <!--<script src="api_fetch.js" defer></script>-->
+
+  <script defer src="api_fetch.js"></script>
+
+  <!--                Temporary css to style Challenge cards                   -->
+  <link rel='stylesheet' type='text/css' href='temp.css'>
 
 </head>
 
@@ -124,55 +128,55 @@
         </div>
       </div>
       <section>
+        <!--    Challenge cards will be created below  -->
         <div id="challenges__container">
 
-
         </div>
       </section>
 
-      <script src="api_fetch.js"></script>
+
   </main>
 
-      <section class="bookRoom">
-        <div class="modal__stepOne">
-          <div class="stepOne__content">
-            <h1>Book Room "Title of room" (step 1)</h1>
-            <p>Date</p>
-            <input type="date" name="Date" id="input_date">
-            <div class="modal__bottom">
-              <button class="button button__search">Search available times</button>
-            </div>
-          </div>
+  <section class="bookRoom">
+    <div class="modal__stepOne">
+      <div class="stepOne__content">
+        <h1 id="challenge__title"></h1>
+        <p>Date</p>
+        <input type="date" name="Date" id="input_date">
+        <div class="modal__bottom">
+          <button class="button button__search">Search available times</button>
         </div>
-        <div class="modal__stepTwo">
-          <div class="stepTwo__content">
-            <h1>Book Room "Title of room" (step 2)</h1>
-            <p>Name</p>
-            <input type="text" name="" id="">
-            <p>E-mail</p>
-            <input type="text" name="" id="">
-            <p>What time?</p>
-            <input type="time" name="" id="">
-            <p>How many participants?</p>
-            <div class="modal__select">
-              <div class="select__button">
-                <span class="sBtn__text">Select your options</span>
-                <i class="fa-solid fa-sort"></i>
-              </div>
-              <ul class="select__options">
-                <li class="options"><span class="option__text">1 participant</span></li>
-              </ul>
-            </div>
-            <div class="modal__bottom">
-              <button class="button button__submit">Submit booking</button>
-            </div>
+      </div>
+    </div>
+    <div class="modal__stepTwo">
+      <div class="stepTwo__content">
+        <h1>Book Room "Title of room" (step 2)</h1>
+        <p>Name</p>
+        <input type="text" name="" id="">
+        <p>E-mail</p>
+        <input type="text" name="" id="">
+        <p>What time?</p>
+        <input type="time" name="" id="">
+        <p>How many participants?</p>
+        <div class="modal__select">
+          <div class="select__button">
+            <span class="sBtn__text">Select your options</span>
+            <i class="fa-solid fa-sort"></i>
           </div>
+          <ul class="select__options">
+            <li class="options"><span class="option__text">1 participant</span></li>
+          </ul>
         </div>
-        <div class="modal__stepThree">
-          <div class="stepThree__content">
-            <h1>Thank you!</h1>
-            <a class="link__back" href="#">Back to challenges</a>
-          </div>
+        <div class="modal__bottom">
+          <button class="button button__submit">Submit booking</button>
         </div>
-      </section>
+      </div>
+    </div>
+    <div class="modal__stepThree">
+      <div class="stepThree__content">
+        <h1>Thank you!</h1>
+        <a class="link__back" href="#">Back to challenges</a>
+      </div>
+    </div>
+  </section>
 </body>
