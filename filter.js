@@ -164,5 +164,9 @@ let filter = {
       //console.log(filter.words);
     }
   });
+
+  function searchRoom() {
+    const input = document.getElementById('f')
+  }
   
   /*------------------------INPUT FIELD------------------------*/
