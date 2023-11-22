@@ -108,38 +108,42 @@ async function createBooking() {
   const data = await res.json();
   console.log(data);
 }
-
+const modalBackground = document.getElementById("modal__bg");
+const modalContainer = document.createElement("div");
+const modalTitle = document.createElement("h1");
+const modalSubTitle = document.createElement("p");
 //Creating step one modal
- function displayModalStepOne() {
-  const modalBackground = document.getElementById("modal__bg");
+ async function displayModalStepOne() {
+  
   modalBackground.classList.add("modal__background");
 
-  const modalContainer = document.createElement("div");
   modalContainer.classList.add("modal__container");
 
-  const modalTitle = document.createElement("h1");
   modalTitle.classList.add("modal__title");
   modalTitle.textContent = "Book room " + '"Title of room"' + "(step 1)";
 
-  const modalSubTitle = document.createElement("p");
   modalSubTitle.classList.add("modal__subtitle");
+  modalSubTitle.textContent = "Date"
 
-  const modalDate = document.createElement("INPUT");
+  const modalDate = document.createElement("input");
   modalDate.setAttribute("type", "date");
   modalDate.classList.add("modal__date");
 
   const modalButtonSearch = document.createElement("button");
   modalButtonSearch.classList.add("modal__button");
-  modalButtonSearch.value = "Search available times";
+  modalButtonSearch.textContent = "Search available times";
 
-  modalContainer.appendChild(modalTitle, modalSubTitle, modalDate, modalButtonSearch);
+  modalContainer.appendChild(modalTitle);
+  modalContainer.appendChild(modalSubTitle);
+  modalContainer.appendChild(modalDate);
+  modalContainer.appendChild(modalButtonSearch);
   modalBackground.appendChild(modalContainer);
 }
 
 displayModalStepOne();
 
 //Creating step two modal
-/*function displayStepTwoModal() {
+/*asyncfunction displayStepTwoModal() {
   const modalBackground2 = document.createElement("div");
   modalBackground2.classList.add("modal__background2");
 
