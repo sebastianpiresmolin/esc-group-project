@@ -166,29 +166,33 @@ let filter = {
     }
 
   });
+// Gör om funktionen ovanför till keydown och lägg in searchroom i den istället
 
-  function searchRoom(inputBox) {
+//Ska söka på både titel(h2) och descripotiopn (p)medan dom skriver keydown
+  
+  function searchRoom() {
     const input = document.querySelector(".filterInputBox input");
    console.log( filter.words);
 
    const cardContainer = document.getElementById('challenges__container');
-   console.log(cardContainer);
+   //console.log(cardContainer);
 
    const cards = cardContainer.getElementsByClassName('challenge');
-   console.log(cards);
+   //console.log(cards);
 
 
    for(let i = 0; i < cards.length; i++){
     let title = cards[i].querySelector(".challenge h2"); 
     console.log(title);
 
-    if(title.innerText.toLowerCase().indexOf(inputBox) > -1){
+    if(title.innerText.toLowerCase().indexOf(input) > -1){
         cards[i].style.display = "";
     } else {
         cards[i].style.display = "none";
     }
-   }
+
   }
+}
 
 
   
