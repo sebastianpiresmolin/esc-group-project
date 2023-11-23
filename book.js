@@ -1,3 +1,5 @@
+//import { Challenge } from "./api_fetch";
+
 //fetch challenge data
 const challengesArray = [];
 async function getChallengesData() {
@@ -12,18 +14,6 @@ async function getChallengesData() {
 
 getChallengesData();
 console.log("Challenges", challengesArray);
-
-async function displayAvailableTimes() {
-  const res = await fetch(
-    "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=2023-12-12&challenge=4"
-  );
-  const data = await res.json();
-  data.slots.forEach((slot) => {
-    console.log(slot);
-  });
-}
-
-displayAvailableTimes();
 
 //create booking
 async function createBooking() {
@@ -53,8 +43,12 @@ async function createBooking() {
 const modalBackground = document.getElementById("modal__bg");
 modalBackground.classList.add("modal__background");
 
-const modalContainer = document.createElement("div");
-modalContainer.classList.add("modal__container");
+const modalContainer1 = document.createElement("div");
+modalContainer1.classList.add("modal__container1");
+const modalContainer2 = document.createElement("div");
+modalContainer2.classList.add("modal__container2");
+const modalContainer3 = document.createElement("div");
+modalContainer3.classList.add("modal__container3");
 
 const modalTitle = document.createElement("h1");
 modalTitle.classList.add("modal__title");
@@ -75,7 +69,6 @@ modalButtonSearch.classList.add("button__search");
 modalButtonSearch.textContent = "Search available times";
 
 //Step Two Elements
-
 //Name
 const modalName = document.createElement("p");
 modalName.classList.add("modal__name");
@@ -123,18 +116,22 @@ const modalLinkBack = document.createElement("a");
 modalLinkBack.classList.add("modal__linkback");
 
 //Append to main divs
-modalBackground.appendChild(modalContainer);
+modalBackground.append(modalContainer1, modalContainer2, modalContainer3);
 
+//Creating date object
 const date = new Date();
 const currentDate = date.toISOString().substring(0, 10);
+
 //Creating step one modal
 async function displayModalStepOne() {
+  modalBackground.style.display = "block";
+  modalContainer1.style.display = "block";
   modalTitle.textContent = "Book room " + '"Title of room"' + "(step 1)";
   modalSubTitle.textContent = "What date would you like to come?";
   modalDate.textContent = "Date";
   inputDate.value = currentDate;
 
-  modalContainer.append(
+  modalContainer1.append(
     modalTitle,
     modalSubTitle,
     modalDate,
@@ -143,19 +140,22 @@ async function displayModalStepOne() {
   );
 }
 
-//displayModalStepOne();
+displayModalStepOne();
 //displayModalStepTwo();
-displayModalStepThree();
+//displayModalStepThree();
 
 //Creating step two modal
-async function displayModalStepTwo(container) {
+async function displayModalStepTwo() {
+  modalBackground.style.display = "block";
+  modalContainer1.style.display = "none";
+  modalContainer2.style.display = "block";
   modalTitle.textContent = "Book room " + '"Title of room"' + " (step 2)";
   modalName.textContent = "Name";
   modalMail.textContent = "E-mail";
   modalTime.textContent = "What time?";
   modalParticipants.textContent = "How many participants?";
 
-  modalContainer.append(
+  modalContainer2.append(
     modalTitle,
     modalName,
     inputName,
@@ -170,13 +170,55 @@ async function displayModalStepTwo(container) {
 
   timeList.append(timeItems);
   participantsList.append(participantsItems);
+  
 }
 
 //Creating step three modal
 async function displayModalStepThree() {
+  modalBackground.style.display = "block";
+  modalContainer2.style.display = "none";
+  modalContainer3.style.display = "block";
+
   modalTitleThankYou.textContent = "Thank you!";
   modalLinkBack.text = "Back to challenges";
   modalLinkBack.setAttribute("href", "challenges.html");
 
-  modalContainer.append(modalTitleThankYou, modalLinkBack);
+  modalContainer3.append(modalTitleThankYou, modalLinkBack);
 }
+
+async function availableTimes() {
+  modalButtonSearch.addEventListener("click", function () {
+    let url = new URL(
+      "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=&challenge='"
+    );
+    let params = new URLSearchParams(url.search);
+
+    params.set("date", inputDate.value);
+    params.set("id", "4");
+
+    url.search = params.toString();
+    let new_url = url.toString();
+    
+    console.log(new_url);
+    
+    displayModalStepTwo();
+  });
+}
+
+async function submitBooking() {
+  modalButtonSubmit.addEventListener("click", function () {
+    displayModalStepThree();
+  }) 
+}
+
+async function displayAvailableTimes() {
+  const res = await fetch(url);
+  const data = await res.json();
+  data.slots.forEach((slot) => {
+    console.log(slot);
+  });
+}
+
+availableTimes();
+submitBooking();
+//displayAvailableTimes();

@@ -1,8 +1,7 @@
 // Define Challenge class, used in APIadapter 
-class Challenge {
+export class Challenge {
     constructor(data) {
         this.data = data;
-
     }
 
     // Create Challenge cards in html from Challenge objects
@@ -60,10 +59,11 @@ class Challenge {
 
 
         });
-
-
+    
         return container;
     }
+
+    
 }
 
 
