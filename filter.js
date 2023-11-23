@@ -162,38 +162,68 @@ let filter = {
   
       // Log the words array
       //console.log(filter.words);
-      searchRoom();
+      
+          
+      
     }
-
   });
-// Gör om funktionen ovanför till keydown och lägg in searchroom i den istället
+
+
 
 //Ska söka på både titel(h2) och descripotiopn (p)medan dom skriver keydown
-  
-  function searchRoom() {
-    const input = document.querySelector(".filterInputBox input");
-   console.log( filter.words);
+document.getElementById("searchBox").addEventListener("keyup", searchRoom);
 
-   const cardContainer = document.getElementById('challenges__container');
-   //console.log(cardContainer);
+function searchRoom (){
+  const searchbox = document.querySelector(".filterInputBox input").value.toUpperCase();
+  const storeItems = document.getElementById("challenges__container");
+  const product = document.querySelectorAll(".challenge");
+  const pname = document.getElementsByTagName("h2");
 
-   const cards = cardContainer.getElementsByClassName('challenge');
-   //console.log(cards);
+  for(let i = 0; i < pname.length; i++){
+    let match = product[i].getElementsByTagName("h2")[0];
 
+    if(match){
+      let textvalue = match.textContent || match.innerHTML
 
-   for(let i = 0; i < cards.length; i++){
-    let title = cards[i].querySelector(".challenge h2"); 
-    console.log(title);
-
-    if(title.innerText.toLowerCase().indexOf(input) > -1){
-        cards[i].style.display = "";
-    } else {
-        cards[i].style.display = "none";
+      if(textvalue.toUpperCase().indexOf(searchbox) > -1){
+         product[i].style.display = "";
+      }
+      else{
+         product[i].style.display = "none";
+        // Add "No matching challenges" when not matching
+      }
     }
-
   }
 }
 
 
+/*
+//Sökning p
+document.getElementById("searchRooms").addEventListener("keyup", searchRoom2);
+
+function searchRoom2 (){
+  const searchbox = document.querySelector(".filterInputBox input").value.toUpperCase();
+  const storeItems = document.getElementById("challenges__container");
+  const product = document.querySelectorAll(".challenge");
+  const pname = document.getElementsByTagName("p");
+
+  for(let i = 0; i < pname.length; i++){
+    let match = product[i].getElementsByTagName("p")[0];
+
+    if(match){
+      let textvalue = match.textContent || match.innerHTML
+
+      if(textvalue.toUpperCase().indexOf(searchbox) > -1){
+        product[i].style.display = "";
+      }
+      else{
+        product[i].style.display = "none";
+        // Add "No matching challenges" when not matching
+      }
+    }
+  }
+}
+
+*/
   
   /*------------------------INPUT FIELD------------------------*/
