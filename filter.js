@@ -174,7 +174,7 @@ let filter = {
 document.getElementById("searchBox").addEventListener("keyup", searchRoom);
 
 function searchRoom (){
-  const searchbox = document.querySelector(".filterInputBox input").value.toUpperCase();
+  const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
   const storeItems = document.getElementById("challenges__container");
   const product = document.querySelectorAll(".challenge");
   const pname = document.getElementsByTagName("h2");
@@ -185,7 +185,7 @@ function searchRoom (){
     if(match){
       let textvalue = match.textContent || match.innerHTML
 
-      if(textvalue.toUpperCase().indexOf(searchbox) > -1){
+      if(textvalue.toLowerCase().indexOf(searchbox) > -1){
          product[i].style.display = "";
       }
       else{
