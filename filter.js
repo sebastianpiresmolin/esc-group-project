@@ -162,25 +162,53 @@ let filter = {
   
       // Log the words array
       //console.log(filter.words);
-      
-          
-      
+            
     }
   });
 
 
 
-//Ska söka på både titel(h2) och descripotiopn (p)medan dom skriver keydown
-document.getElementById("searchBox").addEventListener("keyup", searchRoom);
+//Searching for challenges titles that matches the keyword
+document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyW);
 
-function searchRoom (){
+function searchRoomByKeyW (){
   const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
   const storeItems = document.getElementById("challenges__container");
   const product = document.querySelectorAll(".challenge");
-  const pname = document.getElementsByTagName("h2");
+  const pname = document.querySelectorAll(".challenge h2");
+  //const noMatchError = document.getElementById("noMatchError");
 
   for(let i = 0; i < pname.length; i++){
     let match = product[i].getElementsByTagName("h2")[0];
+
+    if(match){
+      let textvalue = match.textContent || match.innerHTML
+
+      if(textvalue.toLowerCase().indexOf(searchbox) > -1){
+         product[i].style.display = "";
+      }
+      else{
+         product[i].style.display = "none";
+       // noMatchError.innerHTML="No matching challenges"; //Changes error message from empty to string.
+         
+      }
+    }
+  }
+}
+
+
+/*
+//Searching for challenges descriptions that matches the keyword
+document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyDesc);
+
+function searchRoomByKeyDesc (){
+  const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
+  const storeItems = document.getElementById("challenges__container");
+  const product = document.querySelectorAll(".challenge");
+  const pname = document.querySelectorAll(".challenge p");
+
+  for(let i = 0; i < pname.length; i++){
+    let match = product[i].getElementsByTagName("p")[0];
 
     if(match){
       let textvalue = match.textContent || match.innerHTML
@@ -195,35 +223,9 @@ function searchRoom (){
     }
   }
 }
-
-
-/*
-//Sökning p
-document.getElementById("searchRooms").addEventListener("keyup", searchRoom2);
-
-function searchRoom2 (){
-  const searchbox = document.querySelector(".filterInputBox input").value.toUpperCase();
-  const storeItems = document.getElementById("challenges__container");
-  const product = document.querySelectorAll(".challenge");
-  const pname = document.getElementsByTagName("p");
-
-  for(let i = 0; i < pname.length; i++){
-    let match = product[i].getElementsByTagName("p")[0];
-
-    if(match){
-      let textvalue = match.textContent || match.innerHTML
-
-      if(textvalue.toUpperCase().indexOf(searchbox) > -1){
-        product[i].style.display = "";
-      }
-      else{
-        product[i].style.display = "none";
-        // Add "No matching challenges" when not matching
-      }
-    }
-  }
-}
-
 */
+
+
+
   
   /*------------------------INPUT FIELD------------------------*/
