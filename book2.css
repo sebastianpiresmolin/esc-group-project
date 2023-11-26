@@ -27,72 +27,32 @@
   margin: 15% auto;
   z-index: 11;
 }
-.modal__background .modal__container2 {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  background-color: white;
-  padding: 10px 10px 10px 30px;
-  width: 60%;
-  max-width: 600px;
-  min-height: 500px;
-  margin: 15% auto;
-  z-index: 11;
-}
-.modal__background .modal__container3 {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  background-color: white;
-  padding: 10px 10px 10px 30px;
-  width: 60%;
-  max-width: 600px;
-  min-height: 500px;
-  margin: 15% auto;
-  z-index: 11;
-}
-.modal__background h1 {
+.modal__background .modal__container1 h1 {
   font-size: 24px;
   font-weight: 100;
   margin-bottom: 0px;
   margin-left: 0px;
 }
-.modal__background h2 {
+.modal__background .modal__container1 h2 {
   margin-top: 30px;
   margin-bottom: 0;
   font-size: 15px;
   font-weight: 500;
   margin-left: 0px;
 }
-.modal__background .title__thankyou {
-  font-size: 40px;
-}
-.modal__background p {
+.modal__background .modal__container1 p {
   margin-top: 25px;
   margin-bottom: 0px;
   font-size: 14px;
   font-weight: 600;
   margin-left: 0px;
 }
-.modal__background input {
+.modal__background .modal__container1 input {
   width: 80%;
   max-width: 250px;
   height: 30px;
 }
-.modal__background ul {
-  margin-top: 0px;
-  border: 1px black solid;
-  border-radius: 3px;
-  width: 150px;
-  height: 40px;
-}
-.modal__background li {
-  list-style-type: none;
-}
-.modal__background a {
-  font-size: 14px;
-}
-.modal__background button {
+.modal__background .modal__container1 button {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -107,4 +67,93 @@
   color: white;
   margin: 0 10px 10px 0;
   padding: 0px 15px 0px 15px;
+}
+.modal__background .modal__container2 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px 10px 10px 30px;
+  width: 60%;
+  max-width: 600px;
+  min-height: 500px;
+  margin: 15% auto;
+  z-index: 11;
+}
+.modal__background .modal__container2 h1 {
+  font-size: 24px;
+  font-weight: 100;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+.modal__background .modal__container2 h2 {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 0px;
+}
+.modal__background .modal__container2 p {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 0px;
+}
+.modal__background .modal__container2 input {
+  width: 80%;
+  max-width: 250px;
+  height: 30px;
+}
+.modal__background .modal__container2 ul {
+  margin-top: 0px;
+  border: 1px black solid;
+  border-radius: 3px;
+  width: 150px;
+  height: 40px;
+}
+.modal__background .modal__container2 li {
+  list-style-type: none;
+}
+.modal__background .modal__container2 a {
+  font-size: 14px;
+}
+.modal__background .modal__container2 button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 36px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(129, 71, 216);
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  color: white;
+  margin: 0 10px 10px 0;
+  padding: 0px 15px 0px 15px;
+}
+.modal__background .modal__container3 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 10px 10px 10px 30px;
+  width: 60%;
+  max-width: 600px;
+  min-height: 500px;
+  margin: 15% auto;
+  z-index: 11;
+}
+.modal__background .modal__container3 h1 {
+  margin: 0px;
+  font-size: 100px;
+  justify-content: center;
+  align-items: center;
+}
+.modal__background .modal__container3 a {
+  font-size: 14px;
 }/*# sourceMappingURL=book2.css.map */

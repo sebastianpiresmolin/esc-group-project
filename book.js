@@ -15,7 +15,7 @@ getChallengesData();
 console.log("Challenges", challengesArray);
 
 //create booking
-async function createBooking() {
+export async function createBooking() {
   const res = await fetch(
     "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
     {
@@ -51,6 +51,7 @@ modalContainer3.classList.add("modal__container3");
 
 const modalTitle = document.createElement("h1");
 modalTitle.classList.add("modal__title");
+modalTitle.setAttribute("id", "modal1title");
 
 const modalSubTitle = document.createElement("h2");
 modalSubTitle.classList.add("modal__subtitle");
@@ -122,10 +123,11 @@ const date = new Date();
 const currentDate = date.toISOString().substring(0, 10);
 
 //Creating step one modal
-async function displayModalStepOne() {
+export async function displayModalStepOne(container, title) {
   modalBackground.style.display = "block";
   modalContainer1.style.display = "block";
   modalTitle.textContent = "Book room " + '"Title of room"' + "(step 1)";
+  modalTitle.setAttribute("id", "modal1__title");
   modalSubTitle.textContent = "What date would you like to come?";
   modalDate.textContent = "Date";
   inputDate.value = currentDate;
@@ -139,6 +141,9 @@ async function displayModalStepOne() {
   );
 
   modalBackground.append(modalContainer1);
+  const modal1 = modalBackground;
+  const modal1title = modalTitle;
+  return modal1, modal1title; 
 }
 
 //displayModalStepOne();
@@ -146,11 +151,11 @@ async function displayModalStepOne() {
 //displayModalStepThree();
 
 //Creating step two modal
-async function displayModalStepTwo() {
+export async function displayModalStepTwo() {
   modalBackground.style.display = "block";
   modalContainer1.style.display = "none";
   modalContainer2.style.display = "block";
-  modalTitle.textContent = "Book room " + '"Title of room"' + " (step 2)";
+  modalTitle.setAttribute("id", "modal2__title")
   modalName.textContent = "Name";
   modalMail.textContent = "E-mail";
   modalTime.textContent = "What time?";
@@ -177,7 +182,7 @@ async function displayModalStepTwo() {
 }
 
 //Creating step three modal
-async function displayModalStepThree() {
+export async function displayModalStepThree() {
   modalBackground.style.display = "block";
   modalContainer2.style.display = "none";
   modalContainer3.style.display = "block";
@@ -191,7 +196,7 @@ async function displayModalStepThree() {
 
 }
 
-async function availableTimes() {
+export async function availableTimes() {
   modalButtonSearch.addEventListener("click", function () {
     let url = new URL(
       "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=&challenge='"
@@ -213,11 +218,12 @@ async function availableTimes() {
 async function submitBooking() {
   modalButtonSubmit.addEventListener("click", function () {
     console.log(inputName.value);
+    console.log(inputMail.value);
     displayModalStepThree();
   }) 
 }
 
-async function displayAvailableTimes() {
+export async function displayAvailableTimes() {
   const res = await fetch(url);
   const data = await res.json();
   data.slots.forEach((slot) => {
