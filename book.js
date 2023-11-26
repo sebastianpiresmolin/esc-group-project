@@ -1,5 +1,4 @@
 //import { Challenge } from "./api_fetch";
-
 //fetch challenge data
 const challengesArray = [];
 async function getChallengesData() {
@@ -207,6 +206,7 @@ async function availableTimes() {
 
 async function submitBooking() {
   modalButtonSubmit.addEventListener("click", function () {
+    console.log(inputName.value);
     displayModalStepThree();
   }) 
 }

@@ -102,7 +102,9 @@ const challengesDiv = document.querySelector('#challenges__container');
 const view = new ChallengeListView();
 view.render(challengesDiv);
 
+class BookingForm {
 
+}
 
 
 // Filter Challenges by Type, onsite or online

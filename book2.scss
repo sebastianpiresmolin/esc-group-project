@@ -45,7 +45,7 @@ $width-1920: 1920px;
     margin: 15% auto;
     z-index: 11;
   }
-  
+
   .modal__container2 {
     display: flex;
     position: relative;
@@ -100,13 +100,15 @@ $width-1920: 1920px;
   }
 
   input {
-    width: 250px;
+    width: 80%;
+    max-width: 250px;
     height: 30px;
   }
 
   ul {
     margin-top: 0px;
-    border: 1px $red solid;
+    border: 1px black solid;
+    border-radius: 3px;
     width: 150px;
     height: 40px;
   }
