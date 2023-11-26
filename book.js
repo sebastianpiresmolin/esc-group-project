@@ -115,7 +115,7 @@ const modalLinkBack = document.createElement("a");
 modalLinkBack.classList.add("modal__linkback");
 
 //Append to main divs
-modalBackground.append(modalContainer1, modalContainer2, modalContainer3);
+
 
 //Creating date object
 const date = new Date();
@@ -137,9 +137,11 @@ async function displayModalStepOne() {
     inputDate,
     modalButtonSearch
   );
+
+  modalBackground.append(modalContainer1);
 }
 
-displayModalStepOne();
+//displayModalStepOne();
 //displayModalStepTwo();
 //displayModalStepThree();
 
@@ -169,6 +171,8 @@ async function displayModalStepTwo() {
 
   timeList.append(timeItems);
   participantsList.append(participantsItems);
+  modalBackground.append(modalContainer2);
+
   
 }
 
@@ -183,6 +187,8 @@ async function displayModalStepThree() {
   modalLinkBack.setAttribute("href", "challenges.html");
 
   modalContainer3.append(modalTitleThankYou, modalLinkBack);
+  modalBackground.append(modalContainer3);
+
 }
 
 async function availableTimes() {

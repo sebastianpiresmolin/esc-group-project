@@ -1,5 +1,5 @@
 // Define Challenge class, used in APIadapter 
-export class Challenge {
+class Challenge {
     constructor(data) {
         this.data = data;
     }
@@ -56,8 +56,6 @@ export class Challenge {
 
             const modalStepOne = document.querySelector("#challenge__title");
             modalStepOne.append(bookRoomTitle);
-
-
         });
     
         return container;
