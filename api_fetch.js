@@ -1,5 +1,5 @@
 // Define Challenge class, used in APIadapter 
-class Challenge {
+ class Challenge {
     constructor(data) {
         this.data = data;
 
@@ -37,6 +37,7 @@ class Challenge {
         const descriptionElement = document.createElement("p");
         descriptionElement.textContent = "Description: " + this.data.description;
         container.append(descriptionElement);
+        descriptionElement.setAttribute("id", "descID"); 
 
         // Create Book room button for each Challenge card
         const button = document.createElement("button");
