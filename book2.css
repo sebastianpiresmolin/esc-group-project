@@ -113,7 +113,7 @@
   height: 40px;
 }
 .modal__background .modal__container2 li {
-  list-style-type: none;
+  font-size: 40px;
 }
 .modal__background .modal__container2 a {
   font-size: 14px;

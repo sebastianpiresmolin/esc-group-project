@@ -1,44 +1,8 @@
 import { selectedChallenge } from "./api_fetch.js";
-
-/*
-//fetch challenge data
-const challengesArray = [];
-async function getChallengesData() {
-  const url = "https://lernia-sjj-assignments.vercel.app/api/challenges";
-  const res = await fetch(url);
-  const data = await res.json();
-
-  for (let i = 0; i < data.challenges.length; i++) {
-    challengesArray.push(data.challenges[i]);
-  }
-}
-
-getChallengesData();
-console.log("Challenges", challengesArray);
-*/
-
-//create booking
-export async function createBooking() {
-  const res = await fetch(
-    "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        challenge: 4,
-        name: bookName,
-        email: bookEmail,
-        date: bookDate,
-        time: bookTime,
-        participants: bookParticipants,
-      }),
-    }
-  );
-  const data = await res.json();
-  console.log(data);
-}
+let arrayTimes = [];
+let url = new URL(
+  "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=2023-12-12&challenge=4'"
+);
 
 //Creating elements for modals in index.html and challenges.html
 //Global modal elements
@@ -104,9 +68,6 @@ modalParticipants.classList.add("modal__participants");
 const participantsList = document.createElement("ul");
 participantsList.classList.add("participants__list");
 
-const participantsItems = document.createElement("li");
-participantsItems.classList.add("participants__list__items");
-
 const modalButtonSubmit = document.createElement("button");
 modalButtonSubmit.classList.add("button__submit");
 modalButtonSubmit.textContent = "Submit booking";
@@ -120,7 +81,6 @@ modalLinkBack.classList.add("modal__linkback");
 
 //Append to main divs
 
-
 //Creating date object
 const date = new Date();
 const currentDate = date.toISOString().substring(0, 10);
@@ -133,6 +93,7 @@ export function displayModalStepOne(container, title) {
   modalSubTitle.textContent = "What date would you like to come?";
   modalDate.textContent = "Date";
   inputDate.value = currentDate;
+  participantsList;
 
   modalContainer1.append(
     modalTitle,
@@ -148,23 +109,20 @@ export function displayModalStepOne(container, title) {
   return modal1, modal1title;
 }
 
-//displayModalStepOne();
-//displayModalStepTwo();
-//displayModalStepThree();
-
-
 //Creating step two modal
 function displayModalStepTwo() {
-
-  modalTitle.textContent = 'Book Room: "' + selectedChallenge.data.title + '" (Step 2)';
+  modalTitle.textContent =
+    'Book Room: "' + selectedChallenge.data.title + '" (Step 2)';
   modalBackground.style.display = "block";
   modalContainer1.style.display = "none";
   modalContainer2.style.display = "block";
-  modalTitle.setAttribute("id", "modal2__title")
+  modalTitle.setAttribute("id", "modal2__title");
   modalName.textContent = "Name";
   modalMail.textContent = "E-mail";
   modalTime.textContent = "What time?";
   modalParticipants.textContent = "How many participants?";
+
+ console.log("Efter loop", arrayTimes);
 
   modalContainer2.append(
     modalTitle,
@@ -179,8 +137,6 @@ function displayModalStepTwo() {
     modalButtonSubmit
   );
 
-  timeList.append(timeItems);
-  participantsList.append(participantsItems);
   modalBackground.append(modalContainer2);
 }
 
@@ -196,48 +152,94 @@ export async function displayModalStepThree() {
 
   modalContainer3.append(modalTitleThankYou, modalLinkBack);
   modalBackground.append(modalContainer3);
-
 }
 
-export async function availableTimes(url) {
+
+export async function availableTimes() {
   modalButtonSearch.addEventListener("click", function () {
-    let url = new URL(
-      "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=&challenge='"
-    );
-    /*
+    
     let params = new URLSearchParams(url.search);
-    let challengeID = Challenge().render().challengeId;
+    let challengeID = selectedChallenge.data.id;
 
     params.set("date", inputDate.value);
-    params.set("id", challengeID);
+    params.set("id", parseInt(challengeID));
 
     url.search = params.toString();
-    let new_url = url.toString();
+    url = url.toString();
 
-    console.log(new_url);
-*/
+    displayAvailableTimes();
     displayModalStepTwo();
+    
+    console.log(url)
 
-    return new_url;
+    return url;
   });
 }
+
+
+
+export async function displayAvailableTimes() {
+  let newUrl = url;
+  const res = await fetch(newUrl);
+  const data = await res.json();
+
+  data.slots.forEach((slot) => {
+    arrayTimes.push(slot);
+    let li = document.createElement('li');
+    li.innerText = slot;
+    timeList.appendChild(li);
+    console.log(slot);
+  });
+  return arrayTimes;
+}
+availableTimes();
+submitBooking();
+
+for (let i = 0; i < arrayTimes.length; ++i) {
+  let li = document.createElement('li');
+  li.innerText = arrayTimes[i];
+  timeList.appendChild(li);
+}
+
 
 async function submitBooking() {
   modalButtonSubmit.addEventListener("click", function () {
     console.log(inputName.value);
     console.log(inputMail.value);
     displayModalStepThree();
-  })
-}
-
-export async function displayAvailableTimes() {
-  const res = await fetch(url);
-  const data = await res.json();
-  data.slots.forEach((slot) => {
-    console.log(slot);
   });
 }
 
-availableTimes();
-submitBooking();
-//displayAvailableTimes();
+//create booking
+export async function createBooking() {
+  const res = await fetch(
+    "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        challenge: 4,
+        name: bookName,
+        email: bookEmail,
+        date: bookDate,
+        time: bookTime,
+        participants: bookParticipants,
+      }),
+    }
+  );
+  const data = await res.json();
+  console.log(data);
+}
+
+class Reservation { 
+  constructor(challenge, name, email, date, time, participants) {
+    this.challenge = challenge;
+    this.name = name;
+    this.email = email;
+    this.date = date;
+    this.time = time;
+    this.participants = participants;
+  }
+}
