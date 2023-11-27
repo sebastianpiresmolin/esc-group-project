@@ -92,6 +92,12 @@ class APIadapter {
 //Global array to hold Challenge objects
 let allChallenges = [];
 
+const api = new APIadapter();
+api.getAllChallenges()
+    .then(() => {
+        console.log(allChallenges);
+    });
+
 // Loop through array to create all Challenge cards
 class ChallengeListView {
     async render(container) {
@@ -112,8 +118,10 @@ const modal1 = document.querySelector("#modal__bg");
 const view = new ChallengeListView();
 view.render(challengesDiv);
 
-class BookingForm { }
 
+/*
+class BookingForm { }
+*/
 // Filter Challenges by Type, onsite or online
 
 // Filter Challenges by Rating
