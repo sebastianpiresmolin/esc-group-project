@@ -1,4 +1,6 @@
-//import { Challenge } from "./api_fetch";
+import { selectedChallenge } from "./api_fetch.js";
+
+/*
 //fetch challenge data
 const challengesArray = [];
 async function getChallengesData() {
@@ -13,6 +15,7 @@ async function getChallengesData() {
 
 getChallengesData();
 console.log("Challenges", challengesArray);
+*/
 
 //create booking
 export async function createBooking() {
@@ -123,10 +126,9 @@ const date = new Date();
 const currentDate = date.toISOString().substring(0, 10);
 
 //Creating step one modal
-export async function displayModalStepOne(container, title) {
+export function displayModalStepOne(container, title) {
   modalBackground.style.display = "block";
   modalContainer1.style.display = "block";
-  modalTitle.textContent = "Book room " + '"Title of room"' + "(step 1)";
   modalTitle.setAttribute("id", "modal1__title");
   modalSubTitle.textContent = "What date would you like to come?";
   modalDate.textContent = "Date";
@@ -143,15 +145,18 @@ export async function displayModalStepOne(container, title) {
   modalBackground.append(modalContainer1);
   const modal1 = modalBackground;
   const modal1title = modalTitle;
-  return modal1, modal1title; 
+  return modal1, modal1title;
 }
 
 //displayModalStepOne();
 //displayModalStepTwo();
 //displayModalStepThree();
 
+
 //Creating step two modal
-export async function displayModalStepTwo() {
+function displayModalStepTwo() {
+
+  modalTitle.textContent = 'Book Room: "' + selectedChallenge.data.title + '" (Step 2)';
   modalBackground.style.display = "block";
   modalContainer1.style.display = "none";
   modalContainer2.style.display = "block";
@@ -177,8 +182,6 @@ export async function displayModalStepTwo() {
   timeList.append(timeItems);
   participantsList.append(participantsItems);
   modalBackground.append(modalContainer2);
-
-  
 }
 
 //Creating step three modal
@@ -208,9 +211,9 @@ export async function availableTimes() {
 
     url.search = params.toString();
     let new_url = url.toString();
-    
+
     console.log(new_url);
-    
+
     displayModalStepTwo();
   });
 }
@@ -220,7 +223,7 @@ async function submitBooking() {
     console.log(inputName.value);
     console.log(inputMail.value);
     displayModalStepThree();
-  }) 
+  })
 }
 
 export async function displayAvailableTimes() {
