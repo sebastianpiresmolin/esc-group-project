@@ -1,4 +1,4 @@
-//import { Challenge } from "./api_fetch";
+import { Challenge } from "./api_fetch";
 //fetch challenge data
 const challengesArray = [];
 async function getChallengesData() {
@@ -196,15 +196,16 @@ export async function displayModalStepThree() {
 
 }
 
-export async function availableTimes() {
+export async function availableTimes(url) {
   modalButtonSearch.addEventListener("click", function () {
     let url = new URL(
       "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=&challenge='"
     );
     let params = new URLSearchParams(url.search);
+    let challengeID = Challenge().render().challengeId;
 
     params.set("date", inputDate.value);
-    params.set("id", "4");
+    params.set("id", challengeID);
 
     url.search = params.toString();
     let new_url = url.toString();
@@ -212,6 +213,8 @@ export async function availableTimes() {
     console.log(new_url);
     
     displayModalStepTwo();
+
+    return new_url;
   });
 }
 
@@ -234,3 +237,6 @@ export async function displayAvailableTimes() {
 availableTimes();
 submitBooking();
 //displayAvailableTimes();
+
+let challenge = new Challenge();
+console.log(challenge.render())

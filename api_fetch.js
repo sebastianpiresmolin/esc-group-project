@@ -1,7 +1,7 @@
-import { displayModalStepOne } from "./book.js";
+import { availableTimes, displayModalStepOne } from "./book.js";
 
 // Define Challenge class, used in APIadapter
-class Challenge {
+export default class Challenge {
   constructor(data) {
     this.data = data;
   }
@@ -60,6 +60,8 @@ class Challenge {
         (challenge) => challenge.data.id === parseInt(challengeId)
       );
 
+      const url = availableTimes().new_url;
+      console.log(url);
       const challengeParticipants = null;
       const challengeTimes = 0; 
 
