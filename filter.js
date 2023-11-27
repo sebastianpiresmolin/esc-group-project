@@ -169,7 +169,7 @@ let filter = {
   });
 
 //Searching for challenges titles that matches the keyword
-document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyW);
+document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyW, searchRoomByDesc);
 
 function searchRoomByKeyW() {
   const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
@@ -203,25 +203,20 @@ function searchRoomByKeyW() {
 }
 
 //Add Search by description p
-document.getElementById("searchBox").addEventListener("keydown", searchRoomByDesc);
-
-
-
 function searchRoomByDesc() {
   const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
   const product = document.querySelectorAll(".challenge");
   const pname = document.querySelectorAll("#descID");
   const noMatchError = document.getElementById("noMatchError");
-  const descriptionElement = document.querySelectorAll("#descID");
 
   let foundMatch = false;
 
   for (let i = 0; i < pname.length; i++) {
-  let match = product[i].querySelectorAll("#descID")[0];
+  let match = product[i].querySelector("#descID")[0];
   // If the #descID element exists
   if (match) {
     // Get the text content of the description element element
-    let textvalue = match.textContent || match.innerHTML;
+    let textvalue = match.innerHTML || match.innerText ;
     // If the text content includes the search box value
     if (textvalue.toLowerCase().indexOf(searchbox) > -1) {
       product[i].style.display = "";// Show the current challenge element
