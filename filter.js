@@ -203,7 +203,43 @@ function searchRoomByKeyW() {
 }
 
 //Add Search by description p
+document.getElementById("searchBox").addEventListener("keydown", searchRoomByDesc);
 
 
-  
+
+function searchRoomByDesc() {
+  const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
+  const product = document.querySelectorAll(".challenge");
+  const pname = document.querySelectorAll("#descID");
+  const noMatchError = document.getElementById("noMatchError");
+  const descriptionElement = document.querySelectorAll("#descID");
+
+  let foundMatch = false;
+
+  for (let i = 0; i < pname.length; i++) {
+  let match = product[i].querySelectorAll("#descID")[0];
+  // If the #descID element exists
+  if (match) {
+    // Get the text content of the description element element
+    let textvalue = match.textContent || match.innerHTML;
+    // If the text content includes the search box value
+    if (textvalue.toLowerCase().indexOf(searchbox) > -1) {
+      product[i].style.display = "";// Show the current challenge element
+      foundMatch = true;// Set foundMatch to true since a match was found
+    } else {
+      product[i].style.display = "none";// Hide the current challenge element if it doesn't match the search box value
+    }
+  }
+}
+
+  if (foundMatch) {
+    noMatchError.innerHTML = ""; // Clear the error message if a match is found
+  } else {
+    noMatchError.innerHTML = "No matching challenges"; // Show the error message if no matches are found
+  }
+}
+
+
+
+
   /*------------------------INPUT FIELD------------------------*/
