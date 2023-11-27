@@ -140,6 +140,8 @@ let filter = {
     //Log the current state of the filter.labels array
     //console.log('Current labels:', filter.labels);
   }
+
+  //Endast rum med aktiva tags ska visas
   
   /*------------------------TAGS------------------------*/
   
@@ -165,7 +167,6 @@ let filter = {
             
     }
   });
-
 
 //Searching for challenges titles that matches the keyword
 document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyW);
