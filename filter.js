@@ -167,7 +167,6 @@ let filter = {
   });
 
 
-
 //Searching for challenges titles that matches the keyword
 document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyW);
 
@@ -202,35 +201,7 @@ function searchRoomByKeyW() {
   }
 }
 
-
-/*
-//Searching for challenges descriptions that matches the keyword
-document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyDesc);
-
-function searchRoomByKeyDesc (){
-  const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
-  const storeItems = document.getElementById("challenges__container");
-  const product = document.querySelectorAll(".challenge");
-  const pname = document.querySelectorAll(".challenge p");
-
-  for(let i = 0; i < pname.length; i++){
-    let match = product[i].getElementsByTagName("p")[0];
-
-    if(match){
-      let textvalue = match.textContent || match.innerHTML
-
-      if(textvalue.toLowerCase().indexOf(searchbox) > -1){
-         product[i].style.display = "";
-      }
-      else{
-         product[i].style.display = "none";
-        // Add "No matching challenges" when not matching
-      }
-    }
-  }
-}
-*/
-
+//Add Search by description p
 
 
   
