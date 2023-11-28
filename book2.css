@@ -110,14 +110,14 @@
 .modal__background .modal__container2 select {
   width: 150px;
   height: 40px;
-  font-size: 18px;
+  font-size: 16px;
   border: 1px solid lightgray;
   border-radius: 3px;
 }
 .modal__background .modal__container2 option {
   width: 150px;
   height: 40px;
-  font-size: 18px;
+  font-size: 16px;
 }
 .modal__background .modal__container2 a {
   font-size: 14px;
@@ -140,12 +140,12 @@
 }
 .modal__background .modal__container3 {
   display: flex;
-  position: relative;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  flex-direction: column;
   background-color: white;
-  padding: 10px 10px 10px 30px;
+  padding: 0;
   width: 60%;
   max-width: 600px;
   min-height: 500px;
@@ -155,8 +155,6 @@
 .modal__background .modal__container3 h1 {
   margin: 0;
   padding: 0;
-  text-align: center;
-  align-items: center;
 }
 .modal__background .modal__container3 a {
   font-size: 14px;

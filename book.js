@@ -33,7 +33,10 @@ const inputDate = document.createElement("input");
 inputDate.setAttribute("type", "date");
 inputDate.classList.add("input__date");
 
-const errorDate = document.createElement("p");
+const errorDiv = document.createElement("div");
+const errorMsg = document.createElement("p");
+
+errorDiv.appendChild(errorMsg);
 
 const modalButtonSearch = document.createElement("button");
 modalButtonSearch.classList.add("button__search");
@@ -109,6 +112,7 @@ export function displayModalStepOne(container, title) {
     modalSubTitle,
     modalDate,
     inputDate,
+    errorDiv,
     modalButtonSearch
   );
 
@@ -135,6 +139,7 @@ function displayModalStepTwo() {
 
   modalContainer2.append(
     modalTitle,
+    errorDiv,
     modalName,
     inputName,
     modalMail,
@@ -156,7 +161,7 @@ function displayModalStepTwo() {
 export async function displayModalStepThree() {
   modalBackground.style.display = "block";
   modalContainer2.style.display = "none";
-  modalContainer3.style.display = "block";
+  modalContainer3.style.display = "flex";
 
   modalTitleThankYou.textContent = "Thank you!";
   modalLinkBack.text = "Back to challenges";
@@ -171,9 +176,10 @@ export async function availableTimes() {
     let params = new URLSearchParams(url.search);
     let challengeID = selectedChallenge.data.id;
     if (inputDate.value < currentDate || inputDate.value > withinNextYear) {
-      errorDate.textContent = "You must choose a date newer than today!";
-      errorDate.style.color = "red";
-      modalContainer1.append(errorDate);
+      errorMsg.textContent =
+        "You must choose a date newer than today and within a year!";
+      errorMsg.style.color = "red";
+      
     } else {
       params.set("date", inputDate.value);
       params.set("id", parseInt(challengeID));
@@ -201,16 +207,17 @@ export async function displayTimesAndParticipants() {
     listTimes.innerText = slot;
     selecMenuTime.appendChild(listTimes);
   });
-  
-  for (let i = selectedChallenge.data.minParticipants; i <= selectedChallenge.data.maxParticipants; i++) {
+
+  for (let i = selectedChallenge.data.minParticipants; i <= selectedChallenge.data.maxParticipants;i++
+  ) {
     arrayParticipants.push(i);
   }
-  arrayParticipants.forEach(element => {
+  arrayParticipants.forEach((element) => {
     listPart = document.createElement("option");
     listPart.innerText = element + " participants";
     selectMenuPart.appendChild(listPart);
   });
-  console.log(arrayParticipants)
+  console.log(arrayParticipants);
   return arrayTimes;
 }
 
@@ -219,13 +226,24 @@ submitBooking();
 
 async function submitBooking() {
   modalButtonSubmit.addEventListener("click", function () {
-    console.log(inputMail.value);
-    let collection = selecMenuTime.selectedOptions;
-    let output = "";
-    for (let i = 0; i < collection.length; i++) {
-      output += collection[i].label;
+    let nameValue = inputName.value.trim();
+    let nameOutput = nameValue.charAt(0).toUpperCase() + nameValue.slice(1).toLowerCase();
+    let emailValue = inputMail.value.trim();
+    
+    let timeInput = selecMenuTime.selectedOptions;
+    let timeOutput = "";
+    for (let i = 0; i < timeInput.length; i++) {
+      timeOutput += timeInput[i].label;
     }
-    console.log(output);
+    let partOutput = "";
+    let partInput = selectMenuPart.selectedOptions;
+    for (let i = 0; i < partInput.length; i++) {
+      partOutput += partInput[i].label;
+    }
+    console.log(nameOutput);
+    console.log();
+    console.log(timeOutput);
+    console.log(partOutput);
     displayModalStepThree();
   });
 }
