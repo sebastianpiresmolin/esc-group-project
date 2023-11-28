@@ -148,7 +148,8 @@ let filter = {
   }
 
   //Endast rum med aktiva tags ska visas
-  
+ 
+
   /*------------------------TAGS------------------------*/
   
   /*------------------------INPUT FIELD------------------------*/
@@ -174,73 +175,59 @@ let filter = {
     }
   });
 
-//Searching for challenges titles that matches the keyword
-document.getElementById("searchBox").addEventListener("keyup", searchRoomByKeyW, searchRoomByDesc);
 
-function searchRoomByKeyW() {
+//Add an eventlistener to the searchbox that triggers the searchRooms function on keyup
+document.getElementById("searchBox").addEventListener("keyup", searchRooms);
+
+//Define the searchRooms function
+function searchRooms() {
+  //Get the value of the search box, convert it to lowercase
   const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
+
+  //Get all the challenge elements
   const product = document.querySelectorAll(".challenge");
-  const pname = document.querySelectorAll(".challenge h2");
+
+  //Get all the h2 elements within the challenge elements
+  const titles = document.querySelectorAll(".challenge h2");
+
+  //Get all the elements with id "descID" within the challenge elements
+  const descriptions = document.querySelectorAll("#descID");
+
+  //Get the noMatchError element
   const noMatchError = document.getElementById("noMatchError");
 
+  // Initialize a variable to track whether a match is found
   let foundMatch = false;
 
-  for (let i = 0; i < pname.length; i++) {
-    let match = product[i].getElementsByTagName("h2")[0];
-    // If the h2 element exists
-    if (match) {
-      // Get the text content of the h2 element
-      let textvalue = match.textContent || match.innerHTML;
-      // If the text content includes the search box value
-      if (textvalue.toLowerCase().indexOf(searchbox) > -1) {
-        product[i].style.display = "";// Show the current challenge element
-        foundMatch = true;// Set foundMatch to true since a match was found
-      } else {
-        product[i].style.display = "none";// Hide the current challenge element if it doesn't match the search box value
-      }
-    }
-  }
+  // Loop through all the challenge elements
+  for (let i = 0; i < product.length; i++) {
+    // Get the text content of the h2 element within the current challenge element
+    let title = titles[i].textContent || titles[i].innerHTML;
 
-  if (foundMatch) {
-    noMatchError.innerHTML = ""; // Clear the error message if a match is found
-  } else {
-    noMatchError.innerHTML = "No matching challenges"; // Show the error message if no matches are found
-  }
-}
+    // Get the text content of the description element within the current challenge element
+    let description = descriptions[i].innerHTML || descriptions[i].innerText;
 
-//Add Search by description p
-function searchRoomByDesc() {
-  const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
-  const product = document.querySelectorAll(".challenge");
-  const pname = document.querySelectorAll("#descID");
-  const noMatchError = document.getElementById("noMatchError");
+    //If the title or description includes the search box value
+    if (title.toLowerCase().indexOf(searchbox) > -1 || description.toLowerCase().indexOf(searchbox) > -1) {
+      // Show the current challenge element
+      product[i].style.display = "";
 
-  let foundMatch = false;
-
-  for (let i = 0; i < pname.length; i++) {
-  let match = product[i].querySelector("#descID")[0];
-  // If the #descID element exists
-  if (match) {
-    // Get the text content of the description element element
-    let textvalue = match.innerHTML || match.innerText ;
-    // If the text content includes the search box value
-    if (textvalue.toLowerCase().indexOf(searchbox) > -1) {
-      product[i].style.display = "";// Show the current challenge element
-      foundMatch = true;// Set foundMatch to true since a match was found
+      // Set foundMatch to true since a match was found
+      foundMatch = true;
     } else {
-      product[i].style.display = "none";// Hide the current challenge element if it doesn't match the search box value
+      // Hide the current challenge element if it doesn't match the search box value
+      product[i].style.display = "none";
     }
   }
-}
 
+  // If a match was found
   if (foundMatch) {
-    noMatchError.innerHTML = ""; // Clear the error message if a match is found
+    // Clear the error message
+    noMatchError.innerHTML = "";
   } else {
-    noMatchError.innerHTML = "No matching challenges"; // Show the error message if no matches are found
+    // If no matches were found, set the error message
+    noMatchError.innerHTML = "No matching challenges";
   }
 }
-
-
-
 
   /*------------------------INPUT FIELD------------------------*/
