@@ -205,6 +205,9 @@ $width-1920: 1920px;
   }
 }
 
+.hidden{
+  display: none;
+}
 .byTags {
   @include breakpoint(width-745) {
     display: none;
