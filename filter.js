@@ -145,11 +145,56 @@ let filter = {
   
     //Log the current state of the filter.labels array
     //console.log('Current labels:', filter.labels);
-  }
+  
+        /*
+    //Get all the challenge elements
+    const card = document.querySelectorAll(".challenge");
 
-  //Endast rum med aktiva tags ska visas
+    //Get all the tags within the challenge elements
+    const challengeTags = document.querySelectorAll("allChallenges");
+
+    //Get the noMatchError element
+    const noMatchError = document.getElementById("noMatchError");
+
+    // Initialize a variable to track whether a match is found
+    let foundMatch = false;
+
+    // saves the active labels array into a variable
+    const activeTags = filter.labels;
+   
+
+    // Loop through all the challenge elements
+    for (let i = 0; i < card.length; i++) {
+      // Get the tag in the current challenge element
+      let cardTag = allChallenges[i].tags;
+
+      //If the tag inside the challenge card includes the active tag value
+      if (cardTag.toLowerCase().indexOf(activeTags) > -1 ) {
+        // Show the current challenge element
+        card[i].style.display = "";
+
+        // Set foundMatch to true since a match was found
+        foundMatch = true;
+      } else {
+        // Hide the current challenge element if it doesn't match the search box value
+        card[i].style.display = "none";
+      }
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
+    }
+  }
+*/
+  //Endast rum med aktiva tags ska visas - finns i array filter.labels
+ //challenge.tags (tagsen som är på korten)
  
 
+ 
   /*------------------------TAGS------------------------*/
   
   /*------------------------INPUT FIELD------------------------*/
@@ -185,7 +230,7 @@ function searchRooms() {
   const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
 
   //Get all the challenge elements
-  const product = document.querySelectorAll(".challenge");
+  const card = document.querySelectorAll(".challenge");
 
   //Get all the h2 elements within the challenge elements
   const titles = document.querySelectorAll(".challenge h2");
@@ -200,7 +245,7 @@ function searchRooms() {
   let foundMatch = false;
 
   // Loop through all the challenge elements
-  for (let i = 0; i < product.length; i++) {
+  for (let i = 0; i < card.length; i++) {
     // Get the text content of the h2 element within the current challenge element
     let title = titles[i].textContent || titles[i].innerHTML;
 
@@ -210,13 +255,13 @@ function searchRooms() {
     //If the title or description includes the search box value
     if (title.toLowerCase().indexOf(searchbox) > -1 || description.toLowerCase().indexOf(searchbox) > -1) {
       // Show the current challenge element
-      product[i].style.display = "";
+      card[i].style.display = "";
 
       // Set foundMatch to true since a match was found
       foundMatch = true;
     } else {
       // Hide the current challenge element if it doesn't match the search box value
-      product[i].style.display = "none";
+      card[i].style.display = "none";
     }
   }
 
