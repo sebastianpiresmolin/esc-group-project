@@ -104,16 +104,20 @@
   width: 80%;
   max-width: 250px;
   height: 30px;
-}
-.modal__background .modal__container2 ul {
-  margin-top: 0px;
-  border: 1px black solid;
+  border: 1px solid lightgrey;
   border-radius: 3px;
+}
+.modal__background .modal__container2 select {
   width: 150px;
   height: 40px;
+  font-size: 18px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
 }
-.modal__background .modal__container2 li {
-  font-size: 40px;
+.modal__background .modal__container2 option {
+  width: 150px;
+  height: 40px;
+  font-size: 18px;
 }
 .modal__background .modal__container2 a {
   font-size: 14px;
@@ -149,9 +153,9 @@
   z-index: 11;
 }
 .modal__background .modal__container3 h1 {
-  margin: 0px;
-  font-size: 100px;
-  justify-content: center;
+  margin: 0;
+  padding: 0;
+  text-align: center;
   align-items: center;
 }
 .modal__background .modal__container3 a {

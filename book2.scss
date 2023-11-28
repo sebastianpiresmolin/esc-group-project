@@ -130,18 +130,22 @@ $width-1920: 1920px;
       width: 80%;
       max-width: 250px;
       height: 30px;
+      border: 1px solid lightgrey;
+      border-radius: 3px;
     }
 
-    ul {
-      margin-top: 0px;
-      border: 1px black solid;
-      border-radius: 3px;
+    select {
       width: 150px;
       height: 40px;
+      font-size: 18px;
+      border: 1px solid lightgray;
+      border-radius: 3px;
     }
-  
-    li {
-      font-size: 40px;
+
+    option {
+      width: 150px;
+      height: 40px;
+      font-size: 18px;
     }
   
     a {
@@ -179,12 +183,12 @@ $width-1920: 1920px;
     margin: 15% auto;
     z-index: 11;
      
-
     h1 {
-      margin: 0px;
-      font-size: 100px;
-      justify-content: center;
+      margin: 0;
+      padding: 0;
+      text-align: center;
       align-items: center;
+      
     }
 
     a {
@@ -192,3 +196,4 @@ $width-1920: 1920px;
     }
   }
 }
+

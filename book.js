@@ -3,6 +3,9 @@ let arrayTimes = [];
 let url = new URL(
   "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=2023-12-12&challenge=4'"
 );
+let arrayParticipants = [];
+let listTimes = undefined;
+let listPart = undefined;
 
 //Creating elements for modals in index.html and challenges.html
 //Global modal elements
@@ -19,7 +22,6 @@ modalContainer3.classList.add("modal__container3");
 const modalTitle = document.createElement("h1");
 modalTitle.classList.add("modal__title");
 modalTitle.setAttribute("id", "modal1title");
-
 const modalSubTitle = document.createElement("h2");
 modalSubTitle.classList.add("modal__subtitle");
 
@@ -30,6 +32,8 @@ modalDate.classList.add("modal__date");
 const inputDate = document.createElement("input");
 inputDate.setAttribute("type", "date");
 inputDate.classList.add("input__date");
+
+const errorDate = document.createElement("p");
 
 const modalButtonSearch = document.createElement("button");
 modalButtonSearch.classList.add("button__search");
@@ -59,14 +63,14 @@ modalTime.classList.add("modal__time");
 const timeList = document.createElement("ul");
 timeList.classList.add("time__list");
 
-const timeItems = document.createElement("li");
-timeItems.classList.add("time__list__items");
+const selecMenuTime = document.createElement("select");
+selecMenuTime.classList.add("select__menu__time");
 
 const modalParticipants = document.createElement("p");
 modalParticipants.classList.add("modal__participants");
 
-const participantsList = document.createElement("ul");
-participantsList.classList.add("participants__list");
+const selectMenuPart = document.createElement("select");
+selectMenuPart.classList.add("select__menu__part");
 
 const modalButtonSubmit = document.createElement("button");
 modalButtonSubmit.classList.add("button__submit");
@@ -84,6 +88,12 @@ modalLinkBack.classList.add("modal__linkback");
 //Creating date object
 const date = new Date();
 const currentDate = date.toISOString().substring(0, 10);
+const nextYear = new Date(
+  date.getFullYear(),
+  date.getMonth() + 12,
+  date.getDate()
+);
+const withinNextYear = nextYear.toISOString().substring(0, 10);
 
 //Creating step one modal
 export function displayModalStepOne(container, title) {
@@ -93,7 +103,6 @@ export function displayModalStepOne(container, title) {
   modalSubTitle.textContent = "What date would you like to come?";
   modalDate.textContent = "Date";
   inputDate.value = currentDate;
-  participantsList;
 
   modalContainer1.append(
     modalTitle,
@@ -122,7 +131,7 @@ function displayModalStepTwo() {
   modalTime.textContent = "What time?";
   modalParticipants.textContent = "How many participants?";
 
- console.log("Efter loop", arrayTimes);
+  console.log("Efter loop", arrayTimes);
 
   modalContainer2.append(
     modalTitle,
@@ -131,14 +140,17 @@ function displayModalStepTwo() {
     modalMail,
     inputMail,
     modalTime,
-    timeList,
+    selecMenuTime,
     modalParticipants,
-    participantsList,
+    selectMenuPart,
     modalButtonSubmit
   );
 
   modalBackground.append(modalContainer2);
+  console.log(selectedChallenge.data.minParticipants);
 }
+
+//eventlistener for list
 
 //Creating step three modal
 export async function displayModalStepThree() {
@@ -154,58 +166,66 @@ export async function displayModalStepThree() {
   modalBackground.append(modalContainer3);
 }
 
-
 export async function availableTimes() {
   modalButtonSearch.addEventListener("click", function () {
-    
     let params = new URLSearchParams(url.search);
     let challengeID = selectedChallenge.data.id;
+    if (inputDate.value < currentDate || inputDate.value > withinNextYear) {
+      errorDate.textContent = "You must choose a date newer than today!";
+      errorDate.style.color = "red";
+      modalContainer1.append(errorDate);
+    } else {
+      params.set("date", inputDate.value);
+      params.set("id", parseInt(challengeID));
 
-    params.set("date", inputDate.value);
-    params.set("id", parseInt(challengeID));
+      url.search = params.toString();
+      url = url.toString();
 
-    url.search = params.toString();
-    url = url.toString();
+      displayTimesAndParticipants();
+      displayModalStepTwo();
 
-    displayAvailableTimes();
-    displayModalStepTwo();
-    
-    console.log(url)
-
+      console.log(url);
+    }
     return url;
   });
 }
 
-
-
-export async function displayAvailableTimes() {
+export async function displayTimesAndParticipants() {
   let newUrl = url;
   const res = await fetch(newUrl);
   const data = await res.json();
 
   data.slots.forEach((slot) => {
     arrayTimes.push(slot);
-    let li = document.createElement('li');
-    li.innerText = slot;
-    timeList.appendChild(li);
-    console.log(slot);
+    listTimes = document.createElement("option");
+    listTimes.innerText = slot;
+    selecMenuTime.appendChild(listTimes);
   });
+  
+  for (let i = selectedChallenge.data.minParticipants; i <= selectedChallenge.data.maxParticipants; i++) {
+    arrayParticipants.push(i);
+  }
+  arrayParticipants.forEach(element => {
+    listPart = document.createElement("option");
+    listPart.innerText = element + " participants";
+    selectMenuPart.appendChild(listPart);
+  });
+  console.log(arrayParticipants)
   return arrayTimes;
 }
+
 availableTimes();
 submitBooking();
 
-for (let i = 0; i < arrayTimes.length; ++i) {
-  let li = document.createElement('li');
-  li.innerText = arrayTimes[i];
-  timeList.appendChild(li);
-}
-
-
 async function submitBooking() {
   modalButtonSubmit.addEventListener("click", function () {
-    console.log(inputName.value);
     console.log(inputMail.value);
+    let collection = selecMenuTime.selectedOptions;
+    let output = "";
+    for (let i = 0; i < collection.length; i++) {
+      output += collection[i].label;
+    }
+    console.log(output);
     displayModalStepThree();
   });
 }
@@ -231,15 +251,4 @@ export async function createBooking() {
   );
   const data = await res.json();
   console.log(data);
-}
-
-class Reservation { 
-  constructor(challenge, name, email, date, time, participants) {
-    this.challenge = challenge;
-    this.name = name;
-    this.email = email;
-    this.date = date;
-    this.time = time;
-    this.participants = participants;
-  }
 }
