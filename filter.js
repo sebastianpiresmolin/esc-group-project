@@ -142,43 +142,8 @@ let filter = {
   }
 
   //Endast rum med aktiva tags ska visas
-  
-/*
-function test() {
+ 
 
-  //Get all the challenge elements
-  const product = document.querySelectorAll(".challenge");
-
-  
-  //Get all the elements with id "descID" within the challenge elements
-  const descriptions = document.querySelectorAll("#descID");
-
-  //Get the noMatchError element
-  const noMatchError = document.getElementById("noMatchError");
-
-  // Initialize a variable to track whether a match is found
-  let foundMatch = false;
-    for (let i = 0; i < product.length; i++) {
-      // Get the text content of the h2 element within the current challenge element
-      let title = titles[i].textContent || titles[i].innerHTML;
-
-      // Get the text content of the description element within the current challenge element
-      let description = descriptions[i].innerHTML || descriptions[i].innerText;
-
-      //If the title or description includes the search box value
-      if (title.toLowerCase().indexOf(searchbox) > -1 || description.toLowerCase().indexOf(searchbox) > -1) {
-        // Show the current challenge element
-        product[i].style.display = "";
-
-        // Set foundMatch to true since a match was found
-        foundMatch = true;
-      } else {
-        // Hide the current challenge element if it doesn't match the search box value
-        product[i].style.display = "none";
-      }
-    }
-}
-*/
   /*------------------------TAGS------------------------*/
   
   /*------------------------INPUT FIELD------------------------*/
