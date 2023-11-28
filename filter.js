@@ -104,7 +104,9 @@ let filter = {
   /*------------------------TAGS------------------------*/
   
   // Get all the tags
-  
+    
+
+
   const tags = [
     document.querySelector("#web"),
     document.querySelector("#linux"),
@@ -141,17 +143,19 @@ let filter = {
       tag.classList.add("active");
       // And add the tag's id to the filter.labels array
       filter.labels.push(tagId);
+      
     }
   
     //Log the current state of the filter.labels array
     //console.log('Current labels:', filter.labels);
   
-        /*
+        
     //Get all the challenge elements
     const card = document.querySelectorAll(".challenge");
 
     //Get all the tags within the challenge elements
-    const challengeTags = document.querySelectorAll("allChallenges");
+    const challengeTags = document.querySelectorAll("challenge.tags");
+    
 
     //Get the noMatchError element
     const noMatchError = document.getElementById("noMatchError");
@@ -166,7 +170,7 @@ let filter = {
     // Loop through all the challenge elements
     for (let i = 0; i < card.length; i++) {
       // Get the tag in the current challenge element
-      let cardTag = allChallenges[i].tags;
+      let cardTag = challengeTags[i].tags;
 
       //If the tag inside the challenge card includes the active tag value
       if (cardTag.toLowerCase().indexOf(activeTags) > -1 ) {
@@ -189,7 +193,7 @@ let filter = {
       }
     }
   }
-*/
+
   //Endast rum med aktiva tags ska visas - finns i array filter.labels
  //challenge.tags (tagsen som är på korten)
  
