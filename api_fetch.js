@@ -101,6 +101,12 @@ class APIadapter {
 //Global array to hold Challenge objects
 
 
+const api = new APIadapter();
+api.getAllChallenges()
+    .then(() => {
+        console.log(allChallenges);
+    });
+
 // Loop through array to create all Challenge cards
 class ChallengeListView {
   async render(container) {

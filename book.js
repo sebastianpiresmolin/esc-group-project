@@ -249,25 +249,33 @@ async function submitBooking() {
   });
 }
 
-//create booking
-export async function createBooking() {
-  const res = await fetch(
-    "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        challenge: 4,
-        name: bookName,
-        email: bookEmail,
-        date: bookDate,
-        time: bookTime,
-        participants: bookParticipants,
-      }),
-    }
-  );
-  const data = await res.json();
+async function sendBookingData() {
+  // Get values from input fields in (stage2) booking
+  const challengeId = 10;
+  const name = inputName.value;
+  const email = inputMail.value;
+  const date = "2023-12-12";
+  const time = "20:00";
+  const participants = 4;
+
+  // Send data to API
+  const response = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // Create object from booking data
+    body: JSON.stringify({
+      challenge: challengeId,
+      name: "firstName lastName",
+      email: "email",
+      date: date,
+      time: time,
+      participants: participants,
+    }),
+  });
+
+  const data = await response.json();
   console.log(data);
 }
+sendBookingData();
