@@ -35,6 +35,7 @@ inputDate.classList.add("input__date");
 
 const errorDiv = document.createElement("div");
 const errorMsg = document.createElement("p");
+errorMsg.classList.add("error__msg");
 
 errorDiv.appendChild(errorMsg);
 
@@ -219,42 +220,57 @@ export async function displayTimesAndParticipants() {
 
 availableTimes();
 
-
-function submitBooking(id, name, email, date, time, participants) {
+function submitBooking() {
   modalButtonSubmit.addEventListener("click", function () {
-    let nameValue = inputName.value.trim();
+    let challengeID = selectedChallenge.data.id;
+    let name = inputName.value.trim();
     let nameOutput =
-      nameValue.charAt(0).toUpperCase() + nameValue.slice(1).toLowerCase();
-    let emailValue = inputMail.value.trim();
+      name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    let validName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    let emailOutput = inputMail.value.trim();
+    let dateOutput = inputDate.value;
+    const validEmail =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (nameOutput.match(validName)) {
+      if (emailOutput.match(validEmail)) {
+        let timeInput = selecMenuTime.selectedOptions;
+        let timeOutput = "";
+        for (let i = 0; i < timeInput.length; i++) {
+          timeOutput += timeInput[i].label;
+        }
+        let partOutput = "";
+        let partInput = selectMenuPart.selectedOptions;
+        for (let i = 0; i < partInput.length; i++) {
+          partOutput += partInput[i].label;
+        }
 
-    name = inputName.value.trim();
+        sendBookingData(
+          challengeID,
+          nameOutput,
+          emailOutput,
+          dateOutput,
+          timeOutput,
+          parseInt(partOutput)
+        );
+        errorMsg.textContent = "";
+        displayModalStepThree();
 
-    let timeInput = selecMenuTime.selectedOptions;
-    let timeOutput = "";
-    for (let i = 0; i < timeInput.length; i++) {
-      timeOutput += timeInput[i].label;
+        return true;
+      } else {
+        errorMsg.textContent = "You must enter a valid email!";
+        return false;
+      }
     }
-    let partOutput = "";
-    let partInput = selectMenuPart.selectedOptions;
-    for (let i = 0; i < partInput.length; i++) {
-      partOutput += partInput[i].label;
+    else {
+      errorMsg.textContent = "You must enter your first name and last name"
+      return false;
     }
-    displayModalStepThree();
-    return name;
   });
 }
 
 submitBooking();
 
-async function sendBookingData() {
-  // Get values from input fields in (stage2) booking
-  const challengeId = 10;
-  const name = "submitBooking(name);"
-  const email = inputMail.value.trim();
-  const date = "inputDate";
-  const time = "timeOutput";
-  const participants = "partOutput";
-
+async function sendBookingData(id, name, email, date, time, participants) {
   // Send data to API
   const response = await fetch(
     "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
@@ -265,12 +281,12 @@ async function sendBookingData() {
       },
       // Create object from booking data
       body: JSON.stringify({
-        challenge: challengeId,
+        challenge: id,
         name: name,
-        email: "email",
+        email: email,
         date: date,
         time: time,
-        participants: 10,
+        participants: participants,
       }),
     }
   );
@@ -278,4 +294,3 @@ async function sendBookingData() {
   const data = await response.json();
   console.log(data);
 }
-sendBookingData();
