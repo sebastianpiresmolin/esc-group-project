@@ -105,7 +105,7 @@ export let filter = {
   
   
  
- 
+ // Moved filter by TAGS to api_fetch.js
   
   /*------------------------TAGS------------------------*/
   
