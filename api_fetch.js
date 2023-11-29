@@ -82,7 +82,7 @@ class APIadapter {
 }
 
 //Global array to hold Challenge objects
-let allChallenges = [];
+export let allChallenges = [];
 
 // Loop through array to create all Challenge cards
 class ChallengeListView {
@@ -119,14 +119,71 @@ view.render(challengesDiv);
 
 
 // Filter Challenges by Tags
+import {filter} from './filter.js';
+
+const tags = [
+    document.querySelector("#web"),
+    document.querySelector("#linux"),
+    document.querySelector("#cryptography"),
+    document.querySelector("#coding"),
+    document.querySelector("#ssh"),
+    document.querySelector("#ctf"),
+    document.querySelector("#hacking"),
+    document.querySelector("#bash"),
+    document.querySelector("#javascript"),
+    document.querySelector("#electronics"),
+    document.querySelector("#phreaking"),
+  ];
+  
+
+  // Add event listeners to all tags
+  tags.forEach((tag) => {
+    tag.addEventListener("click", () => handleTagClick(tag));
+  });
+  
+  function handleTagClick(tag) {
+    // Get the id of the clicked tag
+    const tagId = tag.id;
+  
+    // Check if the clicked tag has the 'active' class
+    if (tag.classList.contains("active")) {
+      // If it does, remove the 'active' class
+      tag.classList.remove("active");
+      // And remove the tag's id from the filter.labels array
+      filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
+      // Log a message indicating that the tag was removed
+      console.log("Removed tag:", tagId);
+    } else {
+      // If the clicked tag does not have the 'active' class, add it
+      tag.classList.add("active");
+      // And add the tag's id to the filter.labels array
+      filter.labels.push(tagId);
+    }
+  
+    //Log the current state of the filter.labels array
+    console.log('Current labels:', filter.labels);
+  }
+
+
+ //Collecting tags from the challenge cards and putting them in allTagsArray
+ async function fetchAllTags() {
+    for (let i = 0; i < allChallenges.length; i++) {
+        const lable = allChallenges[i].labels
+        lable.forEach(lable => {
+            if (!allTagsArray.includes(lable)) {
+                allTagsArray.push(lable)      }
+        })
+    }
+  }
+      //Use filter() to filter out the labels - https://www.freecodecamp.org/news/filter-arrays-in-javascript/
+    
+
+      //allTagsArray är kortens labels sparade i array
+      //filter.labels är aktiva labels från filtret
 
 
 
 
 
-// Filter Challenges by Free text search
-
-
-
-
-
+ 
+    
