@@ -55,7 +55,6 @@ export default class Challenge {
       labelElement.classList.add("labels")
       container.append(labelElement);
     }
-    console.log(labelArray)
     
 
     // Create Book room button for each Challenge card
@@ -67,7 +66,6 @@ export default class Challenge {
     // Listen to button and forward challenge id to show title in booking modal
     button.addEventListener("click", function (event) {
       const challengeId = event.currentTarget.dataset.challengeId;
-      console.log("Challenge id:", challengeId);
       //document.getElementsByClassName("modal__stepOne")[0].style.display = "block";
       displayModalStepOne(modal1);
 
@@ -117,11 +115,8 @@ class ChallengeListView {
       const element = challenge.render();
       container.append(element);
     }
-    console.log(allChallenges)
   }
 }
-
-console.log(allChallenges)
 
 
 // Show All Challenge cards on Challenges page

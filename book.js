@@ -135,8 +135,6 @@ function displayModalStepTwo() {
   modalTime.textContent = "What time?";
   modalParticipants.textContent = "How many participants?";
 
-  console.log("Efter loop", arrayTimes);
-
   modalContainer2.append(
     modalTitle,
     errorDiv,
@@ -150,9 +148,7 @@ function displayModalStepTwo() {
     selectMenuPart,
     modalButtonSubmit
   );
-
   modalBackground.append(modalContainer2);
-  console.log(selectedChallenge.data.minParticipants);
 }
 
 //eventlistener for list
@@ -179,7 +175,6 @@ export async function availableTimes() {
       errorMsg.textContent =
         "You must choose a date newer than today and within a year!";
       errorMsg.style.color = "red";
-      
     } else {
       params.set("date", inputDate.value);
       params.set("id", parseInt(challengeID));
@@ -189,8 +184,6 @@ export async function availableTimes() {
 
       displayTimesAndParticipants();
       displayModalStepTwo();
-
-      console.log(url);
       errorMsg.textContent = "";
     }
     return url;
@@ -209,7 +202,10 @@ export async function displayTimesAndParticipants() {
     selecMenuTime.appendChild(listTimes);
   });
 
-  for (let i = selectedChallenge.data.minParticipants; i <= selectedChallenge.data.maxParticipants;i++
+  for (
+    let i = selectedChallenge.data.minParticipants;
+    i <= selectedChallenge.data.maxParticipants;
+    i++
   ) {
     arrayParticipants.push(i);
   }
@@ -218,19 +214,21 @@ export async function displayTimesAndParticipants() {
     listPart.innerText = element + " participants";
     selectMenuPart.appendChild(listPart);
   });
-  console.log(arrayParticipants);
   return arrayTimes;
 }
 
 availableTimes();
-submitBooking();
 
-async function submitBooking() {
+
+function submitBooking(id, name, email, date, time, participants) {
   modalButtonSubmit.addEventListener("click", function () {
     let nameValue = inputName.value.trim();
-    let nameOutput = nameValue.charAt(0).toUpperCase() + nameValue.slice(1).toLowerCase();
+    let nameOutput =
+      nameValue.charAt(0).toUpperCase() + nameValue.slice(1).toLowerCase();
     let emailValue = inputMail.value.trim();
-    
+
+    name = inputName.value.trim();
+
     let timeInput = selecMenuTime.selectedOptions;
     let timeOutput = "";
     for (let i = 0; i < timeInput.length; i++) {
@@ -241,39 +239,41 @@ async function submitBooking() {
     for (let i = 0; i < partInput.length; i++) {
       partOutput += partInput[i].label;
     }
-    console.log(nameOutput);
-    console.log();
-    console.log(timeOutput);
-    console.log(partOutput);
     displayModalStepThree();
+    return name;
   });
 }
+
+submitBooking();
 
 async function sendBookingData() {
   // Get values from input fields in (stage2) booking
   const challengeId = 10;
-  const name = inputName.value;
-  const email = inputMail.value;
-  const date = "2023-12-12";
-  const time = "20:00";
-  const participants = 4;
+  const name = "submitBooking(name);"
+  const email = inputMail.value.trim();
+  const date = "inputDate";
+  const time = "timeOutput";
+  const participants = "partOutput";
 
   // Send data to API
-  const response = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    // Create object from booking data
-    body: JSON.stringify({
-      challenge: challengeId,
-      name: "firstName lastName",
-      email: "email",
-      date: date,
-      time: time,
-      participants: participants,
-    }),
-  });
+  const response = await fetch(
+    "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // Create object from booking data
+      body: JSON.stringify({
+        challenge: challengeId,
+        name: name,
+        email: "email",
+        date: date,
+        time: time,
+        participants: 10,
+      }),
+    }
+  );
 
   const data = await response.json();
   console.log(data);
