@@ -10,12 +10,6 @@ export default class Challenge {
 
   // Create Challenge cards in html from Challenge objects
   render() {
-
-    let labels = this.data.labels;
-    let filteredLabels = labels.filter((label) => {
-      return label === 'linux';
-    });
-    console.log(filteredLabels);
   
     const container = document.createElement("div");
     container.classList.add("challenge");
