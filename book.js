@@ -191,6 +191,7 @@ export async function availableTimes() {
       displayModalStepTwo();
 
       console.log(url);
+      errorMsg.textContent = "";
     }
     return url;
   });

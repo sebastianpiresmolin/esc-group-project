@@ -1,5 +1,6 @@
 import { availableTimes, displayModalStepOne } from "./book.js";
 export let selectedChallenge = undefined;
+let allChallenges = [];
 
 // Define Challenge class, used in APIadapter
 export default class Challenge {
@@ -9,6 +10,13 @@ export default class Challenge {
 
   // Create Challenge cards in html from Challenge objects
   render() {
+
+    let labels = this.data.labels;
+    let filteredLabels = labels.filter((label) => {
+      return label === 'linux';
+    });
+    console.log(filteredLabels);
+  
     const container = document.createElement("div");
     container.classList.add("challenge");
 
@@ -43,6 +51,18 @@ export default class Challenge {
     const descriptionElement = document.createElement("p");
     descriptionElement.textContent = "Description: " + this.data.description;
     container.append(descriptionElement);
+
+    let labelElement;
+    let labelArray = [];
+    for(let i = 0; i < this.data.labels.length; i++) {
+      labelElement = document.createElement("p");
+      labelArray = this.data.labels;
+      labelElement.textContent = "Labels: " + labelArray[i];
+      labelElement.classList.add("labels")
+      container.append(labelElement);
+    }
+    console.log(labelArray)
+    
 
     // Create Book room button for each Challenge card
     const button = document.createElement("button");
@@ -85,7 +105,7 @@ class APIadapter {
 }
 
 //Global array to hold Challenge objects
-let allChallenges = [];
+
 
 // Loop through array to create all Challenge cards
 class ChallengeListView {
@@ -97,8 +117,12 @@ class ChallengeListView {
       const element = challenge.render();
       container.append(element);
     }
+    console.log(allChallenges)
   }
 }
+
+console.log(allChallenges)
+
 
 // Show All Challenge cards on Challenges page
 const challengesDiv = document.querySelector("#challenges__container");
@@ -106,8 +130,6 @@ const modal1 = document.querySelector("#modal__bg");
 
 const view = new ChallengeListView();
 view.render(challengesDiv);
-
-class BookingForm {}
 
 // Filter Challenges by Type, onsite or online
 
