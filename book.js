@@ -224,13 +224,13 @@ function submitBooking() {
   modalButtonSubmit.addEventListener("click", function () {
     let challengeID = selectedChallenge.data.id;
     let name = inputName.value.trim();
-    let nameOutput =
-      name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    let nameOutput = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     let validName = /^[a-zA-Z]+ [a-zA-Z]+$/;
     let emailOutput = inputMail.value.trim();
     let dateOutput = inputDate.value;
     const validEmail =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
     if (nameOutput.match(validName)) {
       if (emailOutput.match(validEmail)) {
         let timeInput = selecMenuTime.selectedOptions;
@@ -260,9 +260,8 @@ function submitBooking() {
         errorMsg.textContent = "You must enter a valid email!";
         return false;
       }
-    }
-    else {
-      errorMsg.textContent = "You must enter your first name and last name"
+    } else {
+      errorMsg.textContent = "You must enter your first name and last name";
       return false;
     }
   });
