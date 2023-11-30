@@ -182,6 +182,7 @@ function showByType() {
         cards[i].style.display = "none";
       }
     }
+    // DENNA DEL INTE KLART ÄN
   } else {
     for (let j = 0; j < cards.length; j++) {
       return foundMatch = false;
