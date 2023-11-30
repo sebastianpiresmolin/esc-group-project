@@ -10,7 +10,6 @@ export default class Challenge {
 
   // Create Challenge cards in html from Challenge objects
   render() {
-  
     const container = document.createElement("div");
     container.classList.add("challenge");
 
@@ -48,14 +47,13 @@ export default class Challenge {
 
     let labelElement;
     let labelArray = [];
-    for(let i = 0; i < this.data.labels.length; i++) {
+    for (let i = 0; i < this.data.labels.length; i++) {
       labelElement = document.createElement("p");
       labelArray = this.data.labels;
       labelElement.textContent = "Labels: " + labelArray[i];
-      labelElement.classList.add("labels")
+      labelElement.classList.add("labels");
       container.append(labelElement);
     }
-    
 
     // Create Book room button for each Challenge card
     const button = document.createElement("button");
@@ -98,12 +96,10 @@ class APIadapter {
 
 //Global array to hold Challenge objects
 
-
 const api = new APIadapter();
-api.getAllChallenges()
-    .then(() => {
-        console.log(allChallenges);
-    });
+api.getAllChallenges().then(() => {
+  console.log(allChallenges);
+});
 
 // Loop through array to create all Challenge cards
 class ChallengeListView {
@@ -117,7 +113,6 @@ class ChallengeListView {
     }
   }
 }
-
 
 // Show All Challenge cards on Challenges page
 const challengesDiv = document.querySelector("#challenges__container");
