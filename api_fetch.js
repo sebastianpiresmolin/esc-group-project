@@ -101,7 +101,7 @@ class APIadapter {
 }
 
 //Global array to hold Challenge objects
-let allChallenges = [];
+export let allChallenges = [];
 
 // Loop through array to create all Challenge cards
 class ChallengeListView {
