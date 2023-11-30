@@ -218,5 +218,3 @@ function searchTags(tag) {
     }
   }
 }
-
-//Use filter() to filter out the labels - https://www.freecodecamp.org/news/filter-arrays-in-javascript/
