@@ -185,7 +185,7 @@ function showByType() {
     // DENNA DEL INTE KLART ÄN
   } else {
     for (let j = 0; j < cards.length; j++) {
-      return foundMatch = false;
+      return (foundMatch = false);
     }
   }
   // If a match was found
