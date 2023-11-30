@@ -122,30 +122,38 @@ const challengesDiv = document.querySelector("#challenges__container");
 const view = new ChallengeListView();
 view.render(challengesDiv);
 
-// Filter Challenges by Type, onsite or online
+//--- Filter Challenges by Type, onsite or online ---
 // Get all the types
 const online = document.querySelector("#online");
 const onsite = document.querySelector("#onsite");
-
-// Functions to handle type click
+// event listener for online/onsite button
 online.addEventListener("click", showByType);
 onsite.addEventListener("click", showByType);
+// Function to handle filterByType click
 function showByType() {
   const cards = document.querySelectorAll(".challenge");
   const titles = document.querySelectorAll(".challenge h2");
+  //works if online is checked and onsite not checked
   if (online.checked && !onsite.checked) {
     for (let i = 0; i < cards.length; i++) {
       let card = titles[i].textContent;
       if (card.toLowerCase().includes("online")) {
         console.log(card);
-      } else if (onsite.checked && !online.checked) {
-        for (let i = 0; i < cards.length; i++) {
-          let card = titles[i].textContent;
-          if (card.toLowerCase().includes("onsite")) {
-            console.log(card);
-          }
-        }
       }
+    }
+    //works if onsite is checked and online not checked
+  } else if (onsite.checked && !online.checked) {
+    for (let i = 0; i < cards.length; i++) {
+      let card = titles[i].textContent;
+      if (card.toLowerCase().includes("onsite")) {
+        console.log(card);
+      }
+    }
+    //works if both are checked
+  } else if (online.checked && onsite.checked) {
+    for (let i = 0; cards.length; i++) {
+      let card = titles[i].innerHTML;
+      console.log(card);
     }
   }
 }
