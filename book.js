@@ -161,8 +161,8 @@ export async function displayModalStepThree() {
   modalContainer3.style.display = "flex";
 
   modalTitleThankYou.textContent = "Thank you!";
-  modalLinkBack.text = "Back to challenges";
-  modalLinkBack.setAttribute("href", "challenges.html");
+  modalLinkBack.text = "Close window";
+  modalLinkBack.setAttribute("href", "");
 
   modalContainer3.append(modalTitleThankYou, modalLinkBack);
   modalBackground.append(modalContainer3);

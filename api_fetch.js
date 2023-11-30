@@ -105,7 +105,7 @@ class ChallengeListView {
 }
 
 // Show All Challenge cards on Challenges page
-const challengesDiv = document.querySelector("#challenges__container");
+const challengesDiv = document.querySelector(".challenges__container");
 const modal1 = document.querySelector("#modal__bg");
 
 const view = new ChallengeListView();
@@ -113,7 +113,7 @@ view.render(challengesDiv);
 
 // Filter out the top3 challenges by rating
 class Top3View {
-  async render(containerT3) {
+  async render(container) {
     const api = new APIadapter();
     const challenges = await api.getAllChallenges();
     const sorted = challenges.sort(
@@ -121,8 +121,8 @@ class Top3View {
     );
     for (let i = 0; i < 3; i++) {
       const challenge = sorted[i];
-      const elementT3 = challenge.render();
-      containerT3.append(elementT3);
+      const element = challenge.render();
+      container.append(element);
     }
   }
 }
