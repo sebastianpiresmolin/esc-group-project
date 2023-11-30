@@ -115,8 +115,9 @@ const online = document.querySelector("#online");
 const onsite = document.querySelector("#onsite");
 
 // Functions to handle type click
-
-online.addEventListener("click", function () {
+online.addEventListener("click", showByType);
+onsite.addEventListener("click", showByType);
+function showByType() {
   const cards = document.querySelectorAll(".challenge");
   const titles = document.querySelectorAll(".challenge h2");
   if (online.checked && !onsite.checked) {
@@ -124,10 +125,17 @@ online.addEventListener("click", function () {
       let card = titles[i].textContent;
       if (card.toLowerCase().includes("online")) {
         console.log(card);
+      } else if (onsite.checked && !online.checked) {
+        for (let i = 0; i < cards.length; i++) {
+          let card = titles[i].textContent;
+          if (card.toLowerCase().includes("onsite")) {
+            console.log(card);
+          }
+        }
       }
     }
   }
-});
+}
 
 // Filter Challenges by Rating
 
