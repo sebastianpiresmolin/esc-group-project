@@ -18,13 +18,10 @@ export default class Challenge {
         imgContainer.classList.add("img__container");
         container.append(imgContainer);
 
-        /* Correct image from api, warning! Crazy cat image! :) Used hero image for each card for now
-                /*
-                const image = document.createElement('img');
-                image.src = this.data.image;
-                image.classList.add("img__container");
-                imgContainer.append(image);
-                */
+        const image = document.createElement('img');
+        image.src = this.data.image;
+        image.classList.add("img__container");
+        imgContainer.append(image);
 
         const titleElement = document.createElement("h2");
         titleElement.textContent = this.data.title + " (" + this.data.type + ")";

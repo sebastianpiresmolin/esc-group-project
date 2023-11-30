@@ -12,17 +12,15 @@ p {
     max-width: 1400px;
     margin: 0 auto;
 
-
 }
 
 .img__container {
     display: block;
-    background-image: url("media/hackerimg.png");
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 8px 8px 0 0;
     width: 363px;
-    min-height: 219px;
+    height: 219px;
 
 }
 
