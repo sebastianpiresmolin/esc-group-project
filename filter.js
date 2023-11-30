@@ -1,6 +1,6 @@
 /*------------------------FILTER VALUES------------------------*/
 
-export let filter = {
+let filter = {
   online: true, //online challenges checkbox
   onsite: true, //onsite challenges checkbox
   minRating: 1, //lowest rating
@@ -8,6 +8,8 @@ export let filter = {
   labels: [], //active tags in lowercase
   words: [], //inputfield words split into strings in lowercase
 };
+
+export default filter;
 
 /*------------------------FILTER VALUES------------------------*/
 
@@ -96,11 +98,56 @@ function handleStarClick(stars, index, isFromStars) {
     }
   }
 }
+
 /*------------------------STAR RATING------------------------*/
 
 /*------------------------TAGS------------------------*/
 
-// Moved filter by TAGS to api_fetch.js
+// Get all the tags
+
+const tags = [
+  document.querySelector("#web"),
+  document.querySelector("#linux"),
+  document.querySelector("#cryptography"),
+  document.querySelector("#coding"),
+  document.querySelector("#ssh"),
+  document.querySelector("#ctf"),
+  document.querySelector("#hacking"),
+  document.querySelector("#bash"),
+  document.querySelector("#javascript"),
+  document.querySelector("#electronics"),
+  document.querySelector("#phreaking"),
+];
+
+// Add event listeners to all tags
+tags.forEach((tag) => {
+  tag.addEventListener("click", () => handleTagClick(tag));
+});
+
+function handleTagClick(tag) {
+  // Get the id of the clicked tag
+  const tagId = tag.id;
+
+  // Check if the clicked tag has the 'active' class
+  if (tag.classList.contains("active")) {
+    // If it does, remove the 'active' class
+    tag.classList.remove("active");
+    // And remove the tag's id from the filter.labels array
+    filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
+    // Log a message indicating that the tag was removed
+    console.log("Removed tag:", tagId);
+  } else {
+    // If the clicked tag does not have the 'active' class, add it
+    tag.classList.add("active");
+    // And add the tag's id to the filter.labels array
+    filter.labels.push(tagId);
+  }
+
+  //Log the current state of the filter.labels array
+  //console.log('Current labels:', filter.labels);
+}
+
+//Endast rum med aktiva tags ska visas
 
 /*------------------------TAGS------------------------*/
 
@@ -137,7 +184,7 @@ function searchRooms() {
     .value.toLowerCase();
 
   //Get all the challenge elements
-  const card = document.querySelectorAll(".challenge");
+  const product = document.querySelectorAll(".challenge");
 
   //Get all the h2 elements within the challenge elements
   const titles = document.querySelectorAll(".challenge h2");
@@ -152,7 +199,7 @@ function searchRooms() {
   let foundMatch = false;
 
   // Loop through all the challenge elements
-  for (let i = 0; i < card.length; i++) {
+  for (let i = 0; i < product.length; i++) {
     // Get the text content of the h2 element within the current challenge element
     let title = titles[i].textContent || titles[i].innerHTML;
 
@@ -165,13 +212,13 @@ function searchRooms() {
       description.toLowerCase().indexOf(searchbox) > -1
     ) {
       // Show the current challenge element
-      card[i].style.display = "";
+      product[i].style.display = "";
 
       // Set foundMatch to true since a match was found
       foundMatch = true;
     } else {
       // Hide the current challenge element if it doesn't match the search box value
-      card[i].style.display = "none";
+      product[i].style.display = "none";
     }
   }
 
@@ -186,4 +233,3 @@ function searchRooms() {
 }
 
 /*------------------------INPUT FIELD------------------------*/
-
