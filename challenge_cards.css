@@ -1,10 +1,5 @@
 /*        Styling for challenge cards      */
-h2,
-p {
-  margin: 0 0 0 10px;
-}
-
-#challenges__container {
+.challenges__container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -13,12 +8,18 @@ p {
 }
 
 .img__container {
-  display: block;
-  background-size: cover;
-  background-repeat: no-repeat;
   border-radius: 8px 8px 0 0;
   width: 363px;
   height: 219px;
+  overflow: hidden;
+}
+.img__container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .challenge {
@@ -32,13 +33,20 @@ p {
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.322);
   margin: 20px;
 }
+.challenge h2,
+.challenge p {
+  margin: 0 0 0 10px;
+}
+.challenge .labels {
+  display: none;
+}
 
 .challenge button {
   background-color: #e3170a;
   color: white;
-  margin: 20px;
-  width: 160px;
-  height: 35px;
+  margin: 10px;
+  width: 179px;
+  height: 44px;
   border-radius: 5px;
   border: none;
   align-self: flex-end;
