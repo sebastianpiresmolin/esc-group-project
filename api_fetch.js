@@ -158,6 +158,7 @@ function showByType() {
     for (let i = 0; i < cards.length; i++) {
       let card = titles[i].textContent;
       if (card.toLowerCase().includes("onsite")) {
+        // Show the current challenge element
         cards[i].style.display = "";
 
         // Set foundMatch to true since a match was found
@@ -171,7 +172,19 @@ function showByType() {
   } else if (online.checked && onsite.checked) {
     for (let i = 0; cards.length; i++) {
       let card = titles[i].textContent;
-      console.log(card);
+      if (card) {
+        // Show the current challenge element
+        cards[i].style.display = "";
+        // Set foundMatch to true since a match was found
+        foundMatch = true;
+      } else {
+        // Hide the current challenge element if it doesn't match the search box value
+        cards[i].style.display = "none";
+      }
+    }
+  } else {
+    for (let j = 0; j < cards.length; j++) {
+      return foundMatch = false;
     }
   }
   // If a match was found
@@ -184,7 +197,7 @@ function showByType() {
   }
 }
 
-// Filter Challenges by Rating
+// ------ Filter Challenges by Rating ------
 
 // Filter Challenges by Tags
 import { filter } from "./filter.js";
