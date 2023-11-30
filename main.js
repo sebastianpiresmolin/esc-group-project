@@ -1,9 +1,8 @@
-
 /* ------------------------MOBILE MENU------------------------ */
 
-document.getElementById("headerButton").addEventListener('click', function() {
-    let menuOverlay = document.getElementById("menuOverlay");
-    let popinMenu = document.getElementById("popinMenu");
+document.getElementById("headerButton").addEventListener("click", function () {
+  let menuOverlay = document.getElementById("menuOverlay");
+  let popinMenu = document.getElementById("popinMenu");
 
   menuOverlay.style.display = "block"; // This shows my white overlay
   popinMenu.style.display = "flex"; // This shows my popin menu
@@ -38,3 +37,39 @@ document.getElementById("closebtn").addEventListener("click", function () {
 
   document.documentElement.style.overflowY = "auto"; // This enables the ability to scroll again
 });
+
+document
+  .getElementById("linkToChallenges")
+  .addEventListener("click", function () {
+    window.location.href = "/challenges.html";
+  });
+
+document
+  .getElementById("linkToChallenges2")
+  .addEventListener("click", function () {
+    window.location.href = "/challenges.html";
+  });
+
+document
+  .getElementById("linkToChallenges3")
+  .addEventListener("click", function () {
+    window.location.href = "/challenges.html";
+  });
+
+document
+  .getElementById("linkToChallenges4")
+  .addEventListener("click", function () {
+    window.location.href = "/challenges.html";
+  });
+
+document
+  .getElementById("linkToChallenges5")
+  .addEventListener("click", function () {
+    window.location.href = "/challenges.html";
+  });
+
+document
+  .getElementById("linkToChallenges6")
+  .addEventListener("click", function () {
+    window.location.href = "/challenges.html";
+  });

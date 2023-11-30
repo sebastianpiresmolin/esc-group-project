@@ -96,7 +96,6 @@ function handleStarClick(stars, index, isFromStars) {
     }
   }
 }
-
 /*------------------------STAR RATING------------------------*/
 
 /*------------------------TAGS------------------------*/
@@ -185,3 +184,6 @@ function searchRooms() {
     noMatchError.innerHTML = "No matching challenges";
   }
 }
+
+/*------------------------INPUT FIELD------------------------*/
+

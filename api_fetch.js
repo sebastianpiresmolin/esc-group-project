@@ -41,7 +41,7 @@ class Challenge {
     descriptionElement.textContent = "Description: " + this.data.description;
     container.append(descriptionElement);
     descriptionElement.setAttribute("id", "descID");
-
+    
     //Create label element to target later in function
     let labelElement;
     let labelArray = [];

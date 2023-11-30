@@ -88,20 +88,23 @@ displayAvailableTimes();
 
 //create booking
 async function createBooking() {
-  const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+  const res = await fetch(
+    "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         challenge: 4,
         name: bookName,
         email: bookEmail,
         date: bookDate,
         time: bookTime,
         participants: bookParticipants,
-    }),
-});
-const data = await res.json();
-console.log(data);
+      }),
+    }
+  );
+  const data = await res.json();
+  console.log(data);
 }
