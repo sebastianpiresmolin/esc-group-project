@@ -56,7 +56,6 @@ document.getElementById("filterButton").addEventListener("click", function () {
 
 /*------------------------MOBILE MENU------------------------*/
 
-
 /*------------------------FILTER FUNCTIONALITY---------------*/
 
 // Endast de rum med aktiverade ettiketter ska visas när en användare har tryckt på en tag tex linux activeTags
