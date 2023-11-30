@@ -39,19 +39,19 @@
         container.append(descriptionElement);
         descriptionElement.setAttribute("id", "descID"); 
 
-        
-let labelElement;
-let labelArray = [];
-for(let i = 0; i < this.data.labels.length; i++) {
-    labelElement = document.createElement("p");
-    labelArray = this.data.labels;
-    labelElement.textContent = "Labels: " + labelArray[i];
-    labelElement.classList.add("cardLabels");
-    labelElement.setAttribute('id','cardLabels');
-    //Hides elements
-    // labelElement.style.visibility = "hidden";
-    container.append(labelElement);
-    }
+        //Create label element to target later in function
+        let labelElement;
+        let labelArray = [];
+        for(let i = 0; i < this.data.labels.length; i++) {
+            labelElement = document.createElement("p");
+            labelArray = this.data.labels;
+            labelElement.textContent = "Labels: " + labelArray[i];
+            labelElement.classList.add("cardLabels");
+            labelElement.setAttribute('id','cardLabels');
+            //Hides(removes) the label elements, does not take up place
+            labelElement.style.display = "none";
+            container.append(labelElement);
+            }
 
         // Create Book room button for each Challenge card
         const button = document.createElement("button");
@@ -186,7 +186,7 @@ function searchTags(tag) {
 
   // både id och class i korteen är cardLabels
 
-  //Get all the challenge elements
+  //Get all the cards (challenge elements)
   const card = document.querySelectorAll(".challenge");
 
   //Get all the label elements within the challenge elements
@@ -211,7 +211,7 @@ function searchTags(tag) {
     // Get the text content from the cardLabels within the current challenge element
     let challengeLabels = cardLabels[i].innerHTML; 
 
-    //If the cardLabels includes the activeTags value
+    //If the current cardLabel includes the activeTags value
     if (challengeLabels.toLowerCase().indexOf(activeTags) > -1) {
       // Show the current challenge element
       card[i].style.display = "";
