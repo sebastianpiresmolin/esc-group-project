@@ -41,20 +41,6 @@ class Challenge {
     descriptionElement.textContent = "Description: " + this.data.description;
     container.append(descriptionElement);
     descriptionElement.setAttribute("id", "descID");
-    
-    //Create label element to target later in function
-    let labelElement;
-    let labelArray = [];
-    for (let i = 0; i < this.data.labels.length; i++) {
-      labelElement = document.createElement("p");
-      labelArray = this.data.labels;
-      labelElement.textContent = "Labels: " + labelArray[i];
-      labelElement.classList.add("cardLabels");
-      labelElement.setAttribute("id", "cardLabels");
-      //Hides(removes) the label elements, does not take up place
-      labelElement.style.display = "none";
-      container.append(labelElement);
-    }
 
     // Create Book room button for each Challenge card
     const button = document.createElement("button");
@@ -101,7 +87,7 @@ class APIadapter {
 }
 
 //Global array to hold Challenge objects
-export let allChallenges = [];
+let allChallenges = [];
 
 // Loop through array to create all Challenge cards
 class ChallengeListView {
@@ -127,94 +113,5 @@ view.render(challengesDiv);
 // Filter Challenges by Rating
 
 // Filter Challenges by Tags
-import { filter } from "./filter.js";
 
-const tags = [
-  document.querySelector("#web"),
-  document.querySelector("#linux"),
-  document.querySelector("#cryptography"),
-  document.querySelector("#coding"),
-  document.querySelector("#ssh"),
-  document.querySelector("#ctf"),
-  document.querySelector("#hacking"),
-  document.querySelector("#bash"),
-  document.querySelector("#javascript"),
-  document.querySelector("#electronics"),
-  document.querySelector("#phreaking"),
-];
-
-// Add event listeners to all tags
-tags.forEach((tag) => {
-  tag.addEventListener("click", () => searchTags(tag));
-});
-
-function searchTags(tag) {
-  // Get the id of the clicked tag
-  const tagId = tag.id;
-
-  // Check if the clicked tag has the 'active' class
-  if (tag.classList.contains("active")) {
-    // If it does, remove the 'active' class
-    tag.classList.remove("active");
-    // And remove the tag's id from the filter.labels array
-    filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
-    // Log a message indicating that the tag was removed
-    console.log("Removed tag:", tagId);
-    //Log the current state of the filter.labels array
-    console.log("Current labels:", filter.labels);
-  } else {
-    // If the clicked tag does not have the 'active' class, add it
-    tag.classList.add("active");
-    // And add the tag's id to the filter.labels array
-    filter.labels.push(tagId);
-    //Log the current state of the filter.labels array
-    console.log("Current labels:", filter.labels);
-  }
-
-  // Labels in cards has id and class cardLabels
-
-  //Get all the cards (challenge elements)
-  const card = document.querySelectorAll(".challenge");
-
-  //Get all the label elements within the challenge elements
-  const cardLabels = document.querySelectorAll(".cardLabels");
-
-  //Get all the labels/tags from the filter
-  const filterLabels = document.querySelectorAll(".filterTags label");
-
-  //Get active tags from array
-  const activeTags = filter.labels;
-
-  //Get the noMatchError element
-  const noMatchError = document.getElementById("noMatchError");
-
-  // Initialize a variable to track whether a match is found
-  let foundMatch = false;
-
-  // Loop through all the cards (challenge elements)
-  for (let i = 0; i < card.length; i++) {
-    // Get the text content from the cardLabels within the current challenge element
-    let challengeLabels = cardLabels[i].innerHTML;
-
-    //If the current cardLabel includes the activeTags value
-    if (challengeLabels.toLowerCase().indexOf(activeTags) > -1) {
-      // Show the current challenge element
-      card[i].style.display = "";
-
-      // Set foundMatch to true since a match was found
-      foundMatch = true;
-    } else {
-      // Hide the current challenge element if it doesn't match the search box value
-      card[i].style.display = "none";
-    }
-
-    // If a match was found
-    if (foundMatch) {
-      // Clear the error message
-      noMatchError.innerHTML = "";
-    } else {
-      // If no matches were found, set the error message
-      noMatchError.innerHTML = "No matching challenges";
-    }
-  }
-}
+// Filter Challenges by Free text search
