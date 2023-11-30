@@ -1,20 +1,19 @@
-// Define Challenge class, used in APIadapter 
- class Challenge {
-    constructor(data) {
-        this.data = data;
+// Define Challenge class, used in APIadapter
+class Challenge {
+  constructor(data) {
+    this.data = data;
+  }
 
-    }
+  // Create Challenge cards in html from Challenge objects
+  render() {
+    const container = document.createElement("div");
+    container.classList.add("challenge");
 
-    // Create Challenge cards in html from Challenge objects
-    render() {
-        const container = document.createElement("div");
-        container.classList.add("challenge");
+    const imgContainer = document.createElement("div");
+    imgContainer.classList.add("img__container");
+    container.append(imgContainer);
 
-        const imgContainer = document.createElement("div");
-        imgContainer.classList.add("img__container");
-        container.append(imgContainer);
-
-        /* Correct image from api, warning! Crazy cat image! :) Used hero image for each card for now
+    /* Correct image from api, warning! Crazy cat image! :) Used hero image for each card for now
         /*
         const image = document.createElement('img');
         image.src = this.data.image;
@@ -22,77 +21,83 @@
         imgContainer.append(image);
         */
 
-        const titleElement = document.createElement("h2");
-        titleElement.textContent = this.data.title + " (" + this.data.type + ")";
-        container.append(titleElement);
+    const titleElement = document.createElement("h2");
+    titleElement.textContent = this.data.title + " (" + this.data.type + ")";
+    container.append(titleElement);
 
-        const ratingElement = document.createElement("p");
-        ratingElement.textContent = "Rating: " + this.data.rating;
-        container.append(ratingElement);
+    const ratingElement = document.createElement("p");
+    ratingElement.textContent = "Rating: " + this.data.rating;
+    container.append(ratingElement);
 
-        const participantsElement = document.createElement("p");
-        participantsElement.textContent = this.data.minParticipants + " - " + this.data.maxParticipants + " participants";
-        container.append(participantsElement);
+    const participantsElement = document.createElement("p");
+    participantsElement.textContent =
+      this.data.minParticipants +
+      " - " +
+      this.data.maxParticipants +
+      " participants";
+    container.append(participantsElement);
 
-        const descriptionElement = document.createElement("p");
-        descriptionElement.textContent = "Description: " + this.data.description;
-        container.append(descriptionElement);
-        descriptionElement.setAttribute("id", "descID"); 
+    const descriptionElement = document.createElement("p");
+    descriptionElement.textContent = "Description: " + this.data.description;
+    container.append(descriptionElement);
+    descriptionElement.setAttribute("id", "descID");
 
-        //Create label element to target later in function
-        let labelElement;
-        let labelArray = [];
-        for(let i = 0; i < this.data.labels.length; i++) {
-            labelElement = document.createElement("p");
-            labelArray = this.data.labels;
-            labelElement.textContent = "Labels: " + labelArray[i];
-            labelElement.classList.add("cardLabels");
-            labelElement.setAttribute('id','cardLabels');
-            //Hides(removes) the label elements, does not take up place
-            labelElement.style.display = "none";
-            container.append(labelElement);
-            }
-
-        // Create Book room button for each Challenge card
-        const button = document.createElement("button");
-        button.textContent = "Book this room";
-        button.dataset.challengeId = this.data.id;
-        container.append(button);
-
-        // Listen to button and forward challenge id to show title in booking modal
-        button.addEventListener("click", function (event) {
-            const challengeId = event.currentTarget.dataset.challengeId;
-            console.log("Challenge id:", challengeId);
-            document.getElementsByClassName("modal__stepOne")[0].style.display = "block";
-
-            const selectedChallenge = allChallenges.find(challenge => challenge.data.id === parseInt(challengeId));
-
-            const bookRoomTitle = document.createElement("h1");
-            bookRoomTitle.textContent = "Book Room: \"" + selectedChallenge.data.title + "\" (Step 1)";
-
-            const modalStepOne = document.querySelector("#challenge__title");
-            modalStepOne.append(bookRoomTitle);
-
-
-        });
-
-
-        return container;
+    //Create label element to target later in function
+    let labelElement;
+    let labelArray = [];
+    for (let i = 0; i < this.data.labels.length; i++) {
+      labelElement = document.createElement("p");
+      labelArray = this.data.labels;
+      labelElement.textContent = "Labels: " + labelArray[i];
+      labelElement.classList.add("cardLabels");
+      labelElement.setAttribute("id", "cardLabels");
+      //Hides(removes) the label elements, does not take up place
+      labelElement.style.display = "none";
+      container.append(labelElement);
     }
-}
 
+    // Create Book room button for each Challenge card
+    const button = document.createElement("button");
+    button.textContent = "Book this room";
+    button.dataset.challengeId = this.data.id;
+    container.append(button);
+
+    // Listen to button and forward challenge id to show title in booking modal
+    button.addEventListener("click", function (event) {
+      const challengeId = event.currentTarget.dataset.challengeId;
+      console.log("Challenge id:", challengeId);
+      document.getElementsByClassName("modal__stepOne")[0].style.display =
+        "block";
+
+      const selectedChallenge = allChallenges.find(
+        (challenge) => challenge.data.id === parseInt(challengeId)
+      );
+
+      const bookRoomTitle = document.createElement("h1");
+      bookRoomTitle.textContent =
+        'Book Room: "' + selectedChallenge.data.title + '" (Step 1)';
+
+      const modalStepOne = document.querySelector("#challenge__title");
+      modalStepOne.append(bookRoomTitle);
+    });
+
+    return container;
+  }
+}
 
 // Request Challenge data from API and Create Challenge objects and put them in allChallenges array
 class APIadapter {
-    async getAllChallenges() {
-        const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
-        const response = await fetch(url);
-        const payload = await response.json();
+  async getAllChallenges() {
+    const url = "https://lernia-sjj-assignments.vercel.app/api/challenges";
+    const response = await fetch(url);
+    const payload = await response.json();
 
-        allChallenges = payload.challenges.map((challengeData) => new Challenge(challengeData));
+    allChallenges = payload.challenges.map(
+      (challengeData) => new Challenge(challengeData)
+    );
 
-        return allChallenges;
-    }
+    return allChallenges;
+  }
 }
 
 //Global array to hold Challenge objects
@@ -100,68 +105,53 @@ export let allChallenges = [];
 
 // Loop through array to create all Challenge cards
 class ChallengeListView {
-    async render(container) {
-        const api = new APIadapter();
-        const challenges = await api.getAllChallenges();
-        for (let i = 0; i < challenges.length; i++) {
-            const challenge = challenges[i];
-            const element = challenge.render();
-            container.append(element);
-        }
+  async render(container) {
+    const api = new APIadapter();
+    const challenges = await api.getAllChallenges();
+    for (let i = 0; i < challenges.length; i++) {
+      const challenge = challenges[i];
+      const element = challenge.render();
+      container.append(element);
     }
+  }
 }
 
 // Show All Challenge cards on Challenges page
-const challengesDiv = document.querySelector('#challenges__container');
+const challengesDiv = document.querySelector("#challenges__container");
 
 const view = new ChallengeListView();
 view.render(challengesDiv);
 
-
-
-
 // Filter Challenges by Type, onsite or online
-
-
-
-
 
 // Filter Challenges by Rating
 
-
-
-
-
 // Filter Challenges by Tags
-import {filter} from './filter.js';
-
-    
+import { filter } from "./filter.js";
 
 const tags = [
-    document.querySelector("#web"),
-    document.querySelector("#linux"),
-    document.querySelector("#cryptography"),
-    document.querySelector("#coding"),
-    document.querySelector("#ssh"),
-    document.querySelector("#ctf"),
-    document.querySelector("#hacking"),
-    document.querySelector("#bash"),
-    document.querySelector("#javascript"),
-    document.querySelector("#electronics"),
-    document.querySelector("#phreaking"),
-  ];
-  
+  document.querySelector("#web"),
+  document.querySelector("#linux"),
+  document.querySelector("#cryptography"),
+  document.querySelector("#coding"),
+  document.querySelector("#ssh"),
+  document.querySelector("#ctf"),
+  document.querySelector("#hacking"),
+  document.querySelector("#bash"),
+  document.querySelector("#javascript"),
+  document.querySelector("#electronics"),
+  document.querySelector("#phreaking"),
+];
 
-  // Add event listeners to all tags
-  tags.forEach((tag) => {
-    tag.addEventListener("click", () => searchTags(tag));
-  });
-  
+// Add event listeners to all tags
+tags.forEach((tag) => {
+  tag.addEventListener("click", () => searchTags(tag));
+});
+
 function searchTags(tag) {
-
   // Get the id of the clicked tag
   const tagId = tag.id;
-  
+
   // Check if the clicked tag has the 'active' class
   if (tag.classList.contains("active")) {
     // If it does, remove the 'active' class
@@ -170,21 +160,18 @@ function searchTags(tag) {
     filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
     // Log a message indicating that the tag was removed
     console.log("Removed tag:", tagId);
-  //Log the current state of the filter.labels array
-  console.log('Current labels:', filter.labels);
-  
-  }
-  else {
+    //Log the current state of the filter.labels array
+    console.log("Current labels:", filter.labels);
+  } else {
     // If the clicked tag does not have the 'active' class, add it
     tag.classList.add("active");
     // And add the tag's id to the filter.labels array
     filter.labels.push(tagId);
     //Log the current state of the filter.labels array
-  console.log('Current labels:', filter.labels);
+    console.log("Current labels:", filter.labels);
   }
 
-
-  // både id och class i korteen är cardLabels
+  // Labels in cards has id and class cardLabels
 
   //Get all the cards (challenge elements)
   const card = document.querySelectorAll(".challenge");
@@ -198,18 +185,16 @@ function searchTags(tag) {
   //Get active tags from array
   const activeTags = filter.labels;
 
-  
-
   //Get the noMatchError element
   const noMatchError = document.getElementById("noMatchError");
 
   // Initialize a variable to track whether a match is found
   let foundMatch = false;
 
-  // Loop through all the challenge elements
+  // Loop through all the cards (challenge elements)
   for (let i = 0; i < card.length; i++) {
     // Get the text content from the cardLabels within the current challenge element
-    let challengeLabels = cardLabels[i].innerHTML; 
+    let challengeLabels = cardLabels[i].innerHTML;
 
     //If the current cardLabel includes the activeTags value
     if (challengeLabels.toLowerCase().indexOf(activeTags) > -1) {
@@ -222,32 +207,16 @@ function searchTags(tag) {
       // Hide the current challenge element if it doesn't match the search box value
       card[i].style.display = "none";
     }
-  
 
-  // If a match was found
-  if (foundMatch) {
-    // Clear the error message
-    noMatchError.innerHTML = "";
-  } else {
-    // If no matches were found, set the error message
-    noMatchError.innerHTML = "No matching challenges";
-  }
+    // If a match was found
+    if (foundMatch) {
+      // Clear the error message
+      noMatchError.innerHTML = "";
+    } else {
+      // If no matches were found, set the error message
+      noMatchError.innerHTML = "No matching challenges";
+    }
   }
 }
-  
 
-
-
-      //Use filter() to filter out the labels - https://www.freecodecamp.org/news/filter-arrays-in-javascript/
-
-      //challenge filter() ut alla labels till egen array och fitlrerar dom
-    
-
-      //allTagsArray är kortens labels sparade i array
-      //filter.labels är aktiva labels från filtret
-
-
-
-
-
-
+//Use filter() to filter out the labels - https://www.freecodecamp.org/news/filter-arrays-in-javascript/

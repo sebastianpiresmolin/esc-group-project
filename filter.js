@@ -1,137 +1,131 @@
 /*------------------------FILTER VALUES------------------------*/
 
 export let filter = {
-    online: true, //online challenges checkbox
-    onsite: true, //onsite challenges checkbox
-    minRating: 1, //lowest rating
-    maxRating: 5, //highest rating
-    labels: [], //active tags in lowercase
-    words: [], //inputfield words split into strings in lowercase
-  };
+  online: true, //online challenges checkbox
+  onsite: true, //onsite challenges checkbox
+  minRating: 1, //lowest rating
+  maxRating: 5, //highest rating
+  labels: [], //active tags in lowercase
+  words: [], //inputfield words split into strings in lowercase
+};
 
-  
-  
-  /*------------------------FILTER VALUES------------------------*/
-  
-  /*------------------------BY TYPE------------------------*/
-  
-  // Get all the types
-  const online = document.querySelector("#online");
-  const onsite = document.querySelector("#onsite");
-  
-  // Functions to handle type click
-  online.addEventListener("click", function () {
-    if (filter.online == true) {
-      filter.online = false;
-    } else {
-      filter.online = true;
-    }
-  });
-  
-  onsite.addEventListener("click", function () {
-    if (filter.onsite == true) {
-      filter.onsite = false;
-    } else {
-      filter.onsite = true;
-    }
-  });
-  
-  /*------------------------BY TYPE------------------------*/
-  
-  /*------------------------STAR RATING------------------------*/
-  
-  // Get all the stars
-  const fromStars = [
-    document.querySelector("#fromOne"),
-    document.querySelector("#fromTwo"),
-    document.querySelector("#fromThree"),
-    document.querySelector("#fromFour"),
-    document.querySelector("#fromFive"),
-  ];
-  
-  const toStars = [
-    document.querySelector("#toOne"),
-    document.querySelector("#toTwo"),
-    document.querySelector("#toThree"),
-    document.querySelector("#toFour"),
-    document.querySelector("#toFive"),
-  ];
-  
-  // Add event listeners to all stars
-  fromStars.forEach((star, index) => {
-    star.addEventListener("click", () => handleStarClick(fromStars, index, true));
-  });
-  
-  toStars.forEach((star, index) => {
-    star.addEventListener("click", () => handleStarClick(toStars, index, false));
-  });
-  
-  // Function to handle star click
-  function handleStarClick(stars, index, isFromStars) {
-    // Remove 'checked' class from all stars
-    stars.forEach((star) => star.classList.remove("checked"));
-  
-    // Add 'checked' class to clicked star and all previous stars
-    for (let i = 0; i <= index; i++) {
-      stars[i].classList.add("checked");
-    }
-  
-    // Update the rating
-    const rating = index + 1;
-    if (isFromStars) {
-      // Only update minRating if it's less than or equal to maxRating
-      if (rating <= filter.maxRating) {
-        filter.minRating = rating;
-      } else {
-        // If minRating would be greater than maxRating, remove 'checked' class from the stars that should not be selected
-        for (let i = filter.maxRating; i <= index; i++) {
-          stars[i].classList.remove("checked");
-        }
-      }
-    } else {
-      filter.maxRating = rating;
-      // If maxRating is decreased, adjust minRating to be equal to maxRating
-      if (filter.maxRating < filter.minRating) {
-        filter.minRating = filter.maxRating;
-        // Trigger click event on corresponding minRating star
-        fromStars[filter.minRating - 1].click();
-      }
-}
+/*------------------------FILTER VALUES------------------------*/
+
+/*------------------------BY TYPE------------------------*/
+
+// Get all the types
+const online = document.querySelector("#online");
+const onsite = document.querySelector("#onsite");
+
+// Functions to handle type click
+online.addEventListener("click", function () {
+  if (filter.online == true) {
+    filter.online = false;
+  } else {
+    filter.online = true;
   }
-  
-  /*------------------------STAR RATING------------------------*/
-  
-  /*------------------------TAGS------------------------*/
-  
-  
- 
- // Moved filter by TAGS to api_fetch.js
-  
-  /*------------------------TAGS------------------------*/
-  
-  /*------------------------INPUT FIELD------------------------*/
-  
-  const inputBox = document.querySelector(".filterInputBox input");
-  
-  // Add the event listener
-  inputBox.addEventListener("keyup", function (event) {
-    // Check if the key pressed was 'Enter'
-    if (event.key === "Enter") {
-      // Get the value of the input box
-      const text = inputBox.value.toLowerCase();
-  
-      // Clear the input box
-      inputBox.value = "";
-  
-      // Split the text into words and save it in the array
-      filter.words = text.split(" ");
-  
-      // Log the words array
-      //console.log(filter.words);
-            
-    }
-  });
+});
 
+onsite.addEventListener("click", function () {
+  if (filter.onsite == true) {
+    filter.onsite = false;
+  } else {
+    filter.onsite = true;
+  }
+});
+
+/*------------------------BY TYPE------------------------*/
+
+/*------------------------STAR RATING------------------------*/
+
+// Get all the stars
+const fromStars = [
+  document.querySelector("#fromOne"),
+  document.querySelector("#fromTwo"),
+  document.querySelector("#fromThree"),
+  document.querySelector("#fromFour"),
+  document.querySelector("#fromFive"),
+];
+
+const toStars = [
+  document.querySelector("#toOne"),
+  document.querySelector("#toTwo"),
+  document.querySelector("#toThree"),
+  document.querySelector("#toFour"),
+  document.querySelector("#toFive"),
+];
+
+// Add event listeners to all stars
+fromStars.forEach((star, index) => {
+  star.addEventListener("click", () => handleStarClick(fromStars, index, true));
+});
+
+toStars.forEach((star, index) => {
+  star.addEventListener("click", () => handleStarClick(toStars, index, false));
+});
+
+// Function to handle star click
+function handleStarClick(stars, index, isFromStars) {
+  // Remove 'checked' class from all stars
+  stars.forEach((star) => star.classList.remove("checked"));
+
+  // Add 'checked' class to clicked star and all previous stars
+  for (let i = 0; i <= index; i++) {
+    stars[i].classList.add("checked");
+  }
+
+  // Update the rating
+  const rating = index + 1;
+  if (isFromStars) {
+    // Only update minRating if it's less than or equal to maxRating
+    if (rating <= filter.maxRating) {
+      filter.minRating = rating;
+    } else {
+      // If minRating would be greater than maxRating, remove 'checked' class from the stars that should not be selected
+      for (let i = filter.maxRating; i <= index; i++) {
+        stars[i].classList.remove("checked");
+      }
+    }
+  } else {
+    filter.maxRating = rating;
+    // If maxRating is decreased, adjust minRating to be equal to maxRating
+    if (filter.maxRating < filter.minRating) {
+      filter.minRating = filter.maxRating;
+      // Trigger click event on corresponding minRating star
+      fromStars[filter.minRating - 1].click();
+    }
+  }
+}
+
+/*------------------------STAR RATING------------------------*/
+
+/*------------------------TAGS------------------------*/
+
+// Moved filter by TAGS to api_fetch.js
+
+/*------------------------TAGS------------------------*/
+
+/*------------------------INPUT FIELD------------------------*/
+
+const inputBox = document.querySelector(".filterInputBox input");
+
+// Add the event listener
+inputBox.addEventListener("keyup", function (event) {
+  // Check if the key pressed was 'Enter'
+  if (event.key === "Enter") {
+    // Get the value of the input box
+    const text = inputBox.value.toLowerCase();
+
+    // Clear the input box
+    inputBox.value = "";
+
+    // Split the text into words and save it in the array
+    filter.words = text.split(" ");
+
+    // Log the words array
+    //console.log(filter.words);
+  }
+});
 
 //Add an eventlistener to the searchbox that triggers the searchRooms function on keyup
 document.getElementById("searchBox").addEventListener("keyup", searchRooms);
@@ -139,7 +133,9 @@ document.getElementById("searchBox").addEventListener("keyup", searchRooms);
 //Define the searchRooms function
 function searchRooms() {
   //Get the value of the search box, convert it to lowercase
-  const searchbox = document.querySelector(".filterInputBox input").value.toLowerCase();
+  const searchbox = document
+    .querySelector(".filterInputBox input")
+    .value.toLowerCase();
 
   //Get all the challenge elements
   const card = document.querySelectorAll(".challenge");
@@ -165,7 +161,10 @@ function searchRooms() {
     let description = descriptions[i].innerHTML || descriptions[i].innerText;
 
     //If the title or description includes the search box value
-    if (title.toLowerCase().indexOf(searchbox) > -1 || description.toLowerCase().indexOf(searchbox) > -1) {
+    if (
+      title.toLowerCase().indexOf(searchbox) > -1 ||
+      description.toLowerCase().indexOf(searchbox) > -1
+    ) {
       // Show the current challenge element
       card[i].style.display = "";
 
