@@ -58,27 +58,4 @@ document.getElementById("filterButton").addEventListener("click", function () {
 
 /*------------------------FILTER FUNCTIONALITY---------------*/
 
-// Endast de rum med aktiverade ettiketter ska visas när en användare har tryckt på en tag tex linux activeTags
-/*activeTags array få ut rum och visa*/
-/*
-function filterActiveTags(activeTags){
-if( )
-}*/
-
-// Användare kan skriva in keywords i input  och sidan ska uppdateras medan man skriver så att den bara visar rum med titel eller besrkivning som innehåller sökorden som användare skrivit i
-
-// om description stämmer med keyword eller Title så ska rummet visas
-/*
-function filterKeywords() {
-  if(inputBox.value == challengeData.description || inputBox.value == challengeData.title){
-    //Börja visa rum när input stämmer övereens med första bokstäverna
-    // Visa rum under filterbox
-  }
-  else{
-    // Visa meddelande under "No matching challenges"
-  }
-
-}
-
-
 /*------------------------FILTER FUNCTIONALITY---------------*/
