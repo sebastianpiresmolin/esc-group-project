@@ -44,6 +44,7 @@ export default class Challenge {
     const descriptionElement = document.createElement("p");
     descriptionElement.textContent = "Description: " + this.data.description;
     container.append(descriptionElement);
+    descriptionElement.setAttribute("id", "descID");
 
     let labelElement;
     let labelArray = [];
@@ -51,7 +52,10 @@ export default class Challenge {
       labelElement = document.createElement("p");
       labelArray = this.data.labels;
       labelElement.textContent = "Labels: " + labelArray[i];
-      labelElement.classList.add("labels");
+      labelElement.classList.add("cardLabels");
+      labelElement.setAttribute("id", "cardLabels");
+      //Hides(removes) the label elements, does not take up place
+      labelElement.style.display = "none";
       container.append(labelElement);
     }
 
