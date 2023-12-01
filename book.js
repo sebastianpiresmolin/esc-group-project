@@ -238,6 +238,7 @@ function submitBooking() {
         for (let i = 0; i < timeInput.length; i++) {
           timeOutput += timeInput[i].label;
         }
+        console.log(arrayTimes)
         let partOutput = "";
         let partInput = selectMenuPart.selectedOptions;
         for (let i = 0; i < partInput.length; i++) {
