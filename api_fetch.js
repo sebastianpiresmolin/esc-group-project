@@ -56,6 +56,20 @@ class Challenge {
       container.append(labelElement);
     }
 
+    //Create type element to target later in function
+    let typeElement;
+    let typeArray = [];
+    for (let i = 0; i < this.data.type.length; i++) {
+      typeElement = document.createElement("p");
+      typeArray = this.data.type;
+      typeElement.textContent = "Type: " + typeArray[i];
+      typeElement.classList.add("cardType");
+      typeElement.setAttribute("id", "cardType");
+      //Hides(removes) the label elements, does not take up place
+      typeElement.style.display = "none";
+      container.append(typeElement);
+    }
+
     // Create Book room button for each Challenge card
     const button = document.createElement("button");
     button.textContent = "Book this room";
