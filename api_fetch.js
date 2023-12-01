@@ -147,7 +147,7 @@ onsite.addEventListener("click", showByType);
 function showByType() {
   //Get all the cards (challenge elements)
   const cards = document.querySelectorAll(".challenge");
-  const titles = document.querySelectorAll(".challenge h2");
+  const type = document.querySelectorAll(".cardType");
   //Get the noMatchError element
   const noMatchError = document.getElementById("noMatchError");
   // Initialize a variable to track whether a match is found
@@ -155,7 +155,7 @@ function showByType() {
   //works if online is checked and onsite not checked
   if (online.checked && !onsite.checked) {
     for (let i = 0; i < cards.length; i++) {
-      let card = titles[i].textContent;
+      let card = type[i].textContent;
       if (card.toLowerCase().includes("online")) {
         // Show the current challenge element
         cards[i].style.display = "";
@@ -166,11 +166,19 @@ function showByType() {
         // Hide the current challenge element if it doesn't match the search box value
         cards[i].style.display = "none";
       }
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
     }
     //works if onsite is checked and online not checked
   } else if (onsite.checked && !online.checked) {
     for (let i = 0; i < cards.length; i++) {
-      let card = titles[i].textContent;
+      let card = type[i].textContent;
       if (card.toLowerCase().includes("onsite")) {
         // Show the current challenge element
         cards[i].style.display = "";
@@ -181,11 +189,19 @@ function showByType() {
         // Hide the current challenge element if it doesn't match the search box value
         cards[i].style.display = "none";
       }
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
     }
     //works if both are checked
   } else if (online.checked && onsite.checked) {
     for (let i = 0; cards.length; i++) {
-      let card = titles[i].textContent;
+      let card = type[i].textContent;
       if (card) {
         // Show the current challenge element
         cards[i].style.display = "";
@@ -195,20 +211,16 @@ function showByType() {
         // Hide the current challenge element if it doesn't match the search box value
         cards[i].style.display = "none";
       }
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
     }
     // DENNA DEL INTE KLART ÄN
-  } else {
-    for (let j = 0; j < cards.length; j++) {
-      return (foundMatch = false);
-    }
-  }
-  // If a match was found
-  if (foundMatch) {
-    // Clear the error message
-    noMatchError.innerHTML = "";
-  } else {
-    // If no matches were found, set the error message
-    noMatchError.innerHTML = "No matching challenges";
   }
 }
 
