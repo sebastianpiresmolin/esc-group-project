@@ -59,16 +59,15 @@ class Challenge {
     //Create type element to target later in function
     let typeElement;
     let typeArray = [];
-    for (let i = 0; i < this.data.type.length; i++) {
-      typeElement = document.createElement("p");
-      typeArray = this.data.type;
-      typeElement.textContent = "Type: " + typeArray[i];
-      typeElement.classList.add("cardType");
-      typeElement.setAttribute("id", "cardType");
-      //Hides(removes) the label elements, does not take up place
-      typeElement.style.display = "none";
-      container.append(typeElement);
-    }
+
+    typeElement = document.createElement("p");
+    typeArray = this.data.type;
+    typeElement.textContent = "Type: " + typeArray;
+    typeElement.classList.add("cardType");
+    typeElement.setAttribute("id", "cardType");
+    //Hides(removes) the label elements, does not take up place
+    typeElement.style.display = "none";
+    container.append(typeElement);
 
     // Create Book room button for each Challenge card
     const button = document.createElement("button");
@@ -143,7 +142,7 @@ const onsite = document.querySelector("#onsite");
 // event listener for online/onsite button
 online.addEventListener("click", showByType);
 onsite.addEventListener("click", showByType);
-// Function to handle filterByType click
+// FUNCTION TO HANDLE FILTERBYTYPE CLICK
 function showByType() {
   //Get all the cards (challenge elements)
   const cards = document.querySelectorAll(".challenge");
@@ -220,7 +219,8 @@ function showByType() {
         noMatchError.innerHTML = "No matching challenges";
       }
     }
-    // DENNA DEL INTE KLART ÄN
+    // if both are unchecked show error message
+  } else {
   }
 }
 
