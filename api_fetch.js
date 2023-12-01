@@ -199,8 +199,8 @@ function showByType() {
     }
     //works if both are checked
   } else if (online.checked && onsite.checked) {
-    for (let i = 0; cards.length; i++) {
-      let card = type[i].textContent;
+    for (let i = 0; i < cards.length; i++) {
+      let card = cards[i];
       if (card) {
         // Show the current challenge element
         cards[i].style.display = "";
@@ -221,6 +221,14 @@ function showByType() {
     }
     // if both are unchecked show error message
   } else {
+    if (!online.checked && !onsite.checked) {
+      for (let j = 0; j < cards.length; j++) {
+        //hide all the cards
+        cards[j].style.display = "none";
+        //set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
+    }
   }
 }
 
