@@ -1,5 +1,9 @@
+import { availableTimes, displayModalStepOne } from "./book.js";
+export let selectedChallenge = undefined;
+let allChallenges = [];
+
 // Define Challenge class, used in APIadapter
-class Challenge {
+export default class Challenge {
   constructor(data) {
     this.data = data;
   }
@@ -14,12 +18,12 @@ class Challenge {
     container.append(imgContainer);
 
     /* Correct image from api, warning! Crazy cat image! :) Used hero image for each card for now
-        /*
-        const image = document.createElement('img');
-        image.src = this.data.image;
-        image.classList.add("img__container");
-        imgContainer.append(image);
-        */
+            /*
+            const image = document.createElement('img');
+            image.src = this.data.image;
+            image.classList.add("img__container");
+            imgContainer.append(image);
+            */
 
     const titleElement = document.createElement("h2");
     titleElement.textContent = this.data.title + " (" + this.data.type + ")";
@@ -40,19 +44,14 @@ class Challenge {
     const descriptionElement = document.createElement("p");
     descriptionElement.textContent = "Description: " + this.data.description;
     container.append(descriptionElement);
-    descriptionElement.setAttribute("id", "descID");
-    
-    //Create label element to target later in function
+
     let labelElement;
     let labelArray = [];
     for (let i = 0; i < this.data.labels.length; i++) {
       labelElement = document.createElement("p");
       labelArray = this.data.labels;
       labelElement.textContent = "Labels: " + labelArray[i];
-      labelElement.classList.add("cardLabels");
-      labelElement.setAttribute("id", "cardLabels");
-      //Hides(removes) the label elements, does not take up place
-      labelElement.style.display = "none";
+      labelElement.classList.add("labels");
       container.append(labelElement);
     }
 
@@ -65,22 +64,17 @@ class Challenge {
     // Listen to button and forward challenge id to show title in booking modal
     button.addEventListener("click", function (event) {
       const challengeId = event.currentTarget.dataset.challengeId;
-      console.log("Challenge id:", challengeId);
-      document.getElementsByClassName("modal__stepOne")[0].style.display =
-        "block";
+      //document.getElementsByClassName("modal__stepOne")[0].style.display = "block";
+      displayModalStepOne(modal1);
 
-      const selectedChallenge = allChallenges.find(
+      selectedChallenge = allChallenges.find(
         (challenge) => challenge.data.id === parseInt(challengeId)
       );
 
-      const bookRoomTitle = document.createElement("h1");
+      const bookRoomTitle = document.querySelector("#modal1__title");
       bookRoomTitle.textContent =
         'Book Room: "' + selectedChallenge.data.title + '" (Step 1)';
-
-      const modalStepOne = document.querySelector("#challenge__title");
-      modalStepOne.append(bookRoomTitle);
     });
-
     return container;
   }
 }
@@ -101,7 +95,11 @@ class APIadapter {
 }
 
 //Global array to hold Challenge objects
-export let allChallenges = [];
+
+const api = new APIadapter();
+api.getAllChallenges().then(() => {
+  console.log(allChallenges);
+});
 
 // Loop through array to create all Challenge cards
 class ChallengeListView {
@@ -118,6 +116,7 @@ class ChallengeListView {
 
 // Show All Challenge cards on Challenges page
 const challengesDiv = document.querySelector("#challenges__container");
+const modal1 = document.querySelector("#modal__bg");
 
 const view = new ChallengeListView();
 view.render(challengesDiv);
