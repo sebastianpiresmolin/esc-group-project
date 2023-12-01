@@ -26,21 +26,60 @@ export default class Challenge {
     titleElement.textContent = this.data.title + " (" + this.data.type + ")";
     container.append(titleElement);
 
+    // Function to convert rating to stars
+    function createStarRating(rating) {
+      const ratingContainer = document.createElement("div");
+      ratingContainer.classList.add("star__container");
+
+      const fullStar =
+        '<img class="rating__star" src="media/full_star.png" alt="Full star">';
+      const halfStar =
+        '<img class="rating__star" src="media/half_star.png" alt="Half star">';
+      const noStar =
+        '<img class="rating__star" src="media/no_star.png" alt="No star">';
+
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating % 1 !== 0;
+
+      for (let i = 0; i < fullStars; i++) {
+        ratingContainer.innerHTML += fullStar;
+      }
+
+      if (hasHalfStar) {
+        ratingContainer.innerHTML += halfStar;
+      }
+
+      const remainingStars = hasHalfStar ? 5 - fullStars - 1 : 5 - fullStars;
+      for (let i = 0; i < remainingStars; i++) {
+        ratingContainer.innerHTML += noStar;
+      }
+
+      return ratingContainer;
+    }
+
+    const starRatingElement = document.createElement("div");
+    starRatingElement.classList.add("rating__container");
+    starRatingElement.appendChild(createStarRating(this.data.rating));
+    container.appendChild(starRatingElement);
+
+    // Rating value, hidden on page
     const ratingElement = document.createElement("p");
     ratingElement.textContent = "Rating: " + this.data.rating;
     container.append(ratingElement);
+    ratingElement.style.display = "none";
 
-    const participantsElement = document.createElement("p");
+    const participantsElement = document.createElement("span");
     participantsElement.textContent =
       this.data.minParticipants +
       " - " +
       this.data.maxParticipants +
       " participants";
-    container.append(participantsElement);
+    starRatingElement.appendChild(participantsElement);
 
     const descriptionElement = document.createElement("p");
     descriptionElement.textContent = "Description: " + this.data.description;
     container.append(descriptionElement);
+    descriptionElement.setAttribute("id", "descID");
 
     let labelElement;
     let labelArray = [];
@@ -48,7 +87,10 @@ export default class Challenge {
       labelElement = document.createElement("p");
       labelArray = this.data.labels;
       labelElement.textContent = "Labels: " + labelArray[i];
-      labelElement.classList.add("labels");
+      labelElement.classList.add("cardLabels");
+      labelElement.setAttribute("id", "cardLabels");
+      //Hides(removes) the label elements, does not take up place
+      labelElement.style.display = "none";
       container.append(labelElement);
     }
 
