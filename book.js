@@ -11,6 +11,7 @@ let listPart = undefined;
 //Global modal elements
 const modalBackground = document.getElementById("modal__bg");
 modalBackground.classList.add("modal__background");
+modalBackground.style.overflowY = "hidden";
 
 const modalContainer1 = document.createElement("div");
 modalContainer1.classList.add("modal__container1");
@@ -120,7 +121,7 @@ const nextYear = new Date(
 const withinNextYear = nextYear.toISOString().substring(0, 10);
 
 //Creating step one modal
-export function displayModalStepOne(container, title) {
+export function displayModalStepOne() {
   modalBackground.style.display = "block";
   modalContainer1.style.display = "block";
   modalTitle.setAttribute("id", "modal1__title");
