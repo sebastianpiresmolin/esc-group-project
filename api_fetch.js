@@ -103,7 +103,7 @@ export default class Challenge {
     // Listen to button and forward challenge id to show title in booking modal
     button.addEventListener("click", function (event) {
       const challengeId = event.currentTarget.dataset.challengeId;
-      //document.getElementsByClassName("modal__stepOne")[0].style.display = "block";
+
       displayModalStepOne(modal1);
 
       selectedChallenge = allChallenges.find(
@@ -146,13 +146,6 @@ class ChallengeListView {
   }
 }
 
-// Show All Challenge cards on Challenges page
-const challengesDiv = document.querySelector(".challenges__container");
-const modal1 = document.querySelector("#modal__bg");
-
-const view = new ChallengeListView();
-view.render(challengesDiv);
-
 // Filter out the top3 challenges by rating
 class Top3View {
   async render(container) {
@@ -169,16 +162,18 @@ class Top3View {
   }
 }
 
-// Show Top3 Challenges on front page
-const topChallengesDiv = document.querySelector(".containerTwo__carousel");
+// Look for which page is showing and render all challenges or top3
+const currentPage = document.body.dataset.page;
+const modal1 = document.querySelector("#modal__bg");
 
-const viewTop3 = new Top3View();
-viewTop3.render(topChallengesDiv);
-
-// Filter Challenges by Type, onsite or online
-
-// Filter Challenges by Rating
-
-// Filter Challenges by Tags
-
-// Filter Challenges by Free text search
+if (currentPage === "challenges") {
+  // Show All Challenge cards on Challenges page
+  const challengesDiv = document.querySelector(".challenges__container");
+  const view = new ChallengeListView();
+  view.render(challengesDiv);
+} else if (currentPage === "front-page") {
+  // Show Top3 Challenges on front page
+  const topChallengesDiv = document.querySelector(".containerTwo__carousel");
+  const viewTop3 = new Top3View();
+  viewTop3.render(topChallengesDiv);
+}
