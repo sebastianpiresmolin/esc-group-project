@@ -367,7 +367,7 @@ button {
   font-weight: 400;
   font-size: 32px;
   margin-top: 105px;
-  margin-bottom: 44px;
+  margin-bottom: 30px;
   margin-right: 10px;
   margin-left: 10px;
   width: 100vw;
@@ -376,19 +376,18 @@ button {
 @media (min-width: 1280px) {
   .carousel__title {
     font-size: 36px;
-    margin-bottom: 87px;
+    margin-bottom: 30px;
     margin-top: 108px;
   }
 }
 
 .containerTwo__carousel {
   display: flex;
-  width: 100vw;
+  max-width: 1400px;
   height: 520px;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   overflow-x: scroll;
-  gap: 30px;
   /* This time -webkit- is justified since only 80% of browsers support it */
 }
 .containerTwo__carousel::-webkit-scrollbar {
@@ -399,9 +398,13 @@ button {
 }
 @media (min-width: 1180px) {
   .containerTwo__carousel {
+    display: flex;
     overflow-x: unset;
-    justify-content: space-evenly;
+    justify-content: center;
+    width: 100vw;
+    height: 520px;
     align-items: center;
+    margin: 0 auto;
   }
 }
 
