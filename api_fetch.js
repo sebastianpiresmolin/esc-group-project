@@ -84,6 +84,20 @@ export default class Challenge {
     container.append(descriptionElement);
     descriptionElement.setAttribute("id", "descID");
 
+    let labelElement;
+    let labelArray = [];
+    for (let i = 0; i < this.data.labels.length; i++) {
+      labelElement = document.createElement("p");
+      labelArray = this.data.labels;
+      labelElement.textContent = "Labels: " + labelArray[i];
+      labelElement.classList.add("labels");
+      labelElement.classList.add("cardLabels");
+      labelElement.setAttribute("id", "cardLabels");
+      //Hides(removes) the label elements, does not take up place
+      labelElement.style.display = "none";
+      container.append(labelElement);
+    }
+
     //Create type element to target later in function
     let typeElement;
     let typeArray = [];
