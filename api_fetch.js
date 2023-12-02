@@ -1,4 +1,5 @@
 import { availableTimes, displayModalStepOne } from "./book.js";
+import { filter } from "./filter.js";
 export let selectedChallenge = undefined;
 
 //Global array to hold Challenge objects
@@ -180,194 +181,195 @@ if (currentPage === "challenges") {
   viewTop3.render(topChallengesDiv);
 }
 
-//------ Filter Challenges by Type, onsite or online ------
-// Get all the types
-const online = document.querySelector("#online");
-const onsite = document.querySelector("#onsite");
-// event listener for online/onsite button
-online.addEventListener("click", showByType);
-onsite.addEventListener("click", showByType);
-// FUNCTION TO HANDLE FILTERBYTYPE CLICK
-function showByType() {
-  //Get all the cards (challenge elements)
-  const cards = document.querySelectorAll(".challenge");
-  const type = document.querySelectorAll(".cardType");
-  //Get the noMatchError element
-  const noMatchError = document.getElementById("noMatchError");
-  // Initialize a variable to track whether a match is found
-  let foundMatch = false;
-  //works if online is checked and onsite not checked
-  if (online.checked && !onsite.checked) {
-    for (let i = 0; i < cards.length; i++) {
-      let card = type[i].textContent;
-      if (card.toLowerCase().includes("online")) {
-        // Show the current challenge element
-        cards[i].style.display = "";
+if (currentPage === "challenges") {
+  //------ Filter Challenges by Type, onsite or online ------
+  // Get all the types
+  const online = document.querySelector("#online");
+  const onsite = document.querySelector("#onsite");
+  // event listener for online/onsite button
+  online.addEventListener("click", showByType);
+  onsite.addEventListener("click", showByType);
+  // FUNCTION TO HANDLE FILTERBYTYPE CLICK
+  function showByType() {
+    //Get all the cards (challenge elements)
+    const cards = document.querySelectorAll(".challenge");
+    const type = document.querySelectorAll(".cardType");
+    //Get the noMatchError element
+    const noMatchError = document.getElementById("noMatchError");
+    // Initialize a variable to track whether a match is found
+    let foundMatch = false;
+    //works if online is checked and onsite not checked
+    if (online.checked && !onsite.checked) {
+      for (let i = 0; i < cards.length; i++) {
+        let card = type[i].textContent;
+        if (card.toLowerCase().includes("online")) {
+          // Show the current challenge element
+          cards[i].style.display = "";
 
-        // Set foundMatch to true since a match was found
-        foundMatch = true;
-      } else {
-        // Hide the current challenge element if it doesn't match the search box value
-        cards[i].style.display = "none";
+          // Set foundMatch to true since a match was found
+          foundMatch = true;
+        } else {
+          // Hide the current challenge element if it doesn't match the search box value
+          cards[i].style.display = "none";
+        }
+        // If a match was found
+        if (foundMatch) {
+          // Clear the error message
+          noMatchError.innerHTML = "";
+        } else {
+          // If no matches were found, set the error message
+          noMatchError.innerHTML = "No matching challenges";
+        }
       }
-      // If a match was found
-      if (foundMatch) {
-        // Clear the error message
-        noMatchError.innerHTML = "";
-      } else {
-        // If no matches were found, set the error message
-        noMatchError.innerHTML = "No matching challenges";
-      }
-    }
-    //works if onsite is checked and online not checked
-  } else if (onsite.checked && !online.checked) {
-    for (let i = 0; i < cards.length; i++) {
-      let card = type[i].textContent;
-      if (card.toLowerCase().includes("onsite")) {
-        // Show the current challenge element
-        cards[i].style.display = "";
+      //works if onsite is checked and online not checked
+    } else if (onsite.checked && !online.checked) {
+      for (let i = 0; i < cards.length; i++) {
+        let card = type[i].textContent;
+        if (card.toLowerCase().includes("onsite")) {
+          // Show the current challenge element
+          cards[i].style.display = "";
 
-        // Set foundMatch to true since a match was found
-        foundMatch = true;
-      } else {
-        // Hide the current challenge element if it doesn't match the search box value
-        cards[i].style.display = "none";
+          // Set foundMatch to true since a match was found
+          foundMatch = true;
+        } else {
+          // Hide the current challenge element if it doesn't match the search box value
+          cards[i].style.display = "none";
+        }
+        // If a match was found
+        if (foundMatch) {
+          // Clear the error message
+          noMatchError.innerHTML = "";
+        } else {
+          // If no matches were found, set the error message
+          noMatchError.innerHTML = "No matching challenges";
+        }
       }
-      // If a match was found
-      if (foundMatch) {
-        // Clear the error message
-        noMatchError.innerHTML = "";
-      } else {
-        // If no matches were found, set the error message
-        noMatchError.innerHTML = "No matching challenges";
+      //works if both are checked
+    } else if (online.checked && onsite.checked) {
+      for (let i = 0; i < cards.length; i++) {
+        let card = cards[i];
+        if (card) {
+          // Show the current challenge element
+          cards[i].style.display = "";
+          // Set foundMatch to true since a match was found
+          foundMatch = true;
+        } else {
+          // Hide the current challenge element if it doesn't match the search box value
+          cards[i].style.display = "none";
+        }
+        // If a match was found
+        if (foundMatch) {
+          // Clear the error message
+          noMatchError.innerHTML = "";
+        } else {
+          // If no matches were found, set the error message
+          noMatchError.innerHTML = "No matching challenges";
+        }
       }
-    }
-    //works if both are checked
-  } else if (online.checked && onsite.checked) {
-    for (let i = 0; i < cards.length; i++) {
-      let card = cards[i];
-      if (card) {
-        // Show the current challenge element
-        cards[i].style.display = "";
-        // Set foundMatch to true since a match was found
-        foundMatch = true;
-      } else {
-        // Hide the current challenge element if it doesn't match the search box value
-        cards[i].style.display = "none";
-      }
-      // If a match was found
-      if (foundMatch) {
-        // Clear the error message
-        noMatchError.innerHTML = "";
-      } else {
-        // If no matches were found, set the error message
-        noMatchError.innerHTML = "No matching challenges";
-      }
-    }
-    // if both are unchecked show error message
-  } else {
-    if (!online.checked && !onsite.checked) {
-      for (let j = 0; j < cards.length; j++) {
-        //hide all the cards
-        cards[j].style.display = "none";
-        //set the error message
-        noMatchError.innerHTML = "No matching challenges";
+      // if both are unchecked show error message
+    } else {
+      if (!online.checked && !onsite.checked) {
+        for (let j = 0; j < cards.length; j++) {
+          //hide all the cards
+          cards[j].style.display = "none";
+          //set the error message
+          noMatchError.innerHTML = "No matching challenges";
+        }
       }
     }
   }
-}
 
-// ------ Filter Challenges by Rating ------
+  // ------ Filter Challenges by Rating ------
 
-// Filter Challenges by Tags
-import { filter } from "./filter.js";
+  // Filter Challenges by Tags
 
-const tags = [
-  document.querySelector("#web"),
-  document.querySelector("#linux"),
-  document.querySelector("#cryptography"),
-  document.querySelector("#coding"),
-  document.querySelector("#ssh"),
-  document.querySelector("#ctf"),
-  document.querySelector("#hacking"),
-  document.querySelector("#bash"),
-  document.querySelector("#javascript"),
-  document.querySelector("#electronics"),
-  document.querySelector("#phreaking"),
-];
+  const tags = [
+    document.querySelector("#web"),
+    document.querySelector("#linux"),
+    document.querySelector("#cryptography"),
+    document.querySelector("#coding"),
+    document.querySelector("#ssh"),
+    document.querySelector("#ctf"),
+    document.querySelector("#hacking"),
+    document.querySelector("#bash"),
+    document.querySelector("#javascript"),
+    document.querySelector("#electronics"),
+    document.querySelector("#phreaking"),
+  ];
 
-// Add event listeners to all tags
-tags.forEach((tag) => {
-  tag.addEventListener("click", () => searchTags(tag));
-});
+  // Add event listeners to all tags
+  tags.forEach((tag) => {
+    tag.addEventListener("click", () => searchTags(tag));
+  });
 
-function searchTags(tag) {
-  // Get the id of the clicked tag
-  const tagId = tag.id;
+  function searchTags(tag) {
+    // Get the id of the clicked tag
+    const tagId = tag.id;
 
-  // Check if the clicked tag has the 'active' class
-  if (tag.classList.contains("active")) {
-    // If it does, remove the 'active' class
-    tag.classList.remove("active");
-    // And remove the tag's id from the filter.labels array
-    filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
-    // Log a message indicating that the tag was removed
-    console.log("Removed tag:", tagId);
-    //Log the current state of the filter.labels array
-    console.log("Current labels:", filter.labels);
-  } else {
-    // If the clicked tag does not have the 'active' class, add it
-    tag.classList.add("active");
-    // And add the tag's id to the filter.labels array
-    filter.labels.push(tagId);
-    //Log the current state of the filter.labels array
-    console.log("Current labels:", filter.labels);
-  }
-
-  // Labels in cards has id and class cardLabels
-
-  //Get all the cards (challenge elements)
-  const card = document.querySelectorAll(".challenge");
-
-  //Get all the label elements within the challenge elements
-  const cardLabels = document.querySelectorAll(".cardLabels");
-
-  //Get all the labels/tags from the filter
-  const filterLabels = document.querySelectorAll(".filterTags label");
-
-  //Get active tags from array
-  const activeTags = filter.labels;
-
-  //Get the noMatchError element
-  const noMatchError = document.getElementById("noMatchError");
-
-  // Initialize a variable to track whether a match is found
-  let foundMatch = false;
-
-  // Loop through all the cards (challenge elements)
-  for (let i = 0; i < card.length; i++) {
-    // Get the text content from the cardLabels within the current challenge element
-    let challengeLabels = cardLabels[i].innerHTML;
-
-    //If the current cardLabel includes the activeTags value
-    if (challengeLabels.toLowerCase().indexOf(activeTags) > -1) {
-      // Show the current challenge element
-      card[i].style.display = "";
-
-      // Set foundMatch to true since a match was found
-      foundMatch = true;
+    // Check if the clicked tag has the 'active' class
+    if (tag.classList.contains("active")) {
+      // If it does, remove the 'active' class
+      tag.classList.remove("active");
+      // And remove the tag's id from the filter.labels array
+      filter.labels = filter.labels.filter((activeTag) => activeTag !== tagId);
+      // Log a message indicating that the tag was removed
+      console.log("Removed tag:", tagId);
+      //Log the current state of the filter.labels array
+      console.log("Current labels:", filter.labels);
     } else {
-      // Hide the current challenge element if it doesn't match the search box value
-      card[i].style.display = "none";
+      // If the clicked tag does not have the 'active' class, add it
+      tag.classList.add("active");
+      // And add the tag's id to the filter.labels array
+      filter.labels.push(tagId);
+      //Log the current state of the filter.labels array
+      console.log("Current labels:", filter.labels);
     }
 
-    // If a match was found
-    if (foundMatch) {
-      // Clear the error message
-      noMatchError.innerHTML = "";
-    } else {
-      // If no matches were found, set the error message
-      noMatchError.innerHTML = "No matching challenges";
+    // Labels in cards has id and class cardLabels
+
+    //Get all the cards (challenge elements)
+    const card = document.querySelectorAll(".challenge");
+
+    //Get all the label elements within the challenge elements
+    const cardLabels = document.querySelectorAll(".cardLabels");
+
+    //Get all the labels/tags from the filter
+    const filterLabels = document.querySelectorAll(".filterTags label");
+
+    //Get active tags from array
+    const activeTags = filter.labels;
+
+    //Get the noMatchError element
+    const noMatchError = document.getElementById("noMatchError");
+
+    // Initialize a variable to track whether a match is found
+    let foundMatch = false;
+
+    // Loop through all the cards (challenge elements)
+    for (let i = 0; i < card.length; i++) {
+      // Get the text content from the cardLabels within the current challenge element
+      let challengeLabels = cardLabels[i].innerHTML;
+
+      //If the current cardLabel includes the activeTags value
+      if (challengeLabels.toLowerCase().indexOf(activeTags) > -1) {
+        // Show the current challenge element
+        card[i].style.display = "";
+
+        // Set foundMatch to true since a match was found
+        foundMatch = true;
+      } else {
+        // Hide the current challenge element if it doesn't match the search box value
+        card[i].style.display = "none";
+      }
+
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
     }
   }
 }
