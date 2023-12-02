@@ -18,9 +18,11 @@
   <meta name="twitter:description" content="Play online or visit our venue for
   one of our 25 escape rooms">
   <meta name="twitter:image" content="https://sebastianpiresmolin.github.io/hackerEscapeRoom/media/hackerimg.png">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="challenges.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="book2.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="challenges.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="book2.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="challenge_cards.css"/>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
@@ -34,12 +36,9 @@
   <script type="module" src="api_fetch.js" defer></script>
   <script type="module" src="book.js" defer></script>
 
-  <!--                Temporary css to style Challenge cards                   -->
-  <link rel='stylesheet' type='text/css' href='temp.css'>
+</head> 
 
-</head>
-
-<body>
+<body data-page="challenges">
   <header class="header">
     <div class="header__container">
       <img class="header__logo" src="media/logo.png" alt="Logo displaying
@@ -129,14 +128,38 @@
       </div>
       <section>
         <!--    Challenge cards will be created below  -->
-        <div id="challenges__container">
+        <div class="challenges__container">
           <p id="noMatchError"></p>
         </div>
       </section>
       <section>
         <div id="modal__bg"></div>
       </section>
+    </main>
 
-
-  </main>
+      <footer class="footer">
+        <div class="footer__container">
+          <div class="footer__boxOne">
+            <h3 class="footer__title">[Esc] Hacker Escape Rooms</h3>
+            <p class="footer__sub">Quodsi haberent magnalia inter potentiam et
+              divitias, et non illam quidem haec eo spectant haec quoque vos omnino
+              desit illud quo solo felicitatis libertatisque perficiuntur.</p>
+          </div>
+          <div class="footer__boxTwo">
+            <h3 class="footer__title">Site map</h3>
+            <a class="footer__link" href="index.html">The Story</a>
+            <a class="footer__link" href="index.html">Contact Us</a>
+            <a class="footer__link" href="index.html">Legal</a>
+            <a class="footer__link footerLinebreak" href="index.html">Play
+              online</a>
+            <a class="footer__link" href="index.html">Play on-site</a>
+          </div>
+          <div class="footer__boxThree">
+            <h3 class="footer__title">Follow us on</h3>
+            <a class="footer__link" href="index.html">Facebook</a>
+            <a class="footer__link" href="index.html">Instagram</a>
+            <a class="footer__link footerLinkLast" href="index.html">Twitter</a>
+          </div>
+        </div>
+      </footer>
 </body>
