@@ -13,6 +13,29 @@ export let filter = {
 
 /*------------------------BY TYPE------------------------*/
 
+// Get all the types
+const online = document.querySelector("#online");
+const onsite = document.querySelector("#onsite");
+
+// Functions to handle type click
+online.addEventListener("click", function () {
+  if (filter.online == true) {
+    filter.online = false;
+  } else {
+    filter.online = true;
+  }
+  console.log(filter.online);
+});
+
+onsite.addEventListener("click", function () {
+  if (filter.onsite == true) {
+    filter.onsite = false;
+  } else {
+    filter.onsite = true;
+  }
+  console.log(filter.onsite);
+});
+
 /*------------------------BY TYPE------------------------*/
 
 /*------------------------STAR RATING------------------------*/
