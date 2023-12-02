@@ -178,6 +178,7 @@ if (currentPage === "challenges") {
   const topChallengesDiv = document.querySelector(".containerTwo__carousel");
   const viewTop3 = new Top3View();
   viewTop3.render(topChallengesDiv);
+}
 
 //------ Filter Challenges by Type, onsite or online ------
 // Get all the types
