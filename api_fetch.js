@@ -59,6 +59,19 @@ export default class Challenge {
       container.append(labelElement);
     }
 
+    //Create type element to target later in function
+    let typeElement;
+    let typeArray = [];
+
+    typeElement = document.createElement("p");
+    typeArray = this.data.type;
+    typeElement.textContent = "Type: " + typeArray;
+    typeElement.classList.add("cardType");
+    typeElement.setAttribute("id", "cardType");
+    //Hides(removes) the label elements, does not take up place
+    typeElement.style.display = "none";
+    container.append(typeElement);
+
     // Create Book room button for each Challenge card
     const button = document.createElement("button");
     button.textContent = "Book this room";
@@ -125,9 +138,104 @@ const modal1 = document.querySelector("#modal__bg");
 const view = new ChallengeListView();
 view.render(challengesDiv);
 
-// Filter Challenges by Type, onsite or online
+//------ Filter Challenges by Type, onsite or online ------
+// Get all the types
+const online = document.querySelector("#online");
+const onsite = document.querySelector("#onsite");
+// event listener for online/onsite button
+online.addEventListener("click", showByType);
+onsite.addEventListener("click", showByType);
+// FUNCTION TO HANDLE FILTERBYTYPE CLICK
+function showByType() {
+  //Get all the cards (challenge elements)
+  const cards = document.querySelectorAll(".challenge");
+  const type = document.querySelectorAll(".cardType");
+  //Get the noMatchError element
+  const noMatchError = document.getElementById("noMatchError");
+  // Initialize a variable to track whether a match is found
+  let foundMatch = false;
+  //works if online is checked and onsite not checked
+  if (online.checked && !onsite.checked) {
+    for (let i = 0; i < cards.length; i++) {
+      let card = type[i].textContent;
+      if (card.toLowerCase().includes("online")) {
+        // Show the current challenge element
+        cards[i].style.display = "";
 
-// Filter Challenges by Rating
+        // Set foundMatch to true since a match was found
+        foundMatch = true;
+      } else {
+        // Hide the current challenge element if it doesn't match the search box value
+        cards[i].style.display = "none";
+      }
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
+    }
+    //works if onsite is checked and online not checked
+  } else if (onsite.checked && !online.checked) {
+    for (let i = 0; i < cards.length; i++) {
+      let card = type[i].textContent;
+      if (card.toLowerCase().includes("onsite")) {
+        // Show the current challenge element
+        cards[i].style.display = "";
+
+        // Set foundMatch to true since a match was found
+        foundMatch = true;
+      } else {
+        // Hide the current challenge element if it doesn't match the search box value
+        cards[i].style.display = "none";
+      }
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
+    }
+    //works if both are checked
+  } else if (online.checked && onsite.checked) {
+    for (let i = 0; i < cards.length; i++) {
+      let card = cards[i];
+      if (card) {
+        // Show the current challenge element
+        cards[i].style.display = "";
+        // Set foundMatch to true since a match was found
+        foundMatch = true;
+      } else {
+        // Hide the current challenge element if it doesn't match the search box value
+        cards[i].style.display = "none";
+      }
+      // If a match was found
+      if (foundMatch) {
+        // Clear the error message
+        noMatchError.innerHTML = "";
+      } else {
+        // If no matches were found, set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
+    }
+    // if both are unchecked show error message
+  } else {
+    if (!online.checked && !onsite.checked) {
+      for (let j = 0; j < cards.length; j++) {
+        //hide all the cards
+        cards[j].style.display = "none";
+        //set the error message
+        noMatchError.innerHTML = "No matching challenges";
+      }
+    }
+  }
+}
+
+// ------ Filter Challenges by Rating ------
 
 // Filter Challenges by Tags
 import { filter } from "./filter.js";
