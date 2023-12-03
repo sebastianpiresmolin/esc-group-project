@@ -84,15 +84,10 @@ if (currentPage === "challenges") {
         fromStars[filter.minRating - 1].click();
       }
     }
-    if (
-      challengeRating >= filter.minRating &&
-      challengeRating <= filter.maxRating
-    ) {
+    if (rating >= filter.minRating && rating <= filter.maxRating) {
       for (let i = 0; i < cards.length; i++) {
         let card = challengeRating[i].textContent;
-        if (card.includes("1")) {
-          console.log(card);
-        }
+        console.log(card);
       }
     }
   }
