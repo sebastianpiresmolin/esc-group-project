@@ -47,28 +47,28 @@ document
 document
   .getElementById("linkToChallenges2")
   .addEventListener("click", function () {
-    window.location.href = "/esc-group-project/challenges.html";
+    window.location.href = "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
   });
 
 document
   .getElementById("linkToChallenges3")
   .addEventListener("click", function () {
-    window.location.href = "/esc-group-project/challenges.html";
+    window.location.href = "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
   });
 
 document
   .getElementById("linkToChallenges4")
   .addEventListener("click", function () {
-    window.location.href = "/esc-group-project/challenges.html";
+    window.location.href = "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
   });
 
 document
   .getElementById("linkToChallenges5")
   .addEventListener("click", function () {
-    window.location.href = "/esc-group-project/challenges.html";
+    window.location.href = "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
   });
 
 document
   .getElementById("linkToChallenges6")
   .addEventListener("click", function () {
-    window.location.href = "/esc-group-project/challenges.html";
+    window.location.href = "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
