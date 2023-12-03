@@ -41,7 +41,7 @@ document.getElementById("closebtn").addEventListener("click", function () {
 document
   .getElementById("linkToChallenges")
   .addEventListener("click", function () {
-    window.location.href = "/esc-group-project/challenges.html";
+    window.location.href = "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
   });
 
 document
