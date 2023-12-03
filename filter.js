@@ -54,7 +54,7 @@ if (currentPage === "challenges") {
   // Function to handle star click
   function handleStarClick(stars, index, isFromStars) {
     const cards = document.querySelectorAll(".challenge");
-    const challengeRating = document.querySelector("#ratingID");
+    const challengeRating = document.querySelectorAll("#ratingID");
     // Remove 'checked' class from all stars
     stars.forEach((star) => star.classList.remove("checked"));
 
@@ -85,10 +85,12 @@ if (currentPage === "challenges") {
       }
     }
     if (rating >= filter.minRating && rating <= filter.maxRating) {
-      console.log(challengeRating);
       for (let i = 0; i < cards.length; i++) {
-        let card = challengeRating[i];
+        let card = challengeRating[i].textContent;
         console.log(card);
+        if (card >= filter.minRating && card <= filter.maxRating) {
+          cards[i].style.display = "";
+        }
       }
     }
   }
