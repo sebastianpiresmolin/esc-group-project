@@ -85,8 +85,9 @@ if (currentPage === "challenges") {
       }
     }
     if (rating >= filter.minRating && rating <= filter.maxRating) {
+      console.log(challengeRating);
       for (let i = 0; i < cards.length; i++) {
-        let card = challengeRating[i].textContent;
+        let card = challengeRating[i];
         console.log(card);
       }
     }
