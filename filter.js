@@ -87,9 +87,8 @@ if (currentPage === "challenges") {
     if (rating >= filter.minRating && rating <= filter.maxRating) {
       for (let i = 0; i < cards.length; i++) {
         let card = challengeRating[i].textContent;
-        console.log(card);
-        if (card >= filter.minRating && card <= filter.maxRating) {
-          cards[i].style.display = "";
+        if (!(card >= filter.minRating && card <= filter.maxRating)) {
+          cards[i].style.display = "none";
         }
       }
     }
