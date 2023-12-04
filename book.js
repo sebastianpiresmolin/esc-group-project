@@ -11,6 +11,7 @@ let listPart = undefined;
 //Global modal elements
 const modalBackground = document.getElementById("modal__bg");
 modalBackground.classList.add("modal__background");
+modalBackground.style.overflowY = "hidden";
 
 const modalContainer1 = document.createElement("div");
 modalContainer1.classList.add("modal__container1");
@@ -24,6 +25,26 @@ modalTitle.classList.add("modal__title");
 modalTitle.setAttribute("id", "modal1title");
 const modalSubTitle = document.createElement("h2");
 modalSubTitle.classList.add("modal__subtitle");
+
+// Close booking modal if background is clicked
+modalBackground.addEventListener("click", function (event) {
+  if (event.target === modalBackground) {
+    closeModal();
+  }
+});
+
+function closeModal() {
+  modalBackground.style.display = "none";
+  modalContainer1.style.display = "none";
+  modalContainer2.style.display = "none";
+  modalContainer3.style.display = "none";
+  inputDate.value = "";
+  inputName.value = "";
+  inputMail.value = "";
+  selecMenuTime.innerHTML = "";
+  selectMenuPart.innerHTML = "";
+  errorMsg.textContent = "";
+}
 
 //Step One Elements
 const modalDate = document.createElement("p");
@@ -100,7 +121,7 @@ const nextYear = new Date(
 const withinNextYear = nextYear.toISOString().substring(0, 10);
 
 //Creating step one modal
-export function displayModalStepOne(container, title) {
+export function displayModalStepOne() {
   modalBackground.style.display = "block";
   modalContainer1.style.display = "block";
   modalTitle.setAttribute("id", "modal1__title");
@@ -238,7 +259,7 @@ function submitBooking() {
         for (let i = 0; i < timeInput.length; i++) {
           timeOutput += timeInput[i].label;
         }
-        console.log(arrayTimes)
+        console.log(arrayTimes);
         let partOutput = "";
         let partInput = selectMenuPart.selectedOptions;
         for (let i = 0; i < partInput.length; i++) {
