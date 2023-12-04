@@ -94,18 +94,14 @@ if (currentPage === "challenges") {
         //hide all the cards that are not selected
         if (!(card >= filter.minRating && card <= filter.maxRating)) {
           cards[i].style.display = "none";
-
-          // Set foundMatch to true since a match was found
-          foundMatch = true;
         } else {
           cards[i].style.display = "";
-        } // If a match was found
-        if (foundMatch) {
-          // Clear the error message
-          noMatchError.innerHTML = "";
-        } else {
-          // If no matches were found, set the error message
+          foundMatch = true;
+        }
+        if (cards[i].style.display == "none" && foundMatch == false) {
           noMatchError.innerHTML = "No matching challenges";
+        } else {
+          noMatchError.innerHTML = "";
         }
       }
     }
