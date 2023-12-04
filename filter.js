@@ -53,6 +53,12 @@ if (currentPage === "challenges") {
 
   // Function to handle star click
   function handleStarClick(stars, index, isFromStars) {
+    const cards = document.querySelectorAll(".challenge");
+    const challengeRating = document.querySelectorAll("#ratingID");
+    //Get the noMatchError element
+    const noMatchError = document.getElementById("noMatchError");
+    // Initialize a variable to track whether a match is found
+    let foundMatch = false;
     // Remove 'checked' class from all stars
     stars.forEach((star) => star.classList.remove("checked"));
 
@@ -80,6 +86,23 @@ if (currentPage === "challenges") {
         filter.minRating = filter.maxRating;
         // Trigger click event on corresponding minRating star
         fromStars[filter.minRating - 1].click();
+      }
+    }
+    if (rating >= filter.minRating && rating <= filter.maxRating) {
+      for (let i = 0; i < cards.length; i++) {
+        let card = challengeRating[i].textContent;
+        //hide all the cards that are not selected
+        if (!(card >= filter.minRating && card <= filter.maxRating)) {
+          cards[i].style.display = "none";
+        } else {
+          cards[i].style.display = "";
+          foundMatch = true;
+        }
+        if (cards[i].style.display == "none" && foundMatch == false) {
+          noMatchError.innerHTML = "No matching challenges";
+        } else {
+          noMatchError.innerHTML = "";
+        }
       }
     }
   }
