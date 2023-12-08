@@ -4,6 +4,9 @@ export let selectedChallenge = undefined;
 
 //Global array to hold Challenge objects
 let allChallenges = [];
+//Get the spinner
+let spinner = document.querySelectorAll(".spinner");
+console.log("spinner", spinner);
 
 // Define Challenge class, used in APIadapter
 export default class Challenge {
@@ -135,11 +138,26 @@ export default class Challenge {
   }
 }
 
+//Show and hide the loading spinner
+function displayLoader() {
+  spinner.forEach((spin) => {
+    spin.style.display = "block";
+  });
+}
+
+function hideLoader() {
+  spinner.forEach((spin) => {
+    spin.style.display = "none";
+  });
+}
+
 // Request Challenge data from API and Create Challenge objects and put them in allChallenges array
 class APIadapter {
   async getAllChallenges() {
+    displayLoader();
     const url = "https://lernia-sjj-assignments.vercel.app/api/challenges";
     const response = await fetch(url);
+    hideLoader();
     const payload = await response.json();
 
     allChallenges = payload.challenges.map(
