@@ -69,8 +69,9 @@ export default class Challenge {
 
     // Rating value, hidden on page
     const ratingElement = document.createElement("p");
-    ratingElement.textContent = "Rating: " + this.data.rating;
+    ratingElement.textContent = this.data.rating;
     container.append(ratingElement);
+    ratingElement.setAttribute("id", "ratingID");
     ratingElement.style.display = "none";
 
     const participantsElement = document.createElement("span");
