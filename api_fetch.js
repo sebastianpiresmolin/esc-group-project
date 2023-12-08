@@ -6,7 +6,6 @@ export let selectedChallenge = undefined;
 let allChallenges = [];
 //Get the spinner
 let spinner = document.querySelectorAll(".spinner");
-console.log("spinner", spinner);
 
 // Define Challenge class, used in APIadapter
 export default class Challenge {
