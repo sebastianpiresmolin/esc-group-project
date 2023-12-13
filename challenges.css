@@ -7,7 +7,7 @@
 }
 .filterContainer h1 {
   font-size: 48px;
-  color: #011827;
+  color: #021928;
   font-family: Roboto, sans-serif;
   font-weight: 700;
   text-align: center;
@@ -50,20 +50,20 @@
   flex-basis: 50%;
   padding: 0;
   margin: 0;
-  color: #011827;
+  color: #021928;
 }
 .filterWindow .closeFilter {
   display: flex;
   flex-basis: 50%;
   flex-direction: row-reverse;
-  color: #011827;
+  color: #021928;
 }
 .filterWindow h3 {
   flex-basis: 33%;
   padding: 0;
   margin: 0;
   margin-bottom: 20px;
-  color: #011827;
+  color: #021928;
 }
 @media (max-width: 1070px) {
   .filterWindow h3 {
@@ -87,7 +87,7 @@
   }
 }
 .filterWindow li {
-  color: #011827;
+  color: #021928;
   font-weight: 500;
   font-size: 18px;
 }
