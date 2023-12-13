@@ -37,7 +37,7 @@ button {
   width: 100%;
   height: -moz-fit-content;
   height: fit-content;
-  background-color: #011827;
+  background-color: #021928;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -149,7 +149,7 @@ button {
   left: 5%;
   width: 90%;
   height: 95%;
-  background-color: #011827;
+  background-color: #021928;
   z-index: 2;
   overflow-y: auto;
   opacity: 0;
@@ -256,7 +256,7 @@ button {
   width: 308px;
   height: 66px;
   border: none;
-  color: #011827;
+  color: #021928;
   background-color: #8acfe5;
   margin-top: 35px;
   border-radius: 5px;
@@ -277,7 +277,7 @@ button {
     width: 308px;
     height: 66px;
     border: none;
-    color: #011827;
+    color: #021928;
     background-color: #e3170a;
     border-radius: 5px;
     font-size: 24px;
@@ -546,7 +546,7 @@ button {
   height: fit-content;
   display: flex;
   flex-direction: column;
-  background-color: #011827;
+  background-color: #021928;
   justify-content: flex-end;
   align-items: center;
 }
@@ -562,7 +562,7 @@ button {
   border-radius: 4px;
   width: 308px;
   height: 66px;
-  background-color: #011827;
+  background-color: #021928;
   font-size: 24px;
   color: #8acfe5;
   font-family: Roboto, sans-serif;
@@ -828,7 +828,7 @@ button {
 }
 
 .footer {
-  background-color: #011827;
+  background-color: #021928;
   width: 100vw;
   height: -moz-fit-content;
   height: fit-content;
