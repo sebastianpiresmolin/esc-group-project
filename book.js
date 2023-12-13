@@ -160,6 +160,7 @@ function displayModalStepTwo() {
   modalTitle.setAttribute("id", "modal2__title");
   modalName.textContent = "Name";
   modalMail.textContent = "E-mail";
+  modalPhone.textContent = "Phone number";
   modalTime.textContent = "What time?";
   modalParticipants.textContent = "How many participants?";
 
