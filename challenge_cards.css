@@ -9,6 +9,8 @@
 }
 
 .img__container {
+  position: relative;
+  display: flex;
   border-radius: 8px 8px 0 0;
   width: 363px;
   height: 219px;
@@ -21,6 +23,23 @@
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  z-index: 1;
+}
+
+.titleIcon__div {
+  display: flex;
+}
+.titleIcon__div h2 {
+  margin: 10px 10px 0px 15px;
+  padding: 0;
+  width: 80%;
+}
+.titleIcon__div span {
+  width: auto;
+  margin-top: 5px;
+  font-size: 20px;
+  margin-bottom: 0;
+  z-index: 10;
 }
 
 .challenge {

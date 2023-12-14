@@ -27,9 +27,26 @@ export default class Challenge {
     image.classList.add("img__container");
     imgContainer.append(image);
 
+    const titleAndIconDiv = document.createElement("div");
+    titleAndIconDiv.classList.add("titleIcon__div");
+
+    const icon = document.createElement("span");
+    icon.classList.add("card_icon");
+    titleAndIconDiv.append(icon);
+
+    if (this.data.type == "online") {
+      console.log("online");
+      icon.innerHTML = '<i class="fa fa-home"></i>';
+    } else {
+      console.log("onsite");
+      icon.innerHTML = '<i class="fa fa-laptop" aria-hidden="true"></i>';
+    }
+
     const titleElement = document.createElement("h2");
-    titleElement.textContent = this.data.title + " (" + this.data.type + ")";
-    container.append(titleElement);
+    titleElement.textContent = this.data.title;
+    container.append(titleAndIconDiv);
+    titleAndIconDiv.append(titleElement);
+    titleAndIconDiv.append(icon);
 
     // Function to convert rating to stars
     function createStarRating(rating) {
