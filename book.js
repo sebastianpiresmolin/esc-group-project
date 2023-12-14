@@ -257,7 +257,7 @@ function submitBooking() {
     let nameOutput = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     let validName = /^[a-zA-Z]+ [a-zA-Z]+$/;
     let emailOutput = inputMail.value.trim();
-    let validPhone = /^[0–9]{10}$/;
+    let validPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     let phoneOutput = inputPhone.value;
     let dateOutput = inputDate.value;
     const validEmail =
