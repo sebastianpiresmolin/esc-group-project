@@ -32,7 +32,7 @@ export default class Challenge {
 
     const icon = document.createElement("span");
     icon.classList.add("card_icon");
-    titleAndIconDiv.append(icon);
+    container.append(icon);
 
     if (this.data.type == "online") {
       console.log("online");
@@ -44,9 +44,10 @@ export default class Challenge {
 
     const titleElement = document.createElement("h2");
     titleElement.textContent = this.data.title;
-    container.append(titleAndIconDiv);
-    titleAndIconDiv.append(titleElement);
-    titleAndIconDiv.append(icon);
+    //container.append(titleAndIconDiv);
+    //titleAndIconDiv.append(titleElement);
+    //titleAndIconDiv.append(icon);
+    container.append(titleElement);
 
     // Function to convert rating to stars
     function createStarRating(rating) {

@@ -26,24 +26,6 @@
   }
 }
 
-.titleIcon__div {
-  display: flex;
-
-  h2 {
-    margin: 10px 10px 0px 15px;
-    padding: 0;
-    width: 80%;
-  }
-
-  span {
-    width: auto;
-    margin-top: 5px;
-    font-size: 20px;
-    margin-bottom: 0;
-    z-index: 10;
-  }
-}
-
 .challenge {
   display: flex;
   flex-direction: column;
@@ -55,7 +37,7 @@
   background-color: #36769d00;
 
   h2 {
-    margin: 10px 10px 0px 15px;
+    margin: 0px 10px 0px 15px;
     padding: 0;
   }
 
@@ -97,4 +79,12 @@
     align-self: flex-end;
     margin-top: auto;
   }
+}
+
+.card_icon {
+  transform: translate(330px, -210px);
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
 }
