@@ -81,6 +81,12 @@ const inputMail = document.createElement("input");
 inputMail.setAttribute("type", "text");
 inputMail.classList.add("input__mail");
 
+//Phone number
+const modalPhone = document.createElement("p");
+
+const inputPhone = document.createElement("input");
+inputPhone.setAttribute("type", "tel");
+
 //What time?
 const modalTime = document.createElement("p");
 modalTime.classList.add("modal__time");
@@ -154,6 +160,7 @@ function displayModalStepTwo() {
   modalTitle.setAttribute("id", "modal2__title");
   modalName.textContent = "Name";
   modalMail.textContent = "E-mail";
+  modalPhone.textContent = "Phone number";
   modalTime.textContent = "What time?";
   modalParticipants.textContent = "How many participants?";
 
@@ -164,6 +171,8 @@ function displayModalStepTwo() {
     inputName,
     modalMail,
     inputMail,
+    modalPhone,
+    inputPhone,
     modalTime,
     selecMenuTime,
     modalParticipants,
@@ -248,36 +257,44 @@ function submitBooking() {
     let nameOutput = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     let validName = /^[a-zA-Z]+ [a-zA-Z]+$/;
     let emailOutput = inputMail.value.trim();
+    let validPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    let phoneOutput = inputPhone.value;
     let dateOutput = inputDate.value;
     const validEmail =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (nameOutput.match(validName)) {
       if (emailOutput.match(validEmail)) {
-        let timeInput = selecMenuTime.selectedOptions;
-        let timeOutput = "";
-        for (let i = 0; i < timeInput.length; i++) {
-          timeOutput += timeInput[i].label;
-        }
-        console.log(arrayTimes);
-        let partOutput = "";
-        let partInput = selectMenuPart.selectedOptions;
-        for (let i = 0; i < partInput.length; i++) {
-          partOutput += partInput[i].label;
-        }
+        if (phoneOutput.match(validPhone)) {
+          let timeInput = selecMenuTime.selectedOptions;
+          let timeOutput = "";
+          for (let i = 0; i < timeInput.length; i++) {
+            timeOutput += timeInput[i].label;
+          }
+          console.log(arrayTimes);
+          let partOutput = "";
+          let partInput = selectMenuPart.selectedOptions;
+          for (let i = 0; i < partInput.length; i++) {
+            partOutput += partInput[i].label;
+          }
 
-        sendBookingData(
-          challengeID,
-          nameOutput,
-          emailOutput,
-          dateOutput,
-          timeOutput,
-          parseInt(partOutput)
-        );
-        errorMsg.textContent = "";
-        displayModalStepThree();
+          sendBookingData(
+            challengeID,
+            nameOutput,
+            emailOutput,
+            phoneOutput,
+            dateOutput,
+            timeOutput,
+            parseInt(partOutput)
+          );
+          errorMsg.textContent = "";
+          displayModalStepThree();
 
-        return true;
+          return true;
+        } else {
+          errorMsg.textContent = "You must enter a 10-digit phone number";
+          return false;
+        }
       } else {
         errorMsg.textContent = "You must enter a valid email!";
         return false;
@@ -291,7 +308,15 @@ function submitBooking() {
 
 submitBooking();
 
-async function sendBookingData(id, name, email, date, time, participants) {
+async function sendBookingData(
+  id,
+  name,
+  email,
+  phonenumber,
+  date,
+  time,
+  participants
+) {
   // Send data to API
   const response = await fetch(
     "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
@@ -305,6 +330,7 @@ async function sendBookingData(id, name, email, date, time, participants) {
         challenge: id,
         name: name,
         email: email,
+        phonenumber: phonenumber,
         date: date,
         time: time,
         participants: participants,
