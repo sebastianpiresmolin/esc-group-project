@@ -83,4 +83,7 @@
   padding: 0;
   margin: 0;
   font-size: 24px;
+}
+.challenge:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.6);
 }/*# sourceMappingURL=challenge_cards.css.map */
