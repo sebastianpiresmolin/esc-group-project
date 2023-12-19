@@ -40,20 +40,22 @@ document.getElementById("closebtn").addEventListener("click", function () {
 
 let filterButton = document.getElementById("filterButton");
 let filterWindow = document.getElementById("filterWindow");
-document.getElementById("closeFilter").addEventListener("click", function () {
-  filterWindow.style.display = "none";
-  filterButton.style.display = "block";
-});
 
-document.getElementById("filterButton").addEventListener("click", function () {
-  console.log('filterButton clicked');
-  setTimeout(function () {
-    filterWindow.style.animation = "grow 0.1s ease";
-    filterWindow.style.opacity = 1;
-    filterWindow.style.display = "flex";
-    filterButton.style.display = "none";
-  }, 10);
-});
+if (filterButton && filterWindow) {
+  document.getElementById("closeFilter").addEventListener("click", function () {
+    filterWindow.style.display = "none";
+    filterButton.style.display = "block";
+  });
+
+  document.getElementById("filterButton").addEventListener("click", function () {
+    setTimeout(function () {
+      filterWindow.style.animation = "grow 0.1s ease";
+      filterWindow.style.opacity = 1;
+      filterWindow.style.display = "flex";
+      filterButton.style.display = "none";
+    }, 10);
+  });
+}
 
 /*------------------------MOBILE MENU------------------------*/
 
