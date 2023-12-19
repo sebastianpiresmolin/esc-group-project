@@ -1,5 +1,10 @@
 /* ------------------------MOBILE MENU------------------------ */
 
+import './challenges.js';
+import './api_fetch.js';
+import './book.js'
+import './filter.js'
+
 document.getElementById("headerButton").addEventListener("click", function () {
   let menuOverlay = document.getElementById("menuOverlay");
   let popinMenu = document.getElementById("popinMenu");
