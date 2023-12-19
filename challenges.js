@@ -46,6 +46,7 @@ document.getElementById("closeFilter").addEventListener("click", function () {
 });
 
 document.getElementById("filterButton").addEventListener("click", function () {
+  console.log('filterButton clicked');
   setTimeout(function () {
     filterWindow.style.animation = "grow 0.1s ease";
     filterWindow.style.opacity = 1;
