@@ -1,5 +1,10 @@
 /* ------------------------MOBILE MENU------------------------ */
 
+import './challenges.js';
+import './api_fetch.js';
+import './book.js'
+import './filter.js'
+
 document.getElementById("headerButton").addEventListener("click", function () {
   let menuOverlay = document.getElementById("menuOverlay");
   let popinMenu = document.getElementById("popinMenu");
@@ -38,44 +43,3 @@ document.getElementById("closebtn").addEventListener("click", function () {
   document.documentElement.style.overflowY = "auto"; // This enables the ability to scroll again
 });
 
-document
-  .getElementById("linkToChallenges")
-  .addEventListener("click", function () {
-    window.location.href =
-      "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
-  });
-
-document
-  .getElementById("linkToChallenges2")
-  .addEventListener("click", function () {
-    window.location.href =
-      "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
-  });
-
-document
-  .getElementById("linkToChallenges3")
-  .addEventListener("click", function () {
-    window.location.href =
-      "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
-  });
-
-document
-  .getElementById("linkToChallenges4")
-  .addEventListener("click", function () {
-    window.location.href =
-      "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
-  });
-
-document
-  .getElementById("linkToChallenges5")
-  .addEventListener("click", function () {
-    window.location.href =
-      "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
-  });
-
-document
-  .getElementById("linkToChallenges6")
-  .addEventListener("click", function () {
-    window.location.href =
-      "https://sebastianpiresmolin.github.io/esc-group-project/challenges.html";
-  });
