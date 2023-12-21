@@ -9,6 +9,24 @@
   box-sizing: border-box;
 }
 
+.animation_finished_loading{
+  // Applying an animation called 'fadeIn' for 1 second to this element.
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    // Starting state: the element is invisible and translated 70 pixels down.
+    opacity: 0;
+    transform: translateY(70px);
+  }
+  // Ending state
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .img__container {
   position: relative;
   display: flex;
