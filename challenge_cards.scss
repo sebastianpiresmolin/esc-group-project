@@ -28,6 +28,8 @@
 }
 
 .img__container {
+  position: relative;
+  display: flex;
   border-radius: 8px 8px 0 0;
   width: 363px;
   height: 219px;
@@ -38,6 +40,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    z-index: 1;
   }
 }
 
@@ -52,9 +55,10 @@
   background-color: #36769d00;
 
   h2 {
-    margin: 10px 10px 0px 15px;
+    margin: 0px 10px 0px 15px;
     padding: 0;
   }
+
   .rating__container {
     display: flex;
     width: 363px;
@@ -93,4 +97,16 @@
     align-self: flex-end;
     margin-top: auto;
   }
+
+  &:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), 0 3px 8px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.card_icon {
+  transform: translate(330px, -210px);
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
 }
