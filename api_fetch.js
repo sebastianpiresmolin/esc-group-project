@@ -101,7 +101,21 @@ export default class Challenge {
     starRatingElement.appendChild(participantsElement);
 
     const descriptionElement = document.createElement("p");
-    descriptionElement.textContent = "Description: " + this.data.description;
+    const maxCharacters = 50;
+    const descriptionText = this.data.description.trim();
+
+    if (descriptionText.length > maxCharacters) {
+      const trimmedText = descriptionText
+        .slice(0, maxCharacters)
+        .split(" ")
+        .slice(0, -1)
+        .join(" ");
+      const trimmedDescription = trimmedText + "...";
+      descriptionElement.textContent = trimmedDescription;
+    } else {
+      descriptionElement.textContent = descriptionText;
+    }
+
     container.append(descriptionElement);
     descriptionElement.setAttribute("id", "descID");
 
