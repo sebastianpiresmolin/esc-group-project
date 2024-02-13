@@ -101,7 +101,21 @@ export default class Challenge {
     starRatingElement.appendChild(participantsElement);
 
     const descriptionElement = document.createElement("p");
-    descriptionElement.textContent = "Description: " + this.data.description;
+    const maxCharacters = 50;
+    const descriptionText = this.data.description.trim();
+
+    if (descriptionText.length > maxCharacters) {
+      const trimmedText = descriptionText
+        .slice(0, maxCharacters)
+        .split(" ")
+        .slice(0, -1)
+        .join(" ");
+      const trimmedDescription = trimmedText + "...";
+      descriptionElement.textContent = trimmedDescription;
+    } else {
+      descriptionElement.textContent = descriptionText;
+    }
+
     container.append(descriptionElement);
     descriptionElement.setAttribute("id", "descID");
 
@@ -152,25 +166,24 @@ export default class Challenge {
       bookRoomTitle.textContent =
         'Book Room: "' + selectedChallenge.data.title + '" (Step 1)';
     });
-
-      //  Working the function with "window." after the API has finished loading
-      window.requestAnimationFrame(() => {
-        // Calling the function with the chellenges container
-        applyAnimation(container);
-      });
-      
-      // Applying animation to the provided container  
-    function applyAnimation(container) {
-            const card = container;
-      // Checking if the card (container) exists
-      if (card) {
-         // Adding the 'animation_class' CSS class to trigger the animation
-        card.classList.add('animation_finished_loading'); 
-      } else {          
-        console.log('.challenge element not found in the given element');
-      }
+    //  Working the function with "window." after the API has finished loading
+    window.requestAnimationFrame(() => {
+      // Calling the function with the chellenges container
+      applyAnimation(container);
+    });
+    
+    // Applying animation to the provided container  
+  function applyAnimation(container) {
+          const card = container;
+    // Checking if the card (container) exists
+    if (card) {
+       // Adding the 'animation_class' CSS class to trigger the animation
+      card.classList.add('animation_finished_loading'); 
+    } else {          
+      console.log('.challenge element not found in the given element');
     }
-
+  }
+    
     return container;
   }
 }

@@ -563,6 +563,18 @@ class Challenge {
       const bookRoomTitle = document.querySelector("#modal1__title");
       bookRoomTitle.textContent = 'Book Room: "' + selectedChallenge.data.title + '" (Step 1)';
     });
+      window.requestAnimationFrame(() => {
+           applyAnimation(container);
+    });
+      
+  function applyAnimation(container) {
+          const card = container;
+      if (card) {
+        card.classList.add('animation_finished_loading'); 
+    } else {          
+      console.log('.challenge element not found in the given element');
+    }
+  }
     return container;
   }
 }
