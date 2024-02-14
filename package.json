@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^13.6.4",
+    "node": "^21.6.1",
     "vite": "^5.0.10"
-  }
+  },
+  "keywords": []
 }
