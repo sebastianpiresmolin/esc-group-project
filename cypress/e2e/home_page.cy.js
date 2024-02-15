@@ -14,7 +14,7 @@ describe("The Home Page", () => {
     cy.wait(200);
     cy.contains("li", "The story").click();
     cy.wait(200);
-    cy.contains("li", "Play online").click();
+    cy.contains("a", "Facebook").click();
     cy.wait(200);
     cy.contains("button", "Book this room").click();
     cy.wait(200);
