@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "hacker escape room school assignment",
   "main": "main.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "test": "home_page.cy.js"
-    
+    "test": "cypress run"
   },
   "author": "",
   "license": "ISC",
