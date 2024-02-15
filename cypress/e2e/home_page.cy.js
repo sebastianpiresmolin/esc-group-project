@@ -1,5 +1,5 @@
 describe("The Home Page", () => {
-  it("successfully loads", () => {
+  it("The home page loaded successfully!", () => {
     cy.visit("https://sebastianpiresmolin.github.io/esc-group-project/");
   });
 });
