@@ -1,5 +1,5 @@
 describe("The Home Page", () => {
   it("successfully loads", () => {
-    cy.visit("http://localhost:5000");
+    cy.visit("https://sebastianpiresmolin.github.io/esc-group-project/");
   });
 });

@@ -6,6 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "home_page.cy.js"
+    
   },
   "author": "",
   "license": "ISC",
