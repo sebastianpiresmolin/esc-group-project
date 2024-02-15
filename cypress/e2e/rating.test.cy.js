@@ -1,8 +1,11 @@
 describe('test labels', () => {
   it('passes', () => {
-    cy.visit(
-      'https://sebastianpiresmolin.github.io/esc-group-project/challenges.html'
-    );
+    cy.visit('https://sebastianpiresmolin.github.io/esc-group-project/');
+
+    cy.contains('.navbar__link', 'Play online').click();
+    cy.location('pathname').should('include', '/challenges.html');
+    cy.visit('/challenges.html');
+
     cy.get('.filterButton').click();
 
     cy.get('#fromOne').click().should('have.class', 'checked');

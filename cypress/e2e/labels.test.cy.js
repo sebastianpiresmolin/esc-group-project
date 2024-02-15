@@ -1,7 +1,11 @@
 
 describe("test labels", () => {
   it("passes", () => {
-    cy.visit("http://127.0.0.1:5500/challenges.html");
+    cy.visit('/');
+
+    cy.contains('.navbar__link', 'Play online').click();
+    cy.location('pathname').should('include', '/challenges.html');
+    cy.visit('/challenges.html');
     cy.get(".filterButton").click();
 
     cy.get("#linux")
@@ -29,6 +33,8 @@ describe("test labels", () => {
 
     cy.get("#bash")
       .should("have.class", "active")
+    
+    cy.contains("No matching challenges").should("exist")  
     
     cy.get("#javascript")
       .should("have.class", "active")
