@@ -1,4 +1,9 @@
-export default {
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+    server: {
+      port: 5501
+    },
     build: {
       minify: false,
       rollupOptions: {
@@ -9,4 +14,4 @@ export default {
         }
       }
     }
-  }
+  })
