@@ -4,11 +4,13 @@
   "description": "hacker escape room school assignment",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "open-cypress": "cypress open",
+    "test": "cypress run"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^13.6.4",
     "vite": "^5.0.10"
   }
 }
