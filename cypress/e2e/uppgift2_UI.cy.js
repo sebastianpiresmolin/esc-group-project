@@ -1,5 +1,5 @@
 describe('test filter by type', () => {
-    it('tests if filter by type is working', () => {
+    it('tests if filter by type and booking is working', () => {
         cy.visit('https://sebastianpiresmolin.github.io/esc-group-project/')
         cy.contains('Play online').click()
         cy.wait(200)
