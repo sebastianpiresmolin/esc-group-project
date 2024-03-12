@@ -12,7 +12,7 @@ describe('Check to see if website is working', () => {
     cy.get('nav.navbar').find('li').should('have.length', 4);
   });
 
-  //Check Top3 Challenges
+  //Check Top3 Challenges ( This Test should fail)
   it('should have Top3 Challenges', () => {
     cy.visit('/');
     cy.get('.challenge.animation_finished_loading').should('have.length', 3);
