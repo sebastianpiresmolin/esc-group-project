@@ -1,6 +1,6 @@
 describe('Test if website is up and running', () => {
   it('should have header', () => {
-    cy.visit('http://localhost:5501');
+    cy.visit('https://sebastianpiresmolin.github.io/esc-group-project/');
 
     cy.get('h1').contains('Hacker Escape Rooms');
   });
