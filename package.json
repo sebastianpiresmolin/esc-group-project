@@ -4,11 +4,16 @@
   "version": "1.0.0",
   "main": "main.js",
   "devDependencies": {
+    "cypress": "^13.6.6",
     "vite": "^5.0.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
 }
