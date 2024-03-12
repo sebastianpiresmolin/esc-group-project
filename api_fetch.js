@@ -239,7 +239,7 @@ class Top3View {
     const sorted = challenges.sort(
       (item0, item1) => item1.data.rating - item0.data.rating
     );
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 1; i++) {
       const challenge = sorted[i];
       const element = challenge.render();
       container.append(element);
